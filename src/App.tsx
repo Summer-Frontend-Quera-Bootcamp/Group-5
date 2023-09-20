@@ -10,15 +10,29 @@ const router = createBrowserRouter([
 		path: "/",
 		children: [
 			{
-				path: "/auth",
+				path: "auth",
 				element: <AuthenticationLayout />,
+        children: [
+          {
+            path: 'login',
+            // TODO element: <LoginPage />
+          },
+          {
+            path: 'forgot',
+            // TODO element: <ForgotPage />
+          },
+          {
+            path: 'reset',
+            // TODO element: <ResetPage />
+          },
+        ]
 			},
 			{
-				path: "/dashboard",
+				path: "dashboard",
 				element: <DashboardLayout />,
 			},
 			{
-				path: "/profile",
+				path: "profile",
 				element: <ProfileLayout />,
 			},
 		],
