@@ -1,6 +1,5 @@
 import { Box, Container, Flex, Heading, Text } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
-import MyComponent from "../../components/‌Button";
 
 const AuthenticationLayout = () => {
 	return (
@@ -26,12 +25,6 @@ const AuthenticationLayout = () => {
 				</Heading>
 				<Flex align="center" gap="s">
 					<Text fontWeight="semibold">ثبت نام نکرده ای؟</Text>
-					<MyComponent
-					disabled={true}
-					onclick ={function(){}}
-					
-					>ثبت نام
-					</MyComponent>
 				</Flex>
 			</Flex>
 			<Box pos="fixed" inset="0" zIndex="-1" display="grid" placeItems="center">
