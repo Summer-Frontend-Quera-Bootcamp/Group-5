@@ -1,6 +1,7 @@
 import { Box, Container, Flex, Heading, Text } from "@chakra-ui/react";
-import { Outlet } from "react-router-dom";
+import {  Outlet } from "react-router-dom";
 import MyComponent from "../../components/‌Button";
+import Link from "../../components/Link";
 
 const AuthenticationLayout = () => {
 	return (
@@ -36,6 +37,8 @@ const AuthenticationLayout = () => {
 			</Flex>
 			<Box pos="fixed" inset="0" zIndex="-1" display="grid" placeItems="center">
 				<Outlet />
+			<Link
+			   href="" >رمز عبور را فراموش کرده ای؟</Link>
 			</Box>
 			<Box
 				w="200%"
