@@ -30,11 +30,6 @@ const ForgotPage = () => {
 					register={register}
 					page="login"
 				/>
-				<Box textAlign={"right"}>
-					<Link href="/auth/forgot" fontSize="sm">
-						رمز عبور را فراموش کرده‌ای؟
-					</Link>
-				</Box>
 			</VStack>
 			<VStack spacing={"2"}>
 				<Button
