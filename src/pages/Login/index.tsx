@@ -1,5 +1,5 @@
-import { Heading, chakra } from "@chakra-ui/react";
-import { ValidateInput, Button } from "../../components";
+import { Box, Heading, VStack, chakra } from "@chakra-ui/react";
+import { ValidateInput, Button, Link } from "../../components";
 import { useForm } from "react-hook-form";
 import { authenticationFormStyle } from "../../styles";
 
