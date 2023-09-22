@@ -4,6 +4,7 @@ import {
 	DashboardLayout,
 	ProfileLayout,
 } from "./layouts";
+import { ForgotPage, LoginPage, RegisterPage, ResetPage } from "./pages";
 
 const router = createBrowserRouter([
 	{
@@ -15,15 +16,19 @@ const router = createBrowserRouter([
 				children: [
 					{
 						path: "login",
-						// TODO element: <LoginPage />
+						element: <LoginPage />,
 					},
+          {
+            path: "register",
+            element: <RegisterPage />
+          },
 					{
 						path: "forgot",
-						// TODO element: <ForgotPage />
+						element: <ForgotPage />,
 					},
 					{
 						path: "reset",
-						// TODO element: <ResetPage />
+						element: <ResetPage />,
 					},
 				],
 			},

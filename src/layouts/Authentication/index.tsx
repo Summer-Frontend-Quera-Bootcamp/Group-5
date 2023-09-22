@@ -1,7 +1,5 @@
 import { Box, Container, Flex, Heading, Text } from "@chakra-ui/react";
-import {  Outlet } from "react-router-dom";
-import MyComponent from "../../components/‌Button";
-import Link from "../../components/Link";
+import { Outlet } from "react-router-dom";
 
 const AuthenticationLayout = () => {
 	return (
@@ -27,18 +25,10 @@ const AuthenticationLayout = () => {
 				</Heading>
 				<Flex align="center" gap="s">
 					<Text fontWeight="semibold">ثبت نام نکرده ای؟</Text>
-					<MyComponent
-					disabled={true}
-					onclick ={function(){}}
-					
-					>ثبت نام
-					</MyComponent>
 				</Flex>
 			</Flex>
 			<Box pos="fixed" inset="0" zIndex="-1" display="grid" placeItems="center">
 				<Outlet />
-			<Link
-			   href="" >رمز عبور را فراموش کرده ای؟</Link>
 			</Box>
 			<Box
 				w="200%"
