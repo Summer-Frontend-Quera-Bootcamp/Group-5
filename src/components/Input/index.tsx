@@ -1,5 +1,18 @@
-import { Input,FormLabel, FormControl,FormErrorMessage,FormHelperText,Button,InputGroup, InputRightElement} from "@chakra-ui/react";
+import {
+    Input,
+    FormLabel,
+    FormControl,
+    FormErrorMessage,
+    FormHelperText,
+    Button,
+    InputGroup,
+    InputRightElement,
+    Box,
+    Flex,
+    Spacer
+    } from "@chakra-ui/react";
 import { useState } from "react";
+import { Link } from "../../components";
 
 type TinputType= 'password' | 'text' | 'email'
 interface IInputProps{
@@ -7,9 +20,10 @@ interface IInputProps{
     lable:string;
     register:any;
     errors:any;
+    page?:string;
 }
 
-const ValidateInput=({type,lable,register,errors}:IInputProps):JSX.Element=>{
+const ValidateInput=({type,lable,register,errors,page}:IInputProps):JSX.Element=>{
     const [show, setShow] = useState(false)
     const handleClick = () => setShow(!show)
     {switch (type) {
@@ -61,7 +75,17 @@ const ValidateInput=({type,lable,register,errors}:IInputProps):JSX.Element=>{
                 return(
                     <>
                     <FormControl isInvalid={errors.password}>
-                    <FormLabel>{lable}</FormLabel>
+                    <Flex>
+                        <Box><FormLabel>{lable}</FormLabel></Box>
+                        <Spacer/>
+                        {page==='login' && 
+                        <Box textAlign={"right"}>
+                        <Link href="/auth/forgot" fontSize="sm">
+                            رمز عبور را فراموش کرده‌ای؟
+                        </Link>
+                        </Box>
+                        }
+                    </Flex>
                     <InputGroup >
                     <Input 
                     type={show ? 'text' : type} 

@@ -28,6 +28,7 @@ const ForgotPage = () => {
 					lable="رمز عبور"
 					errors={errors}
 					register={register}
+					page="login"
 				/>
 				<Box textAlign={"right"}>
 					<Link href="/auth/forgot" fontSize="sm">
