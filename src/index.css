@@ -5,13 +5,13 @@
 /* Web font: Yekan */
 @font-face {
 	font-family: "Yekan";
-	src: url("./assets/Yekan.eot"); /* IE9 Compatible Modes */
+	src: url("./assets/font/Yekan.eot");
 	src:
-		url("./assets/Yekan.eot?#iefix") format("embedded-opentype"),
-		/* IE6-IE8 */ url("./assets/Yekan.woff2") format("woff2"),
-		/* Modern Browsers */ url("./assets/Yekan.woff") format("woff"),
-		/* Modern Browsers */ url("./assets/Yekan.otf") format("opentype"),
-		/* Open Type Font */ url("./assets/Yekan.ttf") format("truetype"); /* Safari, Android, iOS */
+		url("./assets/font/Yekan.eot?#iefix") format("embedded-opentype"),
+		url("./assets/font/Yekan.woff2") format("woff2"),
+		url("./assets/font/Yekan.woff") format("woff"),
+		url("./assets/font/Yekan.otf") format("opentype"),
+		url("./assets/font/Yekan.ttf") format("truetype");
 	font-weight: normal;
 	font-style: normal;
 	text-rendering: optimizeLegibility;
@@ -19,5 +19,5 @@
 }
 
 body {
-	font-family: "Yekan";
+	font-family: "Yekan" !important;
 }

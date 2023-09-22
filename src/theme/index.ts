@@ -33,6 +33,10 @@ const theme = extendTheme({
 		"orange-secondary": "#FFE8CC",
 		"orange-primary": "#FD7E14",
 	},
+	fonts: {
+		heading: "Yekan",
+		body: "Yekan",
+	},
 	fontSizes: {
 		"heading-l": "32pt",
 		"heading-m": "28pt",
