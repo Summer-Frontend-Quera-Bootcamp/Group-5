@@ -9,30 +9,27 @@ const ForgotPage = () => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
+
+	const onSubmit = (data:any) => console.log(data)
+
 	return (
-		<chakra.form sx={authenticationFormStyle}>
+		<chakra.form sx={authenticationFormStyle} onSubmit={handleSubmit(onSubmit)}>
 			<Heading>ثبت‌نام در کوئرا تسک منیجر</Heading>
 			<ValidateInput
 				type="text"
 				lable="نام کاربری"
-				// TODO: errors={}
-				// TODO: register={}
 				errors={errors}
 				register={register}
 			/>
 			<ValidateInput
 				type="email"
 				lable="ایمیل"
-				// TODO: errors={}
-				// TODO: register={}
 				errors={errors}
 				register={register}
 			/>
 			<ValidateInput
 				type="password"
 				lable="رمز عبور"
-				// TODO: errors={}
-				// TODO: register={}
 				errors={errors}
 				register={register}
 			/>
