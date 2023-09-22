@@ -9,14 +9,15 @@ const ForgotPage = () => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
+
+	const onSubmit = (data:any) => console.log(data)
+
 	return (
-		<chakra.form sx={authenticationFormStyle}>
+		<chakra.form sx={authenticationFormStyle} onSubmit={handleSubmit(onSubmit)}>
 			<Heading>بازیابی رمز عبور</Heading>
 			<ValidateInput
 				type="password"
 				lable="رمز عبور جدید را وارد کنید"
-				// TODO: errors={}
-				// TODO: register={}
 				errors={errors}
 				register={register}
 			/>

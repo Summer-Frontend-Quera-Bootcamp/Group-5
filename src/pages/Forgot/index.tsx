@@ -9,14 +9,13 @@ const ForgotPage = () => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
+	const onSubmit = (data:any) => console.log(data)
 	return (
-		<chakra.form sx={authenticationFormStyle}>
+		<chakra.form sx={authenticationFormStyle} onSubmit={handleSubmit(onSubmit)}>
 			<Heading>فراموشی رمز عبور</Heading>
 			<ValidateInput
 				type="email"
 				lable="ایمیل"
-				// TODO: errors={}
-				// TODO: register={}
 				errors={errors}
 				register={register}
 			/>
