@@ -97,4 +97,4 @@ const ValidateInput=({type,lable,register,errors}:IInputProps):JSX.Element=>{
                 )
     }}
 }
-export {ValidateInput}
+export default ValidateInput
