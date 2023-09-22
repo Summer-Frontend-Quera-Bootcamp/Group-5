@@ -1,7 +1,26 @@
 import { Box, Container, Flex, Heading, Text } from "@chakra-ui/react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Button } from "../../components";
 
 const AuthenticationLayout = () => {
+	const location = useLocation();
+	const navigate = useNavigate();
+	const headerHelper =
+		location.pathname === "/auth/login" ? (
+			<>
+				<Text fontWeight="semibold">ثبت‌نام نکرده ای؟</Text>
+				<Button isActive={true} onClick={() => navigate("/auth/register")}>
+					ثبت‌نام
+				</Button>
+			</>
+		) : (
+			<>
+				<Text fontWeight="semibold">قبلا ثبت‌نام کرده‌ای؟</Text>
+				<Button isActive={true} onClick={() => navigate("/auth/login")}>
+					ورود
+				</Button>
+			</>
+		);
 	return (
 		<Container
 			maxW={[
@@ -24,7 +43,7 @@ const AuthenticationLayout = () => {
 					کوئرا تسک منیجر
 				</Heading>
 				<Flex align="center" gap="s">
-					<Text fontWeight="semibold">ثبت نام نکرده ای؟</Text>
+					{headerHelper}
 				</Flex>
 			</Flex>
 			<Box pos="fixed" inset="0" zIndex="-1" display="grid" placeItems="center">
