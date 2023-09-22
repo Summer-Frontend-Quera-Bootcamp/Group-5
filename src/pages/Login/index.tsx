@@ -1,20 +1,8 @@
-import { Box, Heading, VStack, chakra } from "@chakra-ui/react";
-import { ValidateInput } from "../../components";
-import Button from "../../components/‌Button";
+import { Heading, chakra } from "@chakra-ui/react";
+import { ValidateInput, Button } from "../../components";
 import { useForm } from "react-hook-form";
-import Link from "../../components/Link";
+import { authenticationFormStyle } from "../../styles";
 
-const authenticationFormStyle = {
-	display: "flex",
-	flexDir: "column",
-	gap: "32px",
-	bg: "white",
-	shadow: "0px 50px 100px -20px #32325D40, 0px 30px 60px -30px #0000004D",
-	width: "640px",
-	borderRadius: "20px",
-	p: "24px",
-	textAlign: "center",
-};
 
 const ForgotPage = () => {
 	const {
