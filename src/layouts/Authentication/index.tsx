@@ -19,7 +19,7 @@ const AuthenticationLayout = () => {
 
 		return (
 			<>
-				<Text fontWeight="semibold">{text}</Text>
+				<Text>{text}</Text>
 				<Button isActive={true} onClick={() => navigate(path)}>
 					{buttonText}
 				</Button>
