@@ -1,8 +1,8 @@
-import { Heading, Text, chakra } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 import { ValidateInput, Button } from "../../components";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { authenticationFormStyle } from "../../styles";
 import { useState } from "react";
+import Form from "../../components/Form";
 
 const ForgotPage = () => {
 	const {
@@ -40,10 +40,9 @@ const ForgotPage = () => {
 	);
 
 	return (
-		<chakra.form sx={authenticationFormStyle} onSubmit={handleSubmit(onSubmit)}>
-			<Heading>فراموشی رمز عبور</Heading>
+		<Form onSubmit={handleSubmit(onSubmit)} title="فراموشی رمز عبور">
 			{showForm ? renderFormContent() : renderEmailSentMessage()}
-		</chakra.form>
+		</Form>
 	);
 };
 

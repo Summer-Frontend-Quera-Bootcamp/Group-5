@@ -1,7 +1,7 @@
-import { Box, Heading, VStack, chakra } from "@chakra-ui/react";
+import { Box, VStack } from "@chakra-ui/react";
 import { ValidateInput, Button, Link } from "../../components";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { authenticationFormStyle } from "../../styles";
+import Form from "../../components/Form";
 
 const ForgotPage = () => {
 	const {
@@ -12,8 +12,10 @@ const ForgotPage = () => {
 	const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
 
 	return (
-		<chakra.form sx={authenticationFormStyle} onSubmit={handleSubmit(onSubmit)}>
-			<Heading>به کوئرا تسک منیجر خوش برگشتی {":)"} </Heading>
+		<Form
+			onSubmit={handleSubmit(onSubmit)}
+			title="به کوئرا تسک منیجر خوش برگشتی :) "
+		>
 			<ValidateInput
 				type="email"
 				label="ایمیل"
@@ -35,7 +37,7 @@ const ForgotPage = () => {
 					ثبت‌نام نکرده‌ای؟ <Link href="/auth/register">ثبت‌نام</Link>
 				</Box>
 			</VStack>
-		</chakra.form>
+		</Form>
 	);
 };
 
