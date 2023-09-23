@@ -1,18 +1,18 @@
-import React, {ReactNode} from 'react';
+import React, { ReactNode } from 'react';
 import { Button as ChakraButton, Flex } from '@chakra-ui/react';
 
-interface IButton  {
+interface IButton {
   isActive: boolean;
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   children: ReactNode;
   fullWidth?: boolean;
-} 
+}
 
 const Button = ({
   isActive,
   onClick,
   children,
-  fullWidth = false,//for use in other forms
+  fullWidth = false,
   ...restProps
 }: IButton) => {
   return (
