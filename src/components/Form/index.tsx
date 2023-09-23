@@ -1,6 +1,6 @@
 import { BaseSyntheticEvent, ReactNode } from "react";
 import { authenticationFormStyle } from "./style";
-import { Heading, chakra } from "@chakra-ui/react";
+import { Heading, VStack, chakra } from "@chakra-ui/react";
 
 interface IFormProps {
 	// onSubmit: (
@@ -15,7 +15,7 @@ const Form = ({ onSubmit, title, children }: IFormProps) => {
 	return (
 		<chakra.form sx={authenticationFormStyle} onSubmit={onSubmit}>
 			<Heading>{title}</Heading>
-			{children}
+			<VStack alignItems="stretch" spacing="24px">{children}</VStack>
 		</chakra.form>
 	);
 };
