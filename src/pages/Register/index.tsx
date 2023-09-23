@@ -1,6 +1,8 @@
 import { ValidateInput, Button } from "../../components";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Form from "../../components/Form";
+import { Checkbox } from "@chakra-ui/react";
+import { useState } from "react";
 
 const ForgotPage = () => {
 	const {
@@ -8,6 +10,8 @@ const ForgotPage = () => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
+
+	const [isChecked, setIsChecked] = useState(false);
 
 	const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
 
@@ -31,7 +35,14 @@ const ForgotPage = () => {
 				errors={errors}
 				register={register}
 			/>
-			<Button isActive={false} onClick={() => {}} fullWidth={true}>
+			<Checkbox
+				colorScheme="teal"
+				isChecked={isChecked}
+				onChange={() => setIsChecked(!isChecked)}
+			>
+				قوانین و مقررات را می‌پذیرم.
+			</Checkbox>
+			<Button isActive={isChecked} onClick={() => {}} fullWidth={true}>
 				ثبت‌نام
 			</Button>
 		</Form>
