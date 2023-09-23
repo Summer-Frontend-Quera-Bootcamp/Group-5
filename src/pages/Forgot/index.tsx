@@ -1,7 +1,8 @@
 import { Heading, Text, chakra } from "@chakra-ui/react";
 import { ValidateInput, Button } from "../../components";
-import { useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { authenticationFormStyle } from "../../styles";
+import { useState } from "react";
 
 const ForgotPage = () => {
 	const {
@@ -9,37 +10,39 @@ const ForgotPage = () => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
-	const onSubmit = (data: any) => console.log(data);
+	const [showForm, setShowForm] = useState<boolean>(true);
+
+	const onSubmit: SubmitHandler<FieldValues> = (data) => {
+		console.log(data);
+		setShowForm(false);
+	};
+
+	const renderFormContent = () => (
+		<>
+			<ValidateInput
+				type="email"
+				label="ایمیل"
+				errors={errors}
+				register={register}
+			/>
+			<Button isActive={true} onClick={() => {}} fullWidth={true}>
+				دریافت ایمیل بازیابی رمز عبور
+			</Button>
+		</>
+	);
+
+	const renderEmailSentMessage = () => (
+		<>
+			<Text>
+				لینک بازیابی رمز عبور برای شما ایمیل شد. لطفا ایمیل خود را بررسی کنید.
+			</Text>
+		</>
+	);
+
 	return (
 		<chakra.form sx={authenticationFormStyle} onSubmit={handleSubmit(onSubmit)}>
 			<Heading>فراموشی رمز عبور</Heading>
-			// TODO: change onSubmit
-			{true ? (
-				<>
-					<ValidateInput
-						type="email"
-						lable="ایمیل"
-						errors={errors}
-						register={register}
-					/>
-					<Button
-						// TODO: set state for isActive={false} prop
-						isActive={false}
-						// TODO: set type for button
-						onClick={() => {}}
-						fullWidth={true}
-					>
-						دریافت ایمیل بازیابی رمز عبور
-					</Button>
-				</>
-			) : (
-				<>
-					<Text>
-						لینک بازیابی رمز عبور برای شما ایمیل شد. لطفا ایمیل خود را بررسی
-						کنید.
-					</Text>
-				</>
-			)}
+			{showForm ? renderFormContent() : renderEmailSentMessage()}
 		</chakra.form>
 	);
 };
