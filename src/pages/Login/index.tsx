@@ -1,8 +1,7 @@
-import { Box, Heading, VStack, chakra } from "@chakra-ui/react";
+import { Box, VStack } from "@chakra-ui/react";
 import { ValidateInput, Button, Link } from "../../components";
-import { useForm } from "react-hook-form";
-import { authenticationFormStyle } from "../../styles";
-
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import Form from "../../components/Form";
 
 const ForgotPage = () => {
 	const {
@@ -10,42 +9,35 @@ const ForgotPage = () => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
-	
-	const onSubmit = (data:any) => console.log(data)
+	const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
 
 	return (
-		<chakra.form sx={authenticationFormStyle} onSubmit={handleSubmit(onSubmit)}>
-			<Heading>به کوئرا تسک منیجر خوش برگشتی {":)"} </Heading>
+		<Form
+			onSubmit={handleSubmit(onSubmit)}
+			title="به کوئرا تسک منیجر خوش برگشتی :) "
+		>
 			<ValidateInput
 				type="email"
-				lable="ایمیل"
+				label="ایمیل"
 				errors={errors}
 				register={register}
 			/>
-			<VStack spacing={"2"}>
-				<ValidateInput
-					type="password"
-					lable="رمز عبور"
-					errors={errors}
-					register={register}
-					page="login"
-				/>
-			</VStack>
-			<VStack spacing={"2"}>
-				<Button
-					// TODO: set state for isActive={false} prop
-					isActive={false}
-					// TODO: set type for button
-					onClick={() => {}}
-					fullWidth={true}
-				>
+			<ValidateInput
+				type="password"
+				label="رمز عبور"
+				errors={errors}
+				register={register}
+				page="login"
+			/>
+			<VStack>
+				<Button isActive={false} onClick={() => {}} fullWidth={true}>
 					ورود
 				</Button>
 				<Box>
 					ثبت‌نام نکرده‌ای؟ <Link href="/auth/register">ثبت‌نام</Link>
 				</Box>
 			</VStack>
-		</chakra.form>
+		</Form>
 	);
 };
 

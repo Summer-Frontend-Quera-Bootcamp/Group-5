@@ -1,64 +1,44 @@
 import { Box, Container, Flex, Heading, Text } from "@chakra-ui/react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "../../components";
+import {
+	authenticationFormLayoutStyle,
+	backgroundGradientStyle,
+	headingStyle,
+} from "./style";
 
 const AuthenticationLayout = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
-	const headerHelper =
-		location.pathname === "/auth/login" ? (
+
+	const getHeaderHelper = () => {
+		const [text, path, buttonText] =
+			location.pathname === "/auth/login"
+				? ["ثبت‌نام نکرده ای؟", "/auth/register", "ثبت‌نام"]
+				: ["قبلا ثبت‌نام کرده‌ای؟", "/auth/login", "ورود"];
+
+		return (
 			<>
-				<Text fontWeight="semibold">ثبت‌نام نکرده ای؟</Text>
-				<Button isActive={true} onClick={() => navigate("/auth/register")}>
-					ثبت‌نام
-				</Button>
-			</>
-		) : (
-			<>
-				<Text fontWeight="semibold">قبلا ثبت‌نام کرده‌ای؟</Text>
-				<Button isActive={true} onClick={() => navigate("/auth/login")}>
-					ورود
+				<Text fontWeight="semibold">{text}</Text>
+				<Button isActive={true} onClick={() => navigate(path)}>
+					{buttonText}
 				</Button>
 			</>
 		);
+	};
+
 	return (
-		<Container
-			maxW={[
-				"container.sm",
-				"container.sm",
-				"container.md",
-				"container.lg",
-				"container.xl",
-				"1536px",
-			]}
-		>
+		<Container maxW={"container.xl"}>
 			<Flex align="center" justifyContent="space-between" mt="l">
-				<Heading
-					bgGradient="linear(to-r, #06846F, #54BEE8)"
-					bgClip="text"
-					fill="transparent"
-					display="inline-block"
-					py="2"
-				>
-					کوئرا تسک منیجر
-				</Heading>
+				<Heading sx={headingStyle}>کوئرا تسک منیجر</Heading>
 				<Flex align="center" gap="s">
-					{headerHelper}
+					{getHeaderHelper()}
 				</Flex>
 			</Flex>
-			<Box pos="fixed" inset="0" zIndex="-1" display="grid" placeItems="center">
+			<Box sx={authenticationFormLayoutStyle}>
 				<Outlet />
 			</Box>
-			<Box
-				w="200%"
-				h="100%"
-				zIndex="-2"
-				bgGradient="linear(to-l, #06846F, #54BEE8)"
-				pos="fixed"
-				bottom="0"
-				transform="translateX(50%)"
-				clipPath="polygon(100% 100%, -20% 100%, 120% 10%)"
-			/>
+			<Box sx={backgroundGradientStyle} />
 		</Container>
 	);
 };
