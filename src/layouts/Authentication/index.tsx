@@ -6,6 +6,7 @@ import {
 	backgroundGradientStyle,
 	headingStyle,
 } from "./style";
+import { theme } from "../../theme";
 
 const AuthenticationLayout = () => {
 	const location = useLocation();
@@ -29,9 +30,9 @@ const AuthenticationLayout = () => {
 
 	return (
 		<Container maxW={"container.xl"}>
-			<Flex align="center" justifyContent="space-between" mt="l">
+			<Flex align="center" justifyContent="space-between" mt={theme.space.lg}>
 				<Heading sx={headingStyle}>کوئرا تسک منیجر</Heading>
-				<Flex align="center" gap="s">
+				<Flex align="center" gap={theme.space.sm}>
 					{getHeaderHelper()}
 				</Flex>
 			</Flex>

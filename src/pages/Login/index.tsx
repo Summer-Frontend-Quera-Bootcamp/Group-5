@@ -2,6 +2,7 @@ import { Box, VStack } from "@chakra-ui/react";
 import { ValidateInput, Button, Link } from "../../components";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Form from "../../components/Form";
+import { theme } from "../../theme";
 
 const ForgotPage = () => {
 	const {
@@ -29,7 +30,7 @@ const ForgotPage = () => {
 				register={register}
 				page="login"
 			/>
-			<VStack>
+			<VStack spacing={theme.space.md}>
 				<Button isActive={false} onClick={() => {}} fullWidth={true}>
 					ورود
 				</Button>
