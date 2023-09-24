@@ -29,7 +29,7 @@ const ForgotPage = () => {
 				register={register}
 				page="login"
 			/>
-			<VStack>
+			<VStack spacing="md">
 				<Button isActive={false} onClick={() => {}} fullWidth={true}>
 					ورود
 				</Button>

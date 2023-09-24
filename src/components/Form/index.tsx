@@ -6,7 +6,7 @@ interface IFormProps {
 	// onSubmit: (
 	// 	e?: BaseSyntheticEvent<object, any, any> | undefined
 	// ) => Promise<void>;
-  onSubmit: any;
+	onSubmit: any;
 	title: string;
 	children: ReactNode;
 }
@@ -15,7 +15,9 @@ const Form = ({ onSubmit, title, children }: IFormProps) => {
 	return (
 		<chakra.form sx={authenticationFormStyle} onSubmit={onSubmit}>
 			<Heading>{title}</Heading>
-			<VStack alignItems="stretch" spacing="24px">{children}</VStack>
+			<VStack alignItems="stretch" spacing="md">
+				{children}
+			</VStack>
 		</chakra.form>
 	);
 };

@@ -29,9 +29,9 @@ const AuthenticationLayout = () => {
 
 	return (
 		<Container maxW={"container.xl"}>
-			<Flex align="center" justifyContent="space-between" mt="l">
+			<Flex align="center" justifyContent="space-between" mt="lg">
 				<Heading sx={headingStyle}>کوئرا تسک منیجر</Heading>
-				<Flex align="center" gap="s">
+				<Flex align="center" gap="sm">
 					{getHeaderHelper()}
 				</Flex>
 			</Flex>

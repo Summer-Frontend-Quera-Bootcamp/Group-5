@@ -1,6 +1,6 @@
 import { extendTheme } from "@chakra-ui/react";
 
-const theme = extendTheme({
+const theme = {
 	direction: "rtl",
 	colors: {
 		"gray-secondary": "#F1F3F5",
@@ -38,23 +38,25 @@ const theme = extendTheme({
 		body: "Yekan",
 	},
 	fontSizes: {
-		"heading-l": "32pt",
-		"heading-m": "28pt",
-		"heading-s": "24pt",
+		"heading-lg": "32pt",
+		"heading-md": "28pt",
+		"heading-sm": "24pt",
 		"heading-xs": "20pt",
 		"body-xl": "24pt",
-		"body-l": "20pt",
-		"body-m": "16pt",
-		"body-s": "14pt",
+		"body-lg": "20pt",
+		"body-md": "16pt",
+		"body-sm": "14pt",
 		"body-xs": "12pt",
 	},
 	space: {
 		xs: "8px",
-		s: "16px",
-		m: "24px",
-		l: "32px",
+		sm: "16px",
+		md: "24px",
+		lg: "32px",
 		xl: "40px",
 	},
-});
+};
 
-export { theme };
+const chakraTheme = extendTheme(theme);
+
+export { chakraTheme, theme };
