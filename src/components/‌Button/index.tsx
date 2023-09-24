@@ -1,20 +1,25 @@
-import React, {ReactNode} from 'react';
+import React, { ReactNode, MouseEvent } from 'react';
 import { Button as ChakraButton, Flex } from '@chakra-ui/react';
+import { Icon } from '@chakra-ui/icons';
 
-interface IButton  {
+interface ButtonProps {
   isActive: boolean;
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   children: ReactNode;
+  icon?: React.ComponentType<any>;
   fullWidth?: boolean;
-} 
+  type?: "button";
+}
 
-const Button = ({
+const Button: React.FC<ButtonProps> = ({
   isActive,
   onClick,
   children,
-  fullWidth = false,//for use in other forms
+  icon: IconComponent,
+  fullWidth = false,
+  type = "button",
   ...restProps
-}: IButton) => {
+}) => {
   return (
     <Flex
       direction="row"
@@ -23,6 +28,7 @@ const Button = ({
       width={fullWidth ? '100%' : undefined}
     >
       <ChakraButton
+        type={type}
         colorScheme="teal"
         size="md"
         _hover={{
@@ -34,6 +40,7 @@ const Button = ({
         disabled={!isActive}
         {...restProps}
         width={fullWidth ? '100%' : undefined}
+        leftIcon={IconComponent && <Icon as={IconComponent} />}
       >
         {children}
       </ChakraButton>
