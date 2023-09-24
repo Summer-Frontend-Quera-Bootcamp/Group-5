@@ -3,12 +3,14 @@ import {
 	AuthenticationLayout,
 	DashboardLayout,
 	ProfileLayout,
+	RootLayout,
 } from "./layouts";
 import { ForgotPage, LoginPage, RegisterPage, ResetPage } from "./pages";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
+		element: <RootLayout />,
 		children: [
 			{
 				path: "auth",
