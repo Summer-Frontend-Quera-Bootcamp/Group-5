@@ -42,7 +42,7 @@ const ForgotPage = () => {
 			>
 				قوانین و مقررات را می‌پذیرم.
 			</Checkbox>
-			<Button isActive={isChecked} onClick={() => {}} fullWidth={true}>
+			<Button isActive={isChecked} type="submit" fullWidth={true}>
 				ثبت‌نام
 			</Button>
 		</Form>

@@ -2,6 +2,7 @@ import { Box, VStack } from "@chakra-ui/react";
 import { ValidateInput, Button, Link } from "../../components";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Form from "../../components/Form";
+import { AddIcon } from "@chakra-ui/icons";
 
 const ForgotPage = () => {
 	const {
@@ -30,7 +31,7 @@ const ForgotPage = () => {
 				page="login"
 			/>
 			<VStack spacing="md">
-				<Button isActive={false} onClick={() => {}} fullWidth={true}>
+				<Button isActive={true} type="submit" fullWidth={true}>
 					ورود
 				</Button>
 				<Box>

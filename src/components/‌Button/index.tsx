@@ -6,9 +6,9 @@ interface ButtonProps {
   isActive: boolean;
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   children: ReactNode;
-  icon?: React.ComponentType<any>;
+  icon?: any;
   fullWidth?: boolean;
-  type?: "button";
+  type?: "button" | "submit" | "reset";
 }
 
 const Button: React.FC<ButtonProps> = ({
