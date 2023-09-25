@@ -2,7 +2,6 @@ import { Box, VStack } from "@chakra-ui/react";
 import { ValidateInput, Button, Link } from "../../components";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Form from "../../components/Form";
-import { AddIcon } from "@chakra-ui/icons";
 
 const ForgotPage = () => {
 	const {
