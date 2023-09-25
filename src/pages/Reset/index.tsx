@@ -18,7 +18,7 @@ const ForgotPage = () => {
 				errors={errors}
 				register={register}
 			/>
-			<Button isActive={false} onClick={() => null} fullWidth>
+			<Button isActive={true} type="submit" fullWidth>
 				تغییر رمز عبور
 			</Button>
 		</Form>

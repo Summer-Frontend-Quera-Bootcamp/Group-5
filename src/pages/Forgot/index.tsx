@@ -25,7 +25,7 @@ const ForgotPage = () => {
 				errors={errors}
 				register={register}
 			/>
-			<Button isActive={true} onClick={() => {}} fullWidth={true}>
+			<Button isActive={true} type="submit" fullWidth={true}>
 				دریافت ایمیل بازیابی رمز عبور
 			</Button>
 		</>
