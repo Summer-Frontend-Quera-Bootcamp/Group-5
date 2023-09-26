@@ -5,7 +5,14 @@ import {
 	ProfileLayout,
 	RootLayout,
 } from "./layouts";
-import { ForgotPage, LoginPage, RegisterPage, ResetPage } from "./pages";
+import {
+	ForgotPage,
+	LoginPage,
+	ProjectPage,
+	RegisterPage,
+	ResetPage,
+	WorkSpacePage,
+} from "./pages";
 
 const router = createBrowserRouter([
 	{
@@ -37,6 +44,16 @@ const router = createBrowserRouter([
 			{
 				path: "dashboard",
 				element: <DashboardLayout />,
+				children: [
+					{
+						index: true,
+						element: <WorkSpacePage />,
+					},
+					{
+						path: "projectId",
+						element: <ProjectPage />,
+					},
+				],
 			},
 			{
 				path: "profile",
