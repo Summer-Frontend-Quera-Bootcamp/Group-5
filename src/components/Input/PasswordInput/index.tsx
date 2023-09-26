@@ -4,7 +4,6 @@ import {
 	FormControl,
 	FormErrorMessage,
 	FormHelperText,
-	Button,
 	InputGroup,
 	InputRightElement,
 	Box,
@@ -12,6 +11,7 @@ import {
 	Spacer,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { ViewIcon,ViewOffIcon } from "@chakra-ui/icons";
 import Link from "../../Link/index";
 
 interface IInputProps {
@@ -71,9 +71,9 @@ const PasswordInput = ({
                         })}
                     ></Input>
                     <InputRightElement width="4.5rem">
-                        <Button h="1.75rem" size="sm" onClick={handleClick}>
-                            {show ? "مخفی" : "نمایش"}
-                        </Button>
+                        <button onClick={handleClick}>
+                            {show ? <ViewOffIcon/> : <ViewIcon/>}
+                        </button>
                     </InputRightElement>
                 </InputGroup>
                 {errors.password ? (
