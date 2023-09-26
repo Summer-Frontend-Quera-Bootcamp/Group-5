@@ -37,6 +37,16 @@ const router = createBrowserRouter([
 			{
 				path: "dashboard",
 				element: <DashboardLayout />,
+				children: [
+					{
+						path: "workspaces",
+						// todo: create workspace page
+					},
+					{
+						path: ":projectId",
+						// todo: create project layout
+					},
+				]
 			},
 			{
 				path: "profile",
