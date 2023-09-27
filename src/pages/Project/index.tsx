@@ -1,4 +1,4 @@
-import { LinkIcon, PlusSquareIcon, SearchIcon } from "@chakra-ui/icons";
+import { useState } from "react";
 import {
 	Button,
 	Flex,
@@ -14,77 +14,83 @@ import {
 	Tabs,
 	chakra,
 } from "@chakra-ui/react";
+import {
+	AddSquareIcon,
+	ArtBoardIcon,
+	CalendarIcon,
+	ListIcon,
+	SearchIcon,
+	ShareIcon,
+} from "../../icons";
+import {
+	newTaskButtonStyle,
+	searchFilterWrapperStyle,
+	searchInputStyle,
+	shareButtonStyle,
+	tabIndicatorStyle,
+	tabListStyle,
+	tabStyle,
+} from "./style";
 
 const Divider = () => {
 	return <chakra.span w="1px" h="22px" bg="gray.400"></chakra.span>;
 };
 
 const ProjectPage = () => {
+	const [activePage, setActivePage] = useState<boolean[]>([true, false, false]);
 	return (
 		<>
 			<Tabs position="relative" variant="unstyled" isLazy>
-				<TabList
-					borderBottom="1px"
-					borderColor="gray.400"
-					pb="xs"
-					gap="sm"
-					alignItems="center"
-				>
+				<TabList sx={tabListStyle}>
 					<Heading as="h3" fontSize="heading-xs">
 						پروژه اول
 					</Heading>
 					<Divider />
 					<Tab
-						_focus={{ color: "cyan-primary" }}
-						_hover={{ color: "cyan-primary" }}
-						fontSize="body-md"
+						sx={tabStyle}
+						onClick={() => setActivePage([true, false, false])}
+						color={activePage[0] ? "cyan-primary" : "black"}
 					>
+						<ListIcon w="24px" h="24px" />
 						نمایش لیستی
 					</Tab>
 					<Divider />
 					<Tab
-						_focus={{ color: "cyan-primary" }}
-						_hover={{ color: "cyan-primary" }}
-						fontSize="body-md"
+						sx={tabStyle}
+						onClick={() => setActivePage([false, true, false])}
+						color={activePage[1] ? "cyan-primary" : "black"}
 					>
+						<ArtBoardIcon w="24px" h="24px" />
 						نمایش ستونی
 					</Tab>
 					<Divider />
 					<Tab
-						_focus={{ color: "cyan-primary" }}
-						_hover={{ color: "cyan-primary" }}
-						fontSize="body-md"
+						sx={tabStyle}
+						onClick={() => setActivePage([false, false, true])}
+						color={activePage[2] ? "cyan-primary" : "black"}
 					>
+						<CalendarIcon w="24px" h="24px" />
 						تقویم
 					</Tab>
 					<Divider />
-					<Button variant="ghost" leftIcon={<LinkIcon />} ms="auto">
+					<Button
+						variant="ghost"
+						sx={shareButtonStyle}
+						leftIcon={<ShareIcon w="24px" h="24px" />}
+					>
 						اشتراک گذاری
 					</Button>
 				</TabList>
-				<TabIndicator
-					height="2.5px"
-					bg="cyan-primary"
-					borderRadius="1px"
-					transform="translate(0, -2px)"
-				/>
+				<TabIndicator sx={tabIndicatorStyle} />
 				{/* todo: create filters option */}
-				<Flex
-					borderBottom="1px"
-					borderColor="gray.400"
-					py="xs"
-					gap="xl"
-					alignItems="center"
-				>
+				<Flex sx={searchFilterWrapperStyle}>
 					<InputGroup w="200px">
 						<InputLeftElement pointerEvents="none">
-							<SearchIcon />
+							<SearchIcon w="24px" h="24px" />
 						</InputLeftElement>
 						<Input
+							sx={searchInputStyle}
 							type="search"
-							border="none"
-							outline="none"
-							_focus={{ border: "none", boxShadow: "none" }}
 							placeholder="جستجو بین تسک‌ها"
 						/>
 					</InputGroup>
@@ -104,11 +110,9 @@ const ProjectPage = () => {
 				</TabPanels>
 			</Tabs>
 			<Button
+				sx={newTaskButtonStyle}
 				colorScheme="teal"
-				leftIcon={<PlusSquareIcon />}
-				pos="fixed"
-				bottom="30px"
-				left="40px"
+				leftIcon={<AddSquareIcon w="24px" h="24px" />}
 			>
 				تسک جدید
 			</Button>
