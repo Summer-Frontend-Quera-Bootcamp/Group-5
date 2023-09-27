@@ -8,9 +8,9 @@ interface IProjectProps {
 interface IProject {
 	projectId: string;
 	title: string;
-	color: string;
 }
 
 interface IProjectRowProps {
 	projects: IProject[];
+	color: string;
 }

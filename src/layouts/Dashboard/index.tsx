@@ -13,7 +13,7 @@ const DashboardLayout = () => {
 				ps="md"
 				pe="xl"
 				py="lg"
-				overflowX="scroll"
+				overflowX="auto"
 			>
 				<Outlet />
 			</Box>
