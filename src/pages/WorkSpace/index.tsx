@@ -1,25 +1,8 @@
-import {
-	Box,
-	Button,
-	Divider,
-	Flex,
-	Heading,
-	VStack,
-	chakra,
-} from "@chakra-ui/react";
+import { Divider, Flex, Heading, VStack, chakra } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { theme } from "../../theme";
-import {
-	newProjectButtonStyle,
-	newProjectButtonWrapperStyle,
-	projectStyle,
-} from "./style";
-import { PlusSquareIcon } from "@chakra-ui/icons";
-
-function getGradient(color: string): string[] {
-	const themeColors = theme.colors as Record<string, string>;
-	return [`${color}-primary`, themeColors[`${color}-primary`] + "77"];
-}
+import { projectStyle } from "./style";
+import { getGradient } from "../../utils/functions/getGradient";
+import { NewProjectModal } from "../../components";
 
 const ProjectLink = ({
 	projectId,
@@ -41,24 +24,6 @@ const ProjectLink = ({
 	);
 };
 
-const NewProjectButton = ({ color }: { color: string }) => {
-	const gradient = getGradient(color);
-	return (
-		<Box
-			sx={newProjectButtonWrapperStyle}
-			bgGradient={`linear(to-l, ${gradient[0]}, ${gradient[1]})`}
-		>
-			<Button
-				sx={newProjectButtonStyle}
-				color={color + "-primary"}
-				leftIcon={<PlusSquareIcon boxSize={"24px"} />}
-			>
-				ساختن پروژه جدید
-			</Button>
-		</Box>
-	);
-};
-
 const ProjectRow = ({ projects, color }: IProjectRowProps) => (
 	<Flex gap="lg" wrap="nowrap">
 		{projects.length > 0 ? (
@@ -73,7 +38,7 @@ const ProjectRow = ({ projects, color }: IProjectRowProps) => (
 				</ProjectLink>
 			))
 		) : (
-			<NewProjectButton color={color} />
+			<NewProjectModal />
 		)}
 	</Flex>
 );

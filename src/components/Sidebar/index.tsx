@@ -14,9 +14,9 @@ import {
 	Flex,
 	Switch,
 } from "@chakra-ui/react";
-import { SmallAddIcon, ArrowForwardIcon } from "@chakra-ui/icons";
-import { IconButton } from "@chakra-ui/react";
+import { ArrowForwardIcon } from "@chakra-ui/icons";
 import { headingStyle } from "../../layouts/Authentication/style";
+import { NewSpaceModal } from "..";
 
 interface ISidebarProp {
 	items?: any[];
@@ -45,36 +45,8 @@ const Sidebar = ({ items, name, src }: ISidebarProp): JSX.Element => {
 							</Text>
 							<AccordionIcon />
 						</AccordionButton>
-						<AccordionPanel pb={4}>
-							<Button
-								leftIcon={
-									<IconButton
-										size="5px"
-										variant="outline"
-										colorScheme="black"
-										icon={<SmallAddIcon />}
-										aria-label="space btn"
-									/>
-								}
-								colorScheme="gray"
-								w="255px"
-								h="32px"
-								borderRadius="6px"
-								p="10px"
-								gap="4px"
-								variant="solid"
-							>
-								<Text
-									mr="-6px"
-									w="110px"
-									h="21px"
-									fontWeight="400px"
-									lineHeight="20.73px"
-									fontSize="12px"
-								>
-									ساختن اسپیس جدید
-								</Text>
-							</Button>
+						<AccordionPanel pb={4} px="0">
+							<NewSpaceModal />
 							{items && items.map((x) => x)}
 						</AccordionPanel>
 					</AccordionItem>
