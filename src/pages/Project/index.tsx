@@ -26,12 +26,11 @@ import {
 	newTaskButtonStyle,
 	searchFilterWrapperStyle,
 	searchInputStyle,
-	shareButtonStyle,
 	tabIndicatorStyle,
 	tabListStyle,
 	tabStyle,
 } from "./style";
-import { FilterModal } from "../../components";
+import { FilterModal, Share } from "../../components";
 
 const Divider = () => {
 	return <chakra.span w="1px" h="22px" bg="gray.400"></chakra.span>;
@@ -74,13 +73,7 @@ const ProjectPage = () => {
 						تقویم
 					</Tab>
 					<Divider />
-					<Button
-						variant="ghost"
-						sx={shareButtonStyle}
-						leftIcon={<ShareIcon w="24px" h="24px" />}
-					>
-						اشتراک گذاری
-					</Button>
+					<Share type="project" />
 				</TabList>
 				<TabIndicator sx={tabIndicatorStyle} />
 				{/* todo: create filters option */}
