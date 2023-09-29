@@ -6,6 +6,7 @@ export { default as Column } from "./Column";
 export { default as Comment } from "./Comment";
 export { default as Dropdown } from "./Dropdown";
 export { default as DropdownButton } from "./DropdownButton";
+export { default as FilterModal } from "./FilterModal";
 export { default as Form } from "./Form";
 export { default as ValidateInput } from "./Input";
 export { default as Link } from "./Link";

@@ -31,6 +31,7 @@ import {
 	tabListStyle,
 	tabStyle,
 } from "./style";
+import { FilterModal } from "../../components";
 
 const Divider = () => {
 	return <chakra.span w="1px" h="22px" bg="gray.400"></chakra.span>;
@@ -95,6 +96,12 @@ const ProjectPage = () => {
 						/>
 					</InputGroup>
 					<Divider />
+					{/* todo: implement filters data */}
+					<FilterModal
+						initialFilters={[
+							{ category: "", condition: "است", filterOption: "" },
+						]}
+					/>
 				</Flex>
 				{/* todo: create tap panels */}
 				<TabPanels>
