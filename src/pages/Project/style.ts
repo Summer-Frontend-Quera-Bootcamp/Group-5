@@ -12,12 +12,6 @@ export const tabStyle = {
 	_hover: { color: "cyan-primary" },
 };
 
-export const shareButtonStyle = {
-	fontSize: "body-md",
-	fontWeight: "normal",
-	ms: "auto",
-};
-
 export const tabIndicatorStyle = {
 	height: "2.5px",
 	bg: "cyan-primary",
