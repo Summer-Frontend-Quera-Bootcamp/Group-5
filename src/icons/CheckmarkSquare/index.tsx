@@ -1,5 +1,5 @@
 import { chakra } from "@chakra-ui/react";
-const CheckmarkIcon = (props: Props) => {
+const CheckmarkSquareIcon = (props: Props) => {
 	return (
 		<chakra.svg
 			width="16"
@@ -29,4 +29,4 @@ const CheckmarkIcon = (props: Props) => {
 	);
 };
 
-export default CheckmarkIcon;
+export default CheckmarkSquareIcon;
