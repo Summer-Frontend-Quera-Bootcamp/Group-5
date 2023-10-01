@@ -17,7 +17,8 @@ import {
 } from "@chakra-ui/react";
 import { headingStyle } from "../../layouts/Authentication/style";
 import { NewSpaceModal} from "..";
-import  ExitIcon  from "./assets/Exit";
+import { ExitIcon } from "../../icons";
+
 
 interface ISidebarProp {
 	items?: any[];
