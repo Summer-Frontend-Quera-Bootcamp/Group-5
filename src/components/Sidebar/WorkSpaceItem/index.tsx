@@ -8,8 +8,8 @@ import {
 	AccordionPanel,
 	Button
 } from "@chakra-ui/react";
-import { DotsIcon } from "../../../icons";
 
+import { DotsIcon } from "../../../icons";
 
 interface IWorkSpaceItemProps {
 	content: string;
