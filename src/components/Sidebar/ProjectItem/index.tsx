@@ -1,7 +1,8 @@
 import { Box, Flex, Spacer } from "@chakra-ui/react";
 import { NavLink as ReactRouterLink } from 'react-router-dom'
 import { Link as ChakraLink } from '@chakra-ui/react'
-import  DotsIcon  from "../assets/Dots"
+
+import { DotsIcon } from "../../../icons";
 
 interface IProjectItemProp {
 	content: string;
