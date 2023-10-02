@@ -8,8 +8,7 @@ import {
 	AccordionPanel,
 	Button,
 } from "@chakra-ui/react";
-
-import { DotsIcon } from "../../../icons";
+import ColumnMore from "../Columnmore";
 
 interface IWorkSpaceItemProps {
 	content: string;
@@ -35,7 +34,7 @@ const WorkSpaceItem = ({
 						</Stack>
 						{/*todo dots-component replaced bottom box element*/}
 						<Box as="button" w="24px" h="24px" ms="auto">
-							<DotsIcon w="20px" h="20px" />
+							<ColumnMore type="workspace" />
 						</Box>
 					</AccordionButton>
 					<AccordionPanel textAlign={"right"}>

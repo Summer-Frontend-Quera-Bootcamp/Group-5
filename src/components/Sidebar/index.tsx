@@ -18,6 +18,7 @@ import {
 import { headingStyle } from "../../layouts/Authentication/style";
 import { NewSpaceModal } from "..";
 import { ExitIcon } from "../../icons";
+import SearchIput from "./SearchInput";
 
 interface ISidebarProp {
 	items?: any[];
@@ -30,7 +31,7 @@ const Sidebar = ({ items, name, src }: ISidebarProp): JSX.Element => {
 		<Flex flexDir="column" h="full">
 			<Heading sx={headingStyle}>کوئرا تسک منیجر</Heading>
 
-			<Box gap="8px">
+			<Box gap="50px">
 				<Accordion w="274px" allowToggle>
 					<AccordionItem>
 						<AccordionButton>
@@ -40,6 +41,7 @@ const Sidebar = ({ items, name, src }: ISidebarProp): JSX.Element => {
 							<AccordionIcon />
 						</AccordionButton>
 						<AccordionPanel pb={4} px="0">
+							<SearchIput />
 							<NewSpaceModal />
 							{items && items.map((x) => x)}
 						</AccordionPanel>
