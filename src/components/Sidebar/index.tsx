@@ -16,9 +16,8 @@ import {
 	useColorMode,
 } from "@chakra-ui/react";
 import { headingStyle } from "../../layouts/Authentication/style";
-import { NewSpaceModal} from "..";
+import { NewSpaceModal } from "..";
 import { ExitIcon } from "../../icons";
-
 
 interface ISidebarProp {
 	items?: any[];
@@ -26,7 +25,7 @@ interface ISidebarProp {
 	src?: string;
 }
 const Sidebar = ({ items, name, src }: ISidebarProp): JSX.Element => {
-	const { colorMode, toggleColorMode } = useColorMode()
+	const { colorMode, toggleColorMode } = useColorMode();
 	return (
 		<Flex flexDir="column" h="full">
 			<Heading sx={headingStyle}>کوئرا تسک منیجر</Heading>
@@ -35,12 +34,7 @@ const Sidebar = ({ items, name, src }: ISidebarProp): JSX.Element => {
 				<Accordion w="274px" allowToggle>
 					<AccordionItem>
 						<AccordionButton>
-							<Text
-								flex="1"
-								align="right"
-								fontWeight="800"
-								lineHeight="28px"
-							>
+							<Text flex="1" align="right" fontWeight="800" lineHeight="28px">
 								ورک اسپیس ها
 							</Text>
 							<AccordionIcon />
@@ -56,18 +50,14 @@ const Sidebar = ({ items, name, src }: ISidebarProp): JSX.Element => {
 			<Box w="full" h="50px" gap="4px" mt="auto">
 				<Stack direction="row" w="144px" spacing="4px">
 					<Avatar size="sm" name={name} src={src} mb={2} />
-					<Text
-						p="4px"
-						fontWeight="500px"
-						align="right"
-					>
+					<Text p="4px" fontWeight="500px" align="right">
 						{name}
 					</Text>
 				</Stack>
 				<Box>
 					<Flex>
 						<Button
-							leftIcon={<ExitIcon w='20px' h='20px'/>}
+							leftIcon={<ExitIcon w="20px" h="20px" />}
 							gap="4px"
 							p={1}
 							color="#818181"
@@ -75,7 +65,7 @@ const Sidebar = ({ items, name, src }: ISidebarProp): JSX.Element => {
 							خروج
 						</Button>
 						<Spacer />
-						<Switch w='64px' mt='3px' onChange={toggleColorMode} isInvalid />
+						<Switch w="64px" mt="3px" onChange={toggleColorMode} isInvalid />
 					</Flex>
 				</Box>
 			</Box>
