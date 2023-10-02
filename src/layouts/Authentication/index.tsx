@@ -1,6 +1,6 @@
-import { Box, Container, Flex, Heading, Text} from "@chakra-ui/react";
+import { Box, Container, Flex, Heading, Text } from "@chakra-ui/react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import {Button } from "../../components";
+import { Button } from "../../components";
 import {
 	authenticationFormLayoutStyle,
 	backgroundGradientStyle,
@@ -23,15 +23,8 @@ const AuthenticationLayout = () => {
 				<Button isActive={true} onClick={() => navigate(path)}>
 					{buttonText}
 				</Button>
-
 			</>
 		);
-
-
-
-
-
-	
 	};
 
 	return (
@@ -47,7 +40,7 @@ const AuthenticationLayout = () => {
 			</Box>
 			<Box sx={backgroundGradientStyle} />
 		</Container>
-
 	);
 };
 
+export default AuthenticationLayout;
