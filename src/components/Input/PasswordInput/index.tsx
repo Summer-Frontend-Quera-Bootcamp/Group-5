@@ -71,7 +71,7 @@ const PasswordInput = ({
                         })}
                     ></Input>
                     <InputRightElement width="4.5rem">
-                        <button onClick={handleClick}>
+                        <button type="button" onClick={handleClick}>
                             {show ? <ViewOffIcon/> : <ViewIcon/>}
                         </button>
                     </InputRightElement>
