@@ -3,9 +3,8 @@ import { AddIcon } from "../../icons";
 import { useState } from "react";
 import DotsMenu from "./DotsMenu";
 
-type TTextType = "Open" | "In Progress" | "Pending" | "To Do" | "Completed";
 interface IColumnProps {
-	text: TTextType;
+	text: string;
 	color: string;
 }
 

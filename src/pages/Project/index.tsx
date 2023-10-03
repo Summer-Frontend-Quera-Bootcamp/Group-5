@@ -30,7 +30,7 @@ import {
 	tabListStyle,
 	tabStyle,
 } from "./style";
-import { FilterModal, Share } from "../../components";
+import { Board, FilterModal, Share } from "../../components";
 
 const Divider = () => {
 	return <chakra.span w="1px" h="22px" bg="gray.400"></chakra.span>;
@@ -102,7 +102,7 @@ const ProjectPage = () => {
 						<p>one!</p>
 					</TabPanel>
 					<TabPanel>
-						<p>two!</p>
+						<Board/>
 					</TabPanel>
 					<TabPanel>
 						<p>three!</p>
