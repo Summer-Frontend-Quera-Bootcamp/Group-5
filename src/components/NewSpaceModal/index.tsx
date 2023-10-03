@@ -1,35 +1,29 @@
 import {
+	Button,
 	Modal,
-	ModalOverlay,
-	ModalContent,
 	ModalBody,
 	ModalCloseButton,
+	ModalContent,
+	ModalOverlay,
 	useDisclosure,
-	Heading,
-	Button as ChakraButton,
 } from "@chakra-ui/react";
-import { Button, ValidateInput } from "..";
-import { useForm } from "react-hook-form";
-import { chakra } from "@chakra-ui/react";
+import { FC } from "react";
 import { AddSquareIcon } from "../../icons";
+import NewWorkSpaceContent from "./NewSpaceForm";
 
-const NewSpaceModal: React.FC = () => {
+const NewSpaceModal: FC = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const {
-		handleSubmit,
-		formState: { errors },
-		register,
-	} = useForm();
+
 	return (
 		<>
-			<ChakraButton
-        w="full"
-        fontSize="sm"
+			<Button
+				w="full"
+				fontSize="sm"
 				leftIcon={<AddSquareIcon w="24px" h="24px" />}
 				onClick={onOpen}
 			>
 				ساختن اسپیس جدید
-			</ChakraButton>
+			</Button>
 			<Modal
 				onClose={onClose}
 				isOpen={isOpen}
@@ -39,22 +33,9 @@ const NewSpaceModal: React.FC = () => {
 			>
 				<ModalOverlay />
 				<ModalContent borderRadius="8px" p="24px">
-					<ModalCloseButton left="unset" right="sm" top="sm" />
-					<ModalBody>
-						<chakra.form display="flex" flexDir="column" gap="xl">
-							<Heading textAlign="center" fontWeight="800" fontSize="24px">
-								ساختن ورک‌اسپیس جدید
-							</Heading>
-							<ValidateInput
-								type="text"
-								label="نام ورک‌اسپیس"
-								register={register}
-								errors={errors}
-							/>
-							<Button isActive={true} type="submit" fullWidth={true}>
-								ادامه
-							</Button>
-						</chakra.form>
+					<ModalCloseButton left="unset" right="sm" top="sm" zIndex="2" />
+					<ModalBody overflow="hidden">
+						<NewWorkSpaceContent />
 					</ModalBody>
 				</ModalContent>
 			</Modal>
