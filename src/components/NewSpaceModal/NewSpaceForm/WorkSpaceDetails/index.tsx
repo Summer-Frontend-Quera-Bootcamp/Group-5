@@ -18,12 +18,7 @@ const WorkSpaceDetails: FC<IWorkSpaceDetailsProps> = ({
 	setModalPage,
 }) => {
 	return (
-		<chakra.form
-			display="flex"
-			flexDir="column"
-			gap="xl"
-			pos="relative"
-		>
+		<chakra.form display="flex" flexDir="column" gap="xl" pos="relative">
 			<Button
 				type="button"
 				variant="unstyled"
@@ -66,10 +61,7 @@ const WorkSpaceDetails: FC<IWorkSpaceDetailsProps> = ({
 					/>
 				</HStack>
 			</VStack>
-			<Button
-				colorScheme="teal"
-				type="submit"
-			>
+			<Button colorScheme="teal" type="submit">
 				ادامه
 			</Button>
 		</chakra.form>

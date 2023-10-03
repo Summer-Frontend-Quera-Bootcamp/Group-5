@@ -1,30 +1,23 @@
-import { FC, useMemo, useState } from "react";
+import { FC, useMemo } from "react";
 import {
-	Modal,
-	ModalOverlay,
-	ModalContent,
-	ModalBody,
-	ModalCloseButton,
-	Button,
-	useDisclosure,
-	Heading,
-	ModalHeader,
-	InputGroup,
-	Input,
-	InputRightAddon,
-	Flex,
-	HStack,
-	Text,
-	Avatar,
-	Badge,
-	Menu,
-	MenuButton,
-	MenuList,
-	MenuItem,
-	Divider,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalBody,
+  ModalCloseButton,
+  Button,
+  useDisclosure,
+  Heading,
+  ModalHeader,
+  InputGroup,
+  Input,
+  InputRightAddon,
+  Flex,
+  HStack,
+  Text,
+  Avatar
 } from "@chakra-ui/react";
 import { LinkIcon, ShareIcon } from "../../icons";
-import { ChevronDownIcon } from "@chakra-ui/icons";
 import WorkSpaceOwner from "./WorkSpaceOwner";
 import AccessMenu from "./AccessMenu";
 import ProjectMenu from "./ProjectMenu";
