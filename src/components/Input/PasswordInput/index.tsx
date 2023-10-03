@@ -11,7 +11,7 @@ import {
 	Spacer,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { ViewIcon,ViewOffIcon } from "@chakra-ui/icons";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import Link from "../../Input/Link";
 
 interface IInputProps {
@@ -19,7 +19,7 @@ interface IInputProps {
 	register: any;
 	errors: any;
 	page?: string;
-    placeholder?: string;
+	placeholder?: string;
 }
 
 const PasswordInput = ({
@@ -27,12 +27,10 @@ const PasswordInput = ({
 	register,
 	errors,
 	page,
-    placeholder,
-}: IInputProps): JSX.Element=> {
-
-    const [show, setShow] = useState(false);
+	placeholder,
+}: IInputProps): JSX.Element => {
+	const [show, setShow] = useState(false);
 	const handleClick = () => setShow(!show);
-    
     return (
         <>
             <FormControl isInvalid={errors.password}>

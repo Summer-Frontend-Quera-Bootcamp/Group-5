@@ -1,4 +1,5 @@
 type TColors =
+	| "gray-primary"
 	| "red-primary"
 	| "pink-primary"
 	| "grape-primary"

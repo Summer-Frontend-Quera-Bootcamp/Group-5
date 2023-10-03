@@ -12,7 +12,7 @@ interface IInputProps {
 	placeholder?: string;
 }
 
-const TextInput =({
+const TextInput = ({
 	label,
 	register,
 	errors,

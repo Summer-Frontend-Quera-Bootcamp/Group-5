@@ -14,7 +14,9 @@ interface IFormProps {
 const Form = ({ onSubmit, title, children }: IFormProps) => {
 	return (
 		<chakra.form sx={authenticationFormStyle} onSubmit={onSubmit}>
-			<Heading fontSize="32px" fontWeight="extrabold">{title}</Heading>
+			<Heading fontSize="32px" fontWeight="extrabold">
+				{title}
+			</Heading>
 			<VStack alignItems="stretch" spacing="md">
 				{children}
 			</VStack>
