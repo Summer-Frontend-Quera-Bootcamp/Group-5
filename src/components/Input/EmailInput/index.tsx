@@ -25,7 +25,7 @@ const EmailInput = ({
                 <Input
                     type="email"
                     placeholder={placeholder}
-                    focusBorderColor={errors.email ? "tomato" : "lime"}
+                    focusBorderColor={errors.email && "tomato"}
                     {...register("email", {
                         pattern: {
                             value: /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3})$/,

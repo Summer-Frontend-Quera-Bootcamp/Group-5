@@ -3,9 +3,8 @@ import { AddIcon } from "../../icons";
 import { useState } from "react";
 import DotsMenu from "./DotsMenu";
 
-type TTextType = 'Open' | 'In Progress' | 'Pending' | 'To Do' | 'Completed'
 interface IColumnProps {
-	text: TTextType;
+	text: string;
 	color: string;
 }
 
@@ -15,7 +14,7 @@ const Column = ({ text, color }: IColumnProps): JSX.Element => {
 		setDisplay(!display)
 	}
 	return (
-		<Box onMouseEnter={handleMouseMove} onMouseLeave={handleMouseMove} display='flex' flexDir="row" justifyContent='space-between' w='250PX' h='44px' m='20px' borderRadius='16px' borderTop='2px' p='8px 12px' borderTopColor={color} bg='#FFFFFF' boxShadow='lg'>
+		<Box onMouseEnter={handleMouseMove} onMouseLeave={handleMouseMove} display='flex' flexDir="row" justifyContent='space-between' w='250PX' h='44px' borderRadius='16px' borderTop='2px' p='8px 12px' borderTopColor={color} bg='#FFFFFF' boxShadow='lg'>
 			<Text w='84px' fontWeight='500' align='right' lineHeight='28px' display='flex' flex='row' gap='4px'>
 				{text}
 				<Box borderRadius='100px' p='2px 4px 0px 4px' gap='10px' bg='#F4F4F4' display='flex' justifyContent='center' alignItems='center'>

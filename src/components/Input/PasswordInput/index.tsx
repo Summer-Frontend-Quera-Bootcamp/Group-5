@@ -53,7 +53,7 @@ const PasswordInput = ({
                     <Input
                         type={show ? "text" : "password"}
                         placeholder={placeholder}
-                        focusBorderColor={errors.password ? "tomato" : "lime"}
+                        focusBorderColor={errors.password && "tomato"}
                         {...register("password", {
                             minLength: {
                                 value: 8,
