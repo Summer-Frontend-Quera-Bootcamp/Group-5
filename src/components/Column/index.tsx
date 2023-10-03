@@ -22,7 +22,6 @@ const Column = ({ text, color }: IColumnProps): JSX.Element => {
 			justifyContent="space-between"
 			w="250PX"
 			h="44px"
-			m="20px"
 			borderRadius="16px"
 			borderTop="2px"
 			p="8px 12px"
