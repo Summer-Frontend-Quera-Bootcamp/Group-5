@@ -16,7 +16,7 @@ const Dropdownlist = (props: Props) => {
     <path fillRule="evenodd" 
     clipRule="evenodd" 
     d="M2.5 10V10C2.5 5.8575 5.8575 2.5 10 2.5V2.5C14.1425 2.5 17.5 5.8575 17.5 10V10C17.5 14.1425 14.1425 17.5 10 17.5V17.5C5.8575 17.5 2.5 14.1425 2.5 10Z" 
-    stroke="#323232" 
+    stroke="#323232"
     strokeWidth="1.25" 
     strokeLinecap="round" 
     strokeLinejoin="round" />

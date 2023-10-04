@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import moment from 'moment-jalaali';
-import Box from '../BoxColor';
+import Box  from '../BoxColor';
 import Dropdownlist from '../../icons/DropDownlist';
 
 moment.locale('fa');
@@ -60,7 +60,7 @@ const List: React.FC<ListProps> = ({ listData }) => {
           {showList && listData.map((item, index) => (
             <div key={index} style={listItemMarginTop}>
               <div style={{ display: 'flex', alignItems: 'center' }}>
-               <Box width={15} height={15} color="#E30B5C"></Box>
+               <Box width={15} height={15} color="#E30B5C">  </Box>
 
               <p style={{whiteSpace:'nowrap',marginLeft: '5px'}}>این یک تیتر برای این تسک است.</p>
             </div>
