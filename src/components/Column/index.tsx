@@ -3,9 +3,8 @@ import { AddIcon } from "../../icons";
 import { useState } from "react";
 import DotsMenu from "./DotsMenu";
 
-type TTextType = "Open" | "In Progress" | "Pending" | "To Do" | "Completed";
 interface IColumnProps {
-	text: TTextType;
+	text: string;
 	color: string;
 }
 
@@ -23,7 +22,6 @@ const Column = ({ text, color }: IColumnProps): JSX.Element => {
 			justifyContent="space-between"
 			w="250PX"
 			h="44px"
-			m="20px"
 			borderRadius="16px"
 			borderTop="2px"
 			p="8px 12px"

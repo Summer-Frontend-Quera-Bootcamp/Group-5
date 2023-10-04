@@ -2,6 +2,7 @@ export { default as Button } from "./‌Button";
 export { default as Calendar } from "./Calendar";
 export { default as CalendarCell } from "./CalendarCell";
 export { default as Column } from "./Column";
+export { default as Board } from "./Board";
 export { default as Comment } from "./Comment";
 export { default as FilterModal } from "./FilterModal";
 export { default as Form } from "./Form";
