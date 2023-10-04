@@ -20,7 +20,6 @@ import {
 	CalendarIcon,
 	ListIcon,
 	SearchIcon,
-	ShareIcon,
 } from "../../icons";
 import {
 	newTaskButtonStyle,
