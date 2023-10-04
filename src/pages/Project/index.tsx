@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
 	Button,
 	Flex,
@@ -30,6 +30,8 @@ import {
 	tabStyle,
 } from "./style";
 import { Board, FilterModal, Share, Calendar } from "../../components";
+import { useDispatch } from "react-redux";
+import { clearFilters } from "../../features/filterSlice";
 
 const Divider = () => {
 	return <chakra.span w="1px" h="22px" bg="gray.400"></chakra.span>;
@@ -37,6 +39,15 @@ const Divider = () => {
 
 const ProjectPage = () => {
 	const [activePage, setActivePage] = useState<boolean[]>([true, false, false]);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(clearFilters());
+		return () => {
+			dispatch(clearFilters());
+		};
+	}, []);
+
 	return (
 		<>
 			<Tabs position="relative" variant="unstyled" isLazy>
@@ -89,11 +100,7 @@ const ProjectPage = () => {
 					</InputGroup>
 					<Divider />
 					{/* todo: implement filters data */}
-					<FilterModal
-						initialFilters={[
-							{ category: "", condition: "است", filterOption: "" },
-						]}
-					/>
+					<FilterModal />
 				</Flex>
 				{/* todo: create tap panels */}
 				<TabPanels>

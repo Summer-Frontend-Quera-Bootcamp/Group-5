@@ -68,6 +68,7 @@ export const {
 	setCategory,
 	setCondition,
 	setFilterOption,
+	clearFilters,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;

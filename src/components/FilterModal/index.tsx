@@ -16,10 +16,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { addFilter } from "../../features/filterSlice";
 
-// export const filterModalLoader = () => {
-//   useDispatch()(clearFilters())
-// }
-
 const FilterModal: FC = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const filters = useSelector((state: RootState) => state.filters);
