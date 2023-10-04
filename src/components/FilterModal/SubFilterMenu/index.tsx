@@ -11,14 +11,16 @@ import {
 } from "@chakra-ui/react";
 import { FC, useState } from "react";
 import { ChevronIcon, SearchIcon } from "../../../icons";
+import { useDispatch } from "react-redux";
+import { setFilterOption } from "../../../features/filterSlice";
 
 const SubFilterMenu: FC<ISubFilterMenuProps> = ({
 	idx,
 	filterOptions,
 	selectedItem,
-	setSelectedItem,
 	category,
 }) => {
+	const dispatch = useDispatch();
 	const [searchValue, setSearchValue] = useState("");
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -57,10 +59,7 @@ const SubFilterMenu: FC<ISubFilterMenuProps> = ({
 									bg="unset"
 									onClick={() => {
 										setIsMenuOpen(true);
-										setSelectedItem({
-											action: "SET_FILTER_OPTION",
-											payload: { option: fo, idx },
-										});
+										dispatch(setFilterOption({ idx, option: fo }));
 									}}
 								>
 									{category === "تگ" ? <Tag borderRadius="full">{fo}</Tag> : fo}

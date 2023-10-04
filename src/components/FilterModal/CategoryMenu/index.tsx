@@ -10,13 +10,15 @@ import {
 } from "@chakra-ui/react";
 import { FC, useState } from "react";
 import { ChevronIcon, SearchIcon } from "../../../icons";
+import { useDispatch } from "react-redux";
+import { setCategory } from "../../../features/filterSlice";
 
 const CategoryMenu: FC<ICategoryMenuProps> = ({
 	idx,
 	categoryOptions,
 	selectedItem,
-	setSelectedItem,
 }) => {
+	const dispatch = useDispatch();
 	const [searchValue, setSearchValue] = useState("");
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	return (
@@ -52,10 +54,7 @@ const CategoryMenu: FC<ICategoryMenuProps> = ({
 							<MenuItem
 								onClick={() => {
 									setIsMenuOpen(true);
-									setSelectedItem({
-										action: "SET_CATEGORY",
-										payload: { option: fo, idx },
-									});
+									dispatch(setCategory({ idx, option: fo }));
 								}}
 							>
 								{fo}

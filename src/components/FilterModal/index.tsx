@@ -10,51 +10,16 @@ import {
 	Flex,
 } from "@chakra-ui/react";
 import { FilterIcon } from "../../icons";
-import { FC, useMemo, useReducer } from "react";
+import { FC, useMemo } from "react";
 import FilterRow from "./FilterRow";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { addFilter } from "../../features/filterSlice";
 
-const filterReducer = (
-	state: TFilters,
-	{ action, payload }: IReducer
-): TFilters => {
-	switch (action) {
-		case "SET_CATEGORY":
-			return state.map((filter, i) =>
-				i === payload.idx
-					? { ...filter, category: payload.option as TCategory }
-					: filter
-			);
-		case "SET_FILTER_OPTION":
-			return state.map((filter, i) =>
-				i === payload.idx ? { ...filter, filterOption: payload.option } : filter
-			);
-		case "SET_CONDITION":
-			return state.map((filter, i) =>
-				i === payload.idx
-					? { ...filter, condition: payload.option as "است" | "نیست" }
-					: filter
-			);
-		case "DELETE_FILTER":
-			return state.filter((_, i) => i !== payload.idx);
-		case "ADD_FILTER":
-			return [
-				...state,
-				{
-					category: "",
-					filterOption: "",
-					condition: "است",
-				},
-			];
-		default:
-			return state;
-	}
-};
-
-const FilterModal: FC<IFilterModalProps> = ({ initialFilters }) => {
+const FilterModal: FC = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const [filters, dispatchFilters] = useReducer<
-		React.Reducer<TFilters, IReducer>
-	>(filterReducer, initialFilters);
+	const filters = useSelector((state: RootState) => state.filters);
+	const dispatch = useDispatch();
 
 	const filterOptions: string[][] = useMemo(() => {
 		const options: string[][] = [];
@@ -111,7 +76,6 @@ const FilterModal: FC<IFilterModalProps> = ({ initialFilters }) => {
 									<FilterRow
 										idx={idx}
 										filter={filter}
-										dispatchFilters={dispatchFilters}
 										filterOptions={filterOptions}
 									/>
 								);
@@ -121,12 +85,7 @@ const FilterModal: FC<IFilterModalProps> = ({ initialFilters }) => {
 								color="teal"
 								alignSelf="start"
 								fontSize="12px"
-								onClick={() =>
-									dispatchFilters({
-										action: "ADD_FILTER",
-										payload: { idx: filters.length + 1, option: "" },
-									})
-								}
+								onClick={() => dispatch(addFilter())}
 							>
 								افزودن فیلتر جدید
 							</Button>

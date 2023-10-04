@@ -4,20 +4,17 @@ import CategoryMenu from "../CategoryMenu";
 import SubFilterMenu from "../SubFilterMenu";
 import ConditionMenu from "../ConditionMenu";
 import { TrashIcon } from "../../../icons";
+import { useDispatch } from "react-redux";
+import { deleteFilter } from "../../../features/filterSlice";
 
-const FilterRow: FC<IFilterRowProps> = ({
-	idx,
-	filter,
-	dispatchFilters,
-	filterOptions,
-}) => {
+const FilterRow: FC<IFilterRowProps> = ({ idx, filter, filterOptions }) => {
+	const dispatch = useDispatch();
 	return (
 		<HStack spacing="xs">
 			<Text>تسک‌هایی که</Text>
 			<CategoryMenu
 				idx={idx}
 				selectedItem={filter.category}
-				setSelectedItem={dispatchFilters}
 				categoryOptions={["تگ", "تاریخ", "اولویت", "اعضا"]}
 			/>
 			<Text>آن‌ها</Text>
@@ -28,7 +25,6 @@ const FilterRow: FC<IFilterRowProps> = ({
 				<SubFilterMenu
 					idx={idx}
 					selectedItem={filter.filterOption}
-					setSelectedItem={dispatchFilters}
 					filterOptions={filterOptions[idx]}
 					category={filter.category}
 				/>
@@ -36,18 +32,12 @@ const FilterRow: FC<IFilterRowProps> = ({
 			<ConditionMenu
 				idx={idx}
 				selectedItem={filter.condition}
-				setSelectedItem={dispatchFilters}
 			/>
 			<Button
 				variant="unstyled"
 				color="red"
 				ms="auto"
-				onClick={() =>
-					dispatchFilters({
-						action: "DELETE_FILTER",
-						payload: { option: "", idx },
-					})
-				}
+				onClick={() => dispatch(deleteFilter({ idx }))}
 			>
 				<TrashIcon w="24px" h="24px" />
 			</Button>
