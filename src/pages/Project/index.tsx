@@ -49,7 +49,7 @@ const ProjectPage = () => {
 					<Tab
 						sx={tabStyle}
 						onClick={() => setActivePage([true, false, false])}
-						color={activePage[0] ? "cyan-primary" : "black"}
+						color={activePage[0] ? "cyan-primary" : "unset"}
 					>
 						<ListIcon w="24px" h="24px" />
 						نمایش لیستی
@@ -58,7 +58,7 @@ const ProjectPage = () => {
 					<Tab
 						sx={tabStyle}
 						onClick={() => setActivePage([false, true, false])}
-						color={activePage[1] ? "cyan-primary" : "black"}
+						color={activePage[1] ? "cyan-primary" : "unset"}
 					>
 						<ArtBoardIcon w="24px" h="24px" />
 						نمایش ستونی
@@ -67,7 +67,7 @@ const ProjectPage = () => {
 					<Tab
 						sx={tabStyle}
 						onClick={() => setActivePage([false, false, true])}
-						color={activePage[2] ? "cyan-primary" : "black"}
+						color={activePage[2] ? "cyan-primary" : "unset"}
 					>
 						<CalendarIcon w="24px" h="24px" />
 						تقویم
