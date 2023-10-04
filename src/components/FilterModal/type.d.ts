@@ -37,7 +37,6 @@ type TFilters = IFilter[];
 interface IFilterRowProps {
 	idx: number;
 	filter: IFilter;
-	filterOptions: string[][];
 }
 interface IFilterModalProps {
 	initialFilters: TFilters;

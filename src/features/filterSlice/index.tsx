@@ -56,6 +56,9 @@ const filterSlice = createSlice({
 				condition: "است",
 			});
 		},
+		clearFilters() {
+			return [{ category: "", filterOption: "", condition: "است" }];
+		},
 	},
 });
 

@@ -35,7 +35,7 @@ const SubFilterMenu: FC<ISubFilterMenuProps> = ({
 				fontWeight="normal"
 				color="gray.500"
 			>
-				{isMenuOpen ? selectedItem : "انتخاب کنید"}
+				{selectedItem || isMenuOpen ? selectedItem : "انتخاب کنید"}
 			</MenuButton>
 			<MenuList pt="0">
 				<InputGroup>

@@ -10,40 +10,20 @@ import {
 	Flex,
 } from "@chakra-ui/react";
 import { FilterIcon } from "../../icons";
-import { FC, useMemo } from "react";
+import { FC } from "react";
 import FilterRow from "./FilterRow";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { addFilter } from "../../features/filterSlice";
 
+// export const filterModalLoader = () => {
+//   useDispatch()(clearFilters())
+// }
+
 const FilterModal: FC = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const filters = useSelector((state: RootState) => state.filters);
 	const dispatch = useDispatch();
-
-	const filterOptions: string[][] = useMemo(() => {
-		const options: string[][] = [];
-		filters.forEach((filter) => {
-			switch (filter.category) {
-				case "تگ":
-					options.push(["درس", "کار", "پروژه"]);
-					break;
-				case "اعضا":
-					options.push(["امیر", "امین", "الهه"]);
-					break;
-				case "اولویت":
-					options.push(["فوری", "بالا", "متوسط", "پایین"]);
-					break;
-				case "تاریخ":
-					options.push(["تاریخ"]);
-					break;
-				default:
-					options.push([""]);
-					break;
-			}
-		});
-		return options;
-	}, [filters]);
 
 	return (
 		<>
@@ -72,13 +52,7 @@ const FilterModal: FC = () => {
 					<ModalBody px="0" py="32px" fontSize="14px">
 						<Flex flexDir="column" gap="md">
 							{filters.map((filter, idx) => {
-								return (
-									<FilterRow
-										idx={idx}
-										filter={filter}
-										filterOptions={filterOptions}
-									/>
-								);
+								return <FilterRow idx={idx} filter={filter} />;
 							})}
 							<Button
 								variant="link"

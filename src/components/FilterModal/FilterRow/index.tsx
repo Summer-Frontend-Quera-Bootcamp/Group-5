@@ -1,5 +1,5 @@
 import { Button, HStack, Input, Text } from "@chakra-ui/react";
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import CategoryMenu from "../CategoryMenu";
 import SubFilterMenu from "../SubFilterMenu";
 import ConditionMenu from "../ConditionMenu";
@@ -7,8 +7,24 @@ import { TrashIcon } from "../../../icons";
 import { useDispatch } from "react-redux";
 import { deleteFilter } from "../../../features/filterSlice";
 
-const FilterRow: FC<IFilterRowProps> = ({ idx, filter, filterOptions }) => {
+const FilterRow: FC<IFilterRowProps> = ({ idx, filter }) => {
 	const dispatch = useDispatch();
+
+	const filterOptions = useMemo(() => {
+		switch (filter.category) {
+			case "تگ":
+				return ["درس", "کار", "پروژه"];
+			case "اعضا":
+				return ["امیر", "امین", "الهه"];
+			case "اولویت":
+				return ["فوری", "بالا", "متوسط", "پایین"];
+			case "تاریخ":
+				return ["تاریخ"];
+			default:
+				return [""];
+		}
+	}, [filter]);
+
 	return (
 		<HStack spacing="xs">
 			<Text>تسک‌هایی که</Text>
@@ -25,14 +41,11 @@ const FilterRow: FC<IFilterRowProps> = ({ idx, filter, filterOptions }) => {
 				<SubFilterMenu
 					idx={idx}
 					selectedItem={filter.filterOption}
-					filterOptions={filterOptions[idx]}
+					filterOptions={filterOptions}
 					category={filter.category}
 				/>
 			)}
-			<ConditionMenu
-				idx={idx}
-				selectedItem={filter.condition}
-			/>
+			<ConditionMenu idx={idx} selectedItem={filter.condition} />
 			<Button
 				variant="unstyled"
 				color="red"
