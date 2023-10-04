@@ -12,7 +12,7 @@ interface IInputProps {
 	placeholder?: string;
 }
 
-const TextInput =({
+const TextInput = ({
 	label,
 	register,
 	errors,
@@ -25,11 +25,11 @@ const TextInput =({
                 <Input
                     type='text'
                     placeholder={placeholder}
-                    focusBorderColor={errors.name ? "tomato" : "lime"}
+                    focusBorderColor={errors.name && "tomato"}
                     {...register("name", {
                         minLength: {
-                            value: 5,
-                            message: "این فیلد باید حداقل 5 کاراکتر داشته باشد",
+                            value: 3,
+                            message: "این فیلد باید حداقل 3 کاراکتر داشته باشد",
                         },
                         maxLength: {
                             value: 30,

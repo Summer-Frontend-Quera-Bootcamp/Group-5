@@ -13,10 +13,12 @@ import {
 	Spacer,
 	Flex,
 	Switch,
+	useColorMode,
 } from "@chakra-ui/react";
-import { ArrowForwardIcon } from "@chakra-ui/icons";
 import { headingStyle } from "../../layouts/Authentication/style";
 import { NewSpaceModal } from "..";
+import { ExitIcon } from "../../icons";
+import SearchIput from "./SearchInput";
 
 interface ISidebarProp {
 	items?: any[];
@@ -24,28 +26,22 @@ interface ISidebarProp {
 	src?: string;
 }
 const Sidebar = ({ items, name, src }: ISidebarProp): JSX.Element => {
+	const { colorMode, toggleColorMode } = useColorMode();
 	return (
 		<Flex flexDir="column" h="full">
 			<Heading sx={headingStyle}>کوئرا تسک منیجر</Heading>
 
-			<Box gap="8px">
+			<Box gap="50px">
 				<Accordion w="274px" allowToggle>
 					<AccordionItem>
 						<AccordionButton>
-							<Text
-								w="98px"
-								h="28px"
-								flex="1"
-								align="right"
-								fontWeight="800"
-								fontSize="16px"
-								lineHeight="27.64px"
-							>
+							<Text flex="1" align="right" fontWeight="800" lineHeight="28px">
 								ورک اسپیس ها
 							</Text>
 							<AccordionIcon />
 						</AccordionButton>
 						<AccordionPanel pb={4} px="0">
+							<SearchIput />
 							<NewSpaceModal />
 							{items && items.map((x) => x)}
 						</AccordionPanel>
@@ -54,37 +50,24 @@ const Sidebar = ({ items, name, src }: ISidebarProp): JSX.Element => {
 			</Box>
 
 			<Box w="full" h="50px" gap="4px" mt="auto">
-				<Stack direction="row" h="37px" w="144px" spacing="4px">
-					<Avatar size="sm" name={name} src={src} />
-					<Text
-						pt="4px"
-						w="100px"
-						h="28px"
-						fontSize="16px"
-						color="black"
-						fontWeight="500px"
-						align="right"
-						lineHeight="27.64px"
-					>
+				<Stack direction="row" w="144px" spacing="4px">
+					<Avatar size="sm" name={name} src={src} mb={2} />
+					<Text p="4px" fontWeight="500px" align="right">
 						{name}
 					</Text>
 				</Stack>
-				<Box p="0 xs">
+				<Box>
 					<Flex>
 						<Button
-							leftIcon={<ArrowForwardIcon />}
-							w="64px"
-							h="28px"
+							leftIcon={<ExitIcon w="20px" h="20px" />}
 							gap="4px"
-							borderColor="white"
+							p={1}
 							color="#818181"
-							colorScheme="teal"
-							variant="outline"
 						>
 							خروج
 						</Button>
 						<Spacer />
-						<Switch w="64px" h="36px" mt="3px" isInvalid />
+						<Switch w="64px" mt="3px" onChange={toggleColorMode} isInvalid />
 					</Flex>
 				</Box>
 			</Box>

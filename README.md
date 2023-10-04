@@ -13,8 +13,7 @@ npm run dev
 - react-hook-form: ^7.46.1
 - reduxjs/toolkit: ^1.9.5
 - chakra-ui/react: ^2.8.1
-- tailwindcss: ^3.3.3
-- typescript: ^5.0.2
+- typescript: ^5.2.2
 - vite: ^4.4.5
 
 ## Conventions
