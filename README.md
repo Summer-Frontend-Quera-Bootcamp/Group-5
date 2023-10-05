@@ -6,6 +6,7 @@ After cloning, run:
 npm install
 npm run dev
 ```
+
 ## Technologies
 
 - react: ^18.2.0
@@ -27,7 +28,7 @@ npm run dev
 
 - Use [conventional commits](https://daily-dev-tips.com/posts/git-basics-conventional-commits/) for your changes.
 - Create branches for each change in the following format <category/description-in-kebab-case> e.g.
- 
+
 ```bash
 git branch feature/button-component
 git branch fix/background-img-not-in-position

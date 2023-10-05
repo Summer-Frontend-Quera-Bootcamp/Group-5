@@ -11,21 +11,20 @@ interface IColumnProps {
 
 const Column = ({ text, color }: IColumnProps): JSX.Element => {
 	const [display, setDisplay] = useState<boolean>(false);
-	const [flag, setFlag] = useState<boolean>(false)
-	const [array, setArray] = useState<JSX.Element[]>([])
+	const [flag, setFlag] = useState<boolean>(false);
+	const [array, setArray] = useState<JSX.Element[]>([]);
 	const handleAddIcon = () => {
 		setFlag(true);
-		setArray(old => [...old, <Task projectName="پروژه اول" userName="amir menshad" />]);
-	}
+		setArray((old) => [
+			...old,
+			<Task projectName="پروژه اول" userName="amir menshad" />,
+		]);
+	};
 	const handleMouseMove = () => {
 		setDisplay(!display);
 	};
 	return (
-		<Box
-			display="flex"
-			flexDir="column"
-			h='max-content'
-		>
+		<Box display="flex" flexDir="column" h="max-content">
 			<Box
 				onMouseEnter={handleMouseMove}
 				onMouseLeave={handleMouseMove}
@@ -78,7 +77,7 @@ const Column = ({ text, color }: IColumnProps): JSX.Element => {
 					</Tooltip>
 				</Box>
 			</Box>
-			{flag && array.map(x => x)}
+			{flag && array.map((x) => x)}
 		</Box>
 	);
 };

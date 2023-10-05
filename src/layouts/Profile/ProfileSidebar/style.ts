@@ -16,6 +16,6 @@ export const buttonStyle = {
 	gap: "11px",
 	borderRadius: "4px",
 	_hover: {
-    bg: "brand-secondary",
+		bg: "brand-secondary",
 	},
 };
