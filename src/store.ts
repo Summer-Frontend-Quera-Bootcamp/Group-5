@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import themeReducer from "./features/themeSlice";
+import filterReducer from "./features/filterSlice";
 
 const store = configureStore({
 	reducer: {
 		theme: themeReducer,
+		filters: filterReducer,
 	},
 });
 

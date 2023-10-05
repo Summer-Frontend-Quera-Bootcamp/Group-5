@@ -1,12 +1,11 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { FC } from "react";
 import { ChevronIcon } from "../../../icons";
+import { useDispatch } from "react-redux";
+import { setCondition } from "../../../features/filterSlice";
 
-const ConditionMenu: FC<IConditionMenuProps> = ({
-	idx,
-	selectedItem,
-	setSelectedItem,
-}) => {
+const ConditionMenu: FC<IConditionMenuProps> = ({ idx, selectedItem }) => {
+	const dispatch = useDispatch();
 	return (
 		<Menu>
 			<MenuButton
@@ -23,20 +22,14 @@ const ConditionMenu: FC<IConditionMenuProps> = ({
 			<MenuList pt="0">
 				<MenuItem
 					onClick={() => {
-						setSelectedItem({
-							action: "SET_CONDITION",
-							payload: { idx, option: "است" },
-						});
+						dispatch(setCondition({ idx, option: "است" }));
 					}}
 				>
 					است
 				</MenuItem>
 				<MenuItem
 					onClick={() => {
-						setSelectedItem({
-							action: "SET_CONDITION",
-							payload: { idx, option: "نیست" },
-						});
+						dispatch(setCondition({ idx, option: "نیست" }));
 					}}
 				>
 					نیست
