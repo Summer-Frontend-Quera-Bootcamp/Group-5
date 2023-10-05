@@ -1,21 +1,21 @@
 import { FC, useMemo } from "react";
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalBody,
-  ModalCloseButton,
-  Button,
-  useDisclosure,
-  Heading,
-  ModalHeader,
-  InputGroup,
-  Input,
-  InputRightAddon,
-  Flex,
-  HStack,
-  Text,
-  Avatar
+	Modal,
+	ModalOverlay,
+	ModalContent,
+	ModalBody,
+	ModalCloseButton,
+	Button,
+	useDisclosure,
+	Heading,
+	ModalHeader,
+	InputGroup,
+	Input,
+	InputRightAddon,
+	Flex,
+	HStack,
+	Text,
+	Avatar,
 } from "@chakra-ui/react";
 import { LinkIcon, ShareIcon } from "../../icons";
 import WorkSpaceOwner from "./WorkSpaceOwner";
