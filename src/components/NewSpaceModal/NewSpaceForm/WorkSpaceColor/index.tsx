@@ -13,6 +13,8 @@ import { FC, FormEvent } from "react";
 import { ArrowIcon, DisableIcon } from "../../../../icons";
 import ColorInput from "../../../ColorInput";
 import { chakra } from "@chakra-ui/react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../store";
 
 const WorkSpaceColor: FC<IWorkSpaceColorProps> = ({
 	workspaceName,
@@ -20,6 +22,7 @@ const WorkSpaceColor: FC<IWorkSpaceColorProps> = ({
 	setWorkspaceColor,
 	setModalPage,
 }) => {
+	const { accent } = useSelector((state: RootState) => state.theme);
 	const colors: TColors[] = [
 		"red-primary",
 		"pink-primary",
@@ -101,7 +104,7 @@ const WorkSpaceColor: FC<IWorkSpaceColorProps> = ({
 					</VStack>
 				</FormControl>
 			</Box>
-			<Button type="submit" colorScheme="teal">
+			<Button type="submit" colorScheme={accent}>
 				ادامه
 			</Button>
 		</chakra.form>

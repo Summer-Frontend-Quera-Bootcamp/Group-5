@@ -1,6 +1,8 @@
 import React, { ReactNode, MouseEvent } from "react";
 import { Button as ChakraButton, Flex } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/icons";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 interface ButtonProps {
 	isActive: boolean;
@@ -20,6 +22,7 @@ const Button: React.FC<ButtonProps> = ({
 	type = "button",
 	...restProps
 }) => {
+	const { accent } = useSelector((state: RootState) => state.theme);
 	return (
 		<Flex
 			direction="row"
@@ -29,12 +32,8 @@ const Button: React.FC<ButtonProps> = ({
 		>
 			<ChakraButton
 				type={type}
-				colorScheme="teal"
+				colorScheme={accent}
 				size="md"
-				_hover={{
-					background: "#006c6c",
-					color: "white",
-				}}
 				margin="auto"
 				onClick={onClick}
 				disabled={!isActive}

@@ -21,12 +21,19 @@ import { LinkIcon, ShareIcon } from "../../icons";
 import WorkSpaceOwner from "./WorkSpaceOwner";
 import AccessMenu from "./AccessMenu";
 import ProjectMenu from "./ProjectMenu";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 interface IShareProps {
 	type: "project" | "space" | "task";
 }
 
-function getBtn(type: "project" | "task" | "space", onClick: () => void) {
+// todo: create component
+const ShareButton: FC<{
+	type: "project" | "task" | "space";
+	onClick: () => void;
+}> = ({ type, onClick }) => {
+	const { accent } = useSelector((state: RootState) => state.theme);
 	switch (type) {
 		case "project":
 		case "task":
@@ -45,7 +52,7 @@ function getBtn(type: "project" | "task" | "space", onClick: () => void) {
 		case "space":
 			return (
 				<Button
-					colorScheme="teal"
+					colorScheme={accent}
 					variant="solid"
 					fontSize="body-md"
 					fontWeight="normal"
@@ -57,7 +64,7 @@ function getBtn(type: "project" | "task" | "space", onClick: () => void) {
 				</Button>
 			);
 	}
-}
+};
 function getHeading(type: "project" | "task" | "space") {
 	switch (type) {
 		case "project":
@@ -82,10 +89,11 @@ function getHeading(type: "project" | "task" | "space") {
 }
 
 const Share: FC<IShareProps> = ({ type }) => {
+	const { accent } = useSelector((state: RootState) => state.theme);
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	const btn = useMemo(() => {
-		return getBtn(type, onOpen);
+		return <ShareButton type={type} onClick={onOpen} />;
 	}, [type]);
 	const heading = useMemo(() => {
 		return getHeading(type);
@@ -129,7 +137,7 @@ const Share: FC<IShareProps> = ({ type }) => {
 								<Input type="email" placeholder="دعوت با ایمیل" />
 								<InputRightAddon p="0">
 									<Button
-										colorScheme="teal"
+										colorScheme={accent}
 										fontWeight="normal"
 										borderStartRadius="0"
 										p="1rem 2rem"

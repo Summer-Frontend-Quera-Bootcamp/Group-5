@@ -1,21 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export const themeSlice = createSlice({
 	name: "theme",
 	initialState: {
 		mode: "light",
-		accent: "teal",
+		accent: "green",
 	},
 	reducers: {
 		switchTheme(state) {
 			state.mode = state.mode === "light" ? "dark" : "light";
 		},
-		changeAccent(state, action) {
+		setAccent(state, action: PayloadAction<string>) {
 			state.accent = action.payload;
 		},
 	},
 });
 
-export const { switchTheme, changeAccent } = themeSlice.actions;
+export const { switchTheme, setAccent } = themeSlice.actions;
 
 export default themeSlice.reducer;

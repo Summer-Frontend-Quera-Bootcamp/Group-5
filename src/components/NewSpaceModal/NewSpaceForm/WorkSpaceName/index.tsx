@@ -8,12 +8,15 @@ import {
 } from "@chakra-ui/react";
 import { FC, FormEvent } from "react";
 import { chakra } from "@chakra-ui/react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../store";
 
 const WorkSpaceNameForm: FC<IWorkSpaceNameProps> = ({
 	workspaceName,
 	setWorkspaceName,
 	setModalPage,
 }) => {
+	const { accent } = useSelector((state: RootState) => state.theme);
 	function handleSubmit(e: FormEvent) {
 		e.preventDefault();
 		if (workspaceName.trim().length === 0) return;
@@ -39,7 +42,7 @@ const WorkSpaceNameForm: FC<IWorkSpaceNameProps> = ({
 					onChange={(e) => setWorkspaceName(e.target.value)}
 				/>
 			</FormControl>
-			<Button type="submit" colorScheme="teal">
+			<Button type="submit" colorScheme={accent}>
 				ادامه
 			</Button>
 		</chakra.form>

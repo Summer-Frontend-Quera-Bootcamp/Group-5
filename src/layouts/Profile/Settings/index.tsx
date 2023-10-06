@@ -10,11 +10,14 @@ import {
 } from "@chakra-ui/react";
 import { FC, useState } from "react";
 import ColorInput from "../../../components/ColorInput";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
 
 // get from global state
 const initialColor = "red-primary";
 
 const Settings: FC = () => {
+	const { accent } = useSelector((state: RootState) => state.theme);
 	const [selectedColor, setSelectedColor] = useState<TColors>(initialColor);
 	const colors: TColors[] = [
 		"red-primary",
@@ -53,7 +56,7 @@ const Settings: FC = () => {
 						</HStack>
 					</RadioGroup>
 				</FormControl>
-				<Button colorScheme="teal" w="350px" mt="lg">
+				<Button colorScheme={accent} w="350px" mt="lg">
 					ثبت تغییرات
 				</Button>
 			</chakra.form>
