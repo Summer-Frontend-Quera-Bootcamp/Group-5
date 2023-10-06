@@ -32,6 +32,7 @@ import {
 import { Board, FilterModal, Share, Calendar } from "../../components";
 import { useDispatch } from "react-redux";
 import { clearFilters } from "../../features/filterSlice";
+import NewTaskModal from "../../components/NewTaskModal";
 
 const Divider = () => {
 	return <chakra.span w="1px" h="22px" bg="gray.400"></chakra.span>;
@@ -115,13 +116,7 @@ const ProjectPage = () => {
 					</TabPanel>
 				</TabPanels>
 			</Tabs>
-			<Button
-				sx={newTaskButtonStyle}
-				colorScheme="teal"
-				leftIcon={<AddSquareIcon w="24px" h="24px" />}
-			>
-				تسک جدید
-			</Button>
+			<NewTaskModal place="projectPage" />
 		</>
 	);
 };
