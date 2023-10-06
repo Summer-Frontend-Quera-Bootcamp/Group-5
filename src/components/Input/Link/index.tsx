@@ -11,13 +11,8 @@ interface LinkProps {
 	fontSize?: string;
 }
 
-const Link: React.FC<LinkProps> = ({
-	href,
-	children,
-	color = "teal.500",
-	fontSize,
-}) => {
-	const { accent } = useSelector((state: RootState) => state.theme);
+const Link: React.FC<LinkProps> = ({ href, children, fontSize }) => {
+	const { accent, highlight } = useSelector((state: RootState) => state.theme);
 	const linkStyles = {
 		textDecoration: "none",
 		fontWeight: "bold",
@@ -28,7 +23,7 @@ const Link: React.FC<LinkProps> = ({
 		<ChakraLink
 			as={RouterLink}
 			to={href}
-			color={color}
+			color={highlight}
 			colorScheme={accent}
 			sx={linkStyles}
 		>

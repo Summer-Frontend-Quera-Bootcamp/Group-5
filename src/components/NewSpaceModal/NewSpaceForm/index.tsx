@@ -6,7 +6,7 @@ import WorkSpaceDetails from "./WorkSpaceDetails";
 const NewWorkSpaceContent: FC = () => {
 	const [modalPage, setModalPage] = useState<TPage>("workspaceName");
 	const [workspaceName, setWorkspaceName] = useState<string>("");
-	const [workspaceColor, setWorkspaceColor] = useState<TColors>("gray-primary");
+	const [workspaceColor, setWorkspaceColor] = useState<TColorSchemes>("gray");
 	// const initialColor = "red-primary";
 
 	let page;

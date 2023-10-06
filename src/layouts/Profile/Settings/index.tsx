@@ -8,32 +8,32 @@ import {
 	VStack,
 	chakra,
 } from "@chakra-ui/react";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import ColorInput from "../../../components/ColorInput";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store";
-
-// get from global state
-const initialColor = "red-primary";
+import { setAccent } from "../../../features/themeSlice";
 
 const Settings: FC = () => {
 	const { accent } = useSelector((state: RootState) => state.theme);
-	const [selectedColor, setSelectedColor] = useState<TColors>(initialColor);
-	const colors: TColors[] = [
-		"red-primary",
-		"pink-primary",
-		"grape-primary",
-		"violet-primary",
-		"indigo-primary",
-		"blue-primary",
-		"cyan-primary",
-		"teal-primary",
-		"brand-primary",
-		"green-primary",
-		"lime-primary",
-		"yellow-primary",
-		"orange-primary",
+	const [selectedColor, setSelectedColor] = useState<TColorSchemes>(accent);
+	const dispatch = useDispatch();
+	const colors: TColorSchemes[] = [
+		"red",
+		"orange",
+		"yellow",
+		"green",
+		"teal",
+		"blue",
+		"cyan",
+		"purple",
+		"pink",
 	];
+
+	useEffect(() => {
+		dispatch(setAccent(selectedColor));
+	}, [selectedColor]);
+
 	return (
 		<VStack align="start">
 			<Heading fontSize="31px" mb="lg">

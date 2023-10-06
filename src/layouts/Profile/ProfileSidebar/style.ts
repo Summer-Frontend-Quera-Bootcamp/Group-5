@@ -15,7 +15,4 @@ export const buttonStyle = {
 	justifyContent: "start",
 	gap: "11px",
 	borderRadius: "4px",
-	_hover: {
-		bg: "brand-secondary",
-	},
 };

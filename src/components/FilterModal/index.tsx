@@ -19,6 +19,7 @@ import { addFilter } from "../../features/filterSlice";
 const FilterModal: FC = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const filters = useSelector((state: RootState) => state.filters);
+	const { highlight } = useSelector((state: RootState) => state.theme);
 	const dispatch = useDispatch();
 
 	return (
@@ -52,7 +53,7 @@ const FilterModal: FC = () => {
 							})}
 							<Button
 								variant="link"
-								color="teal"
+								color={highlight}
 								alignSelf="start"
 								fontSize="12px"
 								onClick={() => dispatch(addFilter())}
