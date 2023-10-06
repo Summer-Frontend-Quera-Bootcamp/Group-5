@@ -20,6 +20,8 @@ interface IInputProps {
 	errors: any;
 	page?: string;
 	placeholder?: string;
+	name: string;
+	formHelper?: boolean;
 }
 
 const PasswordInput = ({
@@ -28,12 +30,15 @@ const PasswordInput = ({
 	errors,
 	page,
 	placeholder,
+	name,
+	formHelper,
 }: IInputProps): JSX.Element => {
-	const [show, setShow] = useState(false);
+	const [show, setShow] = useState<boolean>(false);
+
 	const handleClick = () => setShow(!show);
 	return (
 		<>
-			<FormControl isInvalid={errors.password}>
+			<FormControl isInvalid={errors[name]}>
 				<Flex>
 					<Box>
 						<FormLabel>{label}</FormLabel>
@@ -51,8 +56,8 @@ const PasswordInput = ({
 					<Input
 						type={show ? "text" : "password"}
 						placeholder={placeholder}
-						focusBorderColor={errors.password && "tomato"}
-						{...register("password", {
+						focusBorderColor={errors[name] && "tomato"}
+						{...register(name, {
 							minLength: {
 								value: 8,
 								message: "باید حداقل شامل 8 کاراکتر باشد",
@@ -74,13 +79,15 @@ const PasswordInput = ({
 						</button>
 					</InputRightElement>
 				</InputGroup>
-				{errors.password ? (
-					<FormErrorMessage>{errors.password?.message}</FormErrorMessage>
+				{errors[name] ? (
+					<FormErrorMessage>{errors[name]?.message}</FormErrorMessage>
 				) : (
-					<FormHelperText>
-						رمز باید بین 8 تا 20 کاراکتر(حرف کوچک و بزرگ ، عدد و کاراکتر خاص)
-						باشد
-					</FormHelperText>
+					formHelper && (
+						<FormHelperText>
+							رمز باید بین 8 تا 20 کاراکتر(حرف کوچک و بزرگ ، عدد و کاراکتر خاص)
+							باشد
+						</FormHelperText>
+					)
 				)}
 			</FormControl>
 		</>

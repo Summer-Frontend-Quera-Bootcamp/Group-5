@@ -37,11 +37,10 @@ const Column = ({ text, color }: IColumnProps): JSX.Element => {
 				borderTop="2px"
 				p="8px 12px"
 				borderTopColor={color}
-				bg="#FFFFFF"
+				bg="whiteAlpha.100"
 				boxShadow="lg"
 			>
 				<Text
-					w="84px"
 					fontWeight="500"
 					align="right"
 					lineHeight="28px"
@@ -58,6 +57,7 @@ const Column = ({ text, color }: IColumnProps): JSX.Element => {
 						display="flex"
 						justifyContent="center"
 						alignItems="center"
+						color='blackAlpha.900'
 					>
 						۰
 					</Box>

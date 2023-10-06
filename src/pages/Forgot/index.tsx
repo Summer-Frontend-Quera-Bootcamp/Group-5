@@ -24,6 +24,7 @@ const ForgotPage = () => {
 				label="ایمیل"
 				errors={errors}
 				register={register}
+				name="forgetEmail"
 			/>
 			<Button isActive={true} type="submit" fullWidth={true}>
 				دریافت ایمیل بازیابی رمز عبور

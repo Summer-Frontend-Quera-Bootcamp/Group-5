@@ -21,6 +21,7 @@ const ForgotPage = () => {
 				label="ایمیل"
 				errors={errors}
 				register={register}
+				name="loginEmail"
 			/>
 			<ValidateInput
 				type="password"
@@ -28,6 +29,8 @@ const ForgotPage = () => {
 				errors={errors}
 				register={register}
 				page="login"
+				name="loginPassword"
+				formHelper={true}
 			/>
 			<VStack spacing="md">
 				<Button isActive={true} type="submit" fullWidth={true}>

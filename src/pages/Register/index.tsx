@@ -24,18 +24,22 @@ const ForgotPage = () => {
 				label="نام کاربری"
 				errors={errors}
 				register={register}
+				name="registerName"
 			/>
 			<ValidateInput
 				type="email"
 				label="ایمیل"
 				errors={errors}
 				register={register}
+				name="registerEmail"
 			/>
 			<ValidateInput
 				type="password"
 				label="رمز عبور"
 				errors={errors}
 				register={register}
+				name="registerPassword"
+				formHelper={true}
 			/>
 			<Checkbox
 				colorScheme={accent}

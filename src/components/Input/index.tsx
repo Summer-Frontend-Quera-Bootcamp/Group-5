@@ -10,6 +10,8 @@ interface IInputProps {
 	errors: any;
 	page?: string;
 	placeholder?: string;
+	name: string;
+	formHelper?: boolean;
 }
 
 const ValidateInput = ({
@@ -19,6 +21,8 @@ const ValidateInput = ({
 	errors,
 	page,
 	placeholder,
+	name,
+	formHelper,
 }: IInputProps): JSX.Element => {
 	{
 		switch (type) {
@@ -29,6 +33,7 @@ const ValidateInput = ({
 						register={register}
 						label={label}
 						placeholder={placeholder}
+						name={name}
 					/>
 				);
 
@@ -39,6 +44,7 @@ const ValidateInput = ({
 						register={register}
 						label={label}
 						placeholder={placeholder}
+						name={name}
 					/>
 				);
 
@@ -50,6 +56,8 @@ const ValidateInput = ({
 						label={label}
 						page={page}
 						placeholder={placeholder}
+						name={name}
+						formHelper={formHelper}
 					/>
 				);
 		}
