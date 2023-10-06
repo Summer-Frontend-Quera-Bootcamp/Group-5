@@ -8,8 +8,11 @@ import {
 	chakra,
 } from "@chakra-ui/react";
 import { FC } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
 
 const AccountInfo: FC = () => {
+	const { accent } = useSelector((state: RootState) => state.theme);
 	return (
 		<VStack align="start">
 			<Heading fontSize="31px" mb="lg">
@@ -36,7 +39,7 @@ const AccountInfo: FC = () => {
 					<FormLabel>تکرار رمز عبور جدید</FormLabel>
 					<Input type="password" />
 				</FormControl>
-				<Button colorScheme="teal" mt="lg">
+				<Button colorScheme={accent} mt="lg">
 					ثبت تغییرات
 				</Button>
 			</chakra.form>

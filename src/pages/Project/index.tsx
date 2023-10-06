@@ -30,8 +30,10 @@ import {
 	tabStyle,
 } from "./style";
 import { Board, FilterModal, Share, Calendar } from "../../components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { clearFilters } from "../../features/filterSlice";
+import { RootState } from "../../store";
+import { setAccent } from "../../features/themeSlice";
 
 const Divider = () => {
 	return <chakra.span w="1px" h="22px" bg="gray.400"></chakra.span>;
@@ -40,6 +42,7 @@ const Divider = () => {
 const ProjectPage = () => {
 	const [activePage, setActivePage] = useState<boolean[]>([true, false, false]);
 	const dispatch = useDispatch();
+	const { accent } = useSelector((state: RootState) => state.theme);
 
 	useEffect(() => {
 		dispatch(clearFilters());
@@ -58,8 +61,9 @@ const ProjectPage = () => {
 					<Divider />
 					<Tab
 						sx={tabStyle}
+						_hover={{ color: accent }}
 						onClick={() => setActivePage([true, false, false])}
-						color={activePage[0] ? "cyan-primary" : "unset"}
+						color={activePage[0] ? accent : "unset"}
 					>
 						<ListIcon w="24px" h="24px" />
 						نمایش لیستی
@@ -67,8 +71,9 @@ const ProjectPage = () => {
 					<Divider />
 					<Tab
 						sx={tabStyle}
+						_hover={{ color: accent }}
 						onClick={() => setActivePage([false, true, false])}
-						color={activePage[1] ? "cyan-primary" : "unset"}
+						color={activePage[1] ? accent : "unset"}
 					>
 						<ArtBoardIcon w="24px" h="24px" />
 						نمایش ستونی
@@ -76,8 +81,9 @@ const ProjectPage = () => {
 					<Divider />
 					<Tab
 						sx={tabStyle}
+						_hover={{ color: accent }}
 						onClick={() => setActivePage([false, false, true])}
-						color={activePage[2] ? "cyan-primary" : "unset"}
+						color={activePage[2] ? accent : "unset"}
 					>
 						<CalendarIcon w="24px" h="24px" />
 						تقویم
@@ -85,7 +91,7 @@ const ProjectPage = () => {
 					<Divider />
 					<Share type="project" />
 				</TabList>
-				<TabIndicator sx={tabIndicatorStyle} />
+				<TabIndicator sx={tabIndicatorStyle} bg={accent} />
 				{/* todo: create filters option */}
 				<Flex sx={searchFilterWrapperStyle}>
 					<InputGroup w="200px">
@@ -117,7 +123,7 @@ const ProjectPage = () => {
 			</Tabs>
 			<Button
 				sx={newTaskButtonStyle}
-				colorScheme="teal"
+				colorScheme={accent}
 				leftIcon={<AddSquareIcon w="24px" h="24px" />}
 			>
 				تسک جدید

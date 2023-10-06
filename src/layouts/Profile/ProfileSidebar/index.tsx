@@ -7,18 +7,21 @@ import {
 	UserProfileEditIcon,
 } from "../../../icons";
 import { buttonStyle, headingStyle } from "./style";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
 
 const ProfileSidebar: FC<IProfileSidebarProps> = ({
 	selectedPage,
 	handleClick,
 }) => {
+	const { accent } = useSelector((state: RootState) => state.theme);
 	return (
 		<>
 			<Heading sx={headingStyle}>کوئرا تسک منیجر</Heading>
 			<Box>
 				<VStack align="start" gap="lg">
 					<Button
-						colorScheme="teal"
+						colorScheme={accent}
 						gap="xs"
 						p="4px 8px"
 						onClick={() => history.back()}

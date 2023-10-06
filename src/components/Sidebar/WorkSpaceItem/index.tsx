@@ -9,6 +9,8 @@ import {
 	Button,
 } from "@chakra-ui/react";
 import ColumnMore from "../Columnmore";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
 
 interface IWorkSpaceItemProps {
 	content: string;
@@ -21,6 +23,7 @@ const WorkSpaceItem = ({
 	color,
 	items,
 }: IWorkSpaceItemProps): JSX.Element => {
+	const { accent } = useSelector((state: RootState) => state.theme);
 	return (
 		<>
 			<Accordion bg="FAFAFA" borderRadius="4px" p="6px" allowToggle>
@@ -41,7 +44,7 @@ const WorkSpaceItem = ({
 						{/*todo The below button should replace with button-component*/}
 						{!items ? (
 							<Button
-								colorScheme="teal"
+								colorScheme={accent}
 								variant="outline"
 								w="full"
 								border="2px"

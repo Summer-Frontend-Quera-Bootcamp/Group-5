@@ -9,12 +9,10 @@ export const tabListStyle = {
 export const tabStyle = {
 	fontSize: "body-md",
 	gap: "xs",
-	_hover: { color: "cyan-primary" },
 };
 
 export const tabIndicatorStyle = {
 	height: "2.5px",
-	bg: "cyan-primary",
 	borderRadius: "1px",
 	transform: "translate(0, -2px)",
 };
