@@ -17,6 +17,8 @@ const ForgotPage = () => {
 				label="رمز عبور جدید را وارد کنید"
 				errors={errors}
 				register={register}
+				name="resetPassword"
+				formHelper={true}
 			/>
 			<Button isActive={true} type="submit" fullWidth>
 				تغییر رمز عبور

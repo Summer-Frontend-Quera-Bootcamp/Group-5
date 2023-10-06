@@ -10,6 +10,7 @@ interface IInputProps {
 	register: any;
 	errors: any;
 	placeholder?: string;
+	name: string;
 }
 
 const TextInput = ({
@@ -17,16 +18,17 @@ const TextInput = ({
 	register,
 	errors,
 	placeholder,
+	name,
 }: IInputProps): JSX.Element => {
 	return (
 		<>
-			<FormControl isInvalid={errors.name}>
+			<FormControl isInvalid={errors[name]}>
 				<FormLabel>{label}</FormLabel>
 				<Input
 					type="text"
 					placeholder={placeholder}
-					focusBorderColor={errors.name && "tomato"}
-					{...register("name", {
+					focusBorderColor={errors[name] && "tomato"}
+					{...register(name, {
 						minLength: {
 							value: 3,
 							message: "این فیلد باید حداقل 3 کاراکتر داشته باشد",
@@ -37,7 +39,7 @@ const TextInput = ({
 						},
 					})}
 				></Input>
-				<FormErrorMessage>{errors.name?.message}</FormErrorMessage>
+				<FormErrorMessage>{errors[name]?.message}</FormErrorMessage>
 			</FormControl>
 		</>
 	);
