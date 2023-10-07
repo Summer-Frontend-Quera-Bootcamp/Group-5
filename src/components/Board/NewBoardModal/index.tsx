@@ -7,7 +7,6 @@ import {
 	useDisclosure,
 	Heading,
 	Text,
-	Input,
 	Box,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
@@ -27,7 +26,10 @@ const NewBoardModal = (): JSX.Element => {
 	} = useForm();
 	const submit = (data: any) => {
 		setFlag(true);
-		setArray((old) => [...old, <Column text={data.name} color={data.color} />]);
+		setArray((old) => [
+			...old,
+			<Column text={data.taskBoardName} color={data.taskBoardColor} />,
+		]);
 	};
 	return (
 		<>
@@ -75,13 +77,14 @@ const NewBoardModal = (): JSX.Element => {
 								label="نام برد"
 								register={register}
 								errors={errors}
+								name="taskBoardName"
 							/>
-							<Input
+							<ValidateInput
 								type="text"
-								placeholder="نام رنگ مورد نظر"
-								{...register("color", {
-									required: "وارد کردن رنگ الزامی است",
-								})}
+								label="رنگ دلخواه را وارد کنید"
+								register={register}
+								errors={errors}
+								name="taskBoardColor"
 							/>
 							<Box as="button" onClick={onClose}>
 								<Button isActive={true} type="submit" fullWidth={true}>

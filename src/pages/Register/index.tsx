@@ -3,14 +3,16 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Form from "../../components/Form";
 import { Checkbox } from "@chakra-ui/react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 const ForgotPage = () => {
+	const { accent } = useSelector((state: RootState) => state.theme);
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
-
 	const [isChecked, setIsChecked] = useState(false);
 
 	const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
@@ -22,21 +24,25 @@ const ForgotPage = () => {
 				label="نام کاربری"
 				errors={errors}
 				register={register}
+				name="registerName"
 			/>
 			<ValidateInput
 				type="email"
 				label="ایمیل"
 				errors={errors}
 				register={register}
+				name="registerEmail"
 			/>
 			<ValidateInput
 				type="password"
 				label="رمز عبور"
 				errors={errors}
 				register={register}
+				name="registerPassword"
+				formHelper={true}
 			/>
 			<Checkbox
-				colorScheme="teal"
+				colorScheme={accent}
 				isChecked={isChecked}
 				onChange={() => setIsChecked(!isChecked)}
 			>

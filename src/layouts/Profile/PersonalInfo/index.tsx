@@ -13,8 +13,11 @@ import {
 } from "@chakra-ui/react";
 import { FC } from "react";
 import { buttonStyle } from "./style";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
 
 const PersonalInfo: FC = () => {
+	const { accent } = useSelector((state: RootState) => state.theme);
 	return (
 		<VStack align="start">
 			<Heading fontSize="31px" mb="32px">
@@ -25,7 +28,7 @@ const PersonalInfo: FC = () => {
 					<HStack gap="sm">
 						<Avatar name="nima youshij" size="xl" />
 						<Box>
-							<Button variant="outline" colorScheme="teal" sx={buttonStyle}>
+							<Button variant="outline" colorScheme={accent} sx={buttonStyle}>
 								ویرایش تصویر پروفایل
 							</Button>
 							<Text fontSize="xs" color="#8A8989" mt="sm">
@@ -47,7 +50,7 @@ const PersonalInfo: FC = () => {
 						<FormLabel>شماره موبایل</FormLabel>
 						<Input type="tel" />
 					</FormControl>
-					<Button colorScheme="teal" mt="lg">
+					<Button colorScheme={accent} mt="lg">
 						ثبت تغییرات
 					</Button>
 				</chakra.form>

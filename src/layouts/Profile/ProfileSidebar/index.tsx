@@ -7,18 +7,23 @@ import {
 	UserProfileEditIcon,
 } from "../../../icons";
 import { buttonStyle, headingStyle } from "./style";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
 
 const ProfileSidebar: FC<IProfileSidebarProps> = ({
 	selectedPage,
 	handleClick,
 }) => {
+	const { accent, text, highlight } = useSelector(
+		(state: RootState) => state.theme
+	);
 	return (
 		<>
 			<Heading sx={headingStyle}>کوئرا تسک منیجر</Heading>
 			<Box>
 				<VStack align="start" gap="lg">
 					<Button
-						colorScheme="teal"
+						colorScheme={accent}
 						gap="xs"
 						p="4px 8px"
 						onClick={() => history.back()}
@@ -29,9 +34,13 @@ const ProfileSidebar: FC<IProfileSidebarProps> = ({
 					<Button
 						variant="ghost"
 						sx={buttonStyle}
-						bg={selectedPage === "personal" ? "brand-secondary" : "unset"}
+						bg={selectedPage === "personal" ? highlight : "unset"}
+						color={selectedPage === "personal" ? text : "unset"}
 						fontWeight={selectedPage === "personal" ? "800" : "normal"}
 						onClick={() => handleClick("personal")}
+						_hover={{
+							bg: highlight,
+						}}
 					>
 						<UserProfileEditIcon w="24px" h="24px" />
 						اطلاعات فردی
@@ -39,9 +48,13 @@ const ProfileSidebar: FC<IProfileSidebarProps> = ({
 					<Button
 						variant="ghost"
 						sx={buttonStyle}
-						bg={selectedPage === "account" ? "brand-secondary" : "unset"}
+						bg={selectedPage === "account" ? highlight : "unset"}
+						color={selectedPage === "account" ? text : "unset"}
 						fontWeight={selectedPage === "account" ? "800" : "normal"}
 						onClick={() => handleClick("account")}
+						_hover={{
+							bg: highlight,
+						}}
 					>
 						<UserProfileCheckmarkIcon w="24px" h="24px" />
 						اطلاعات اکانت
@@ -49,9 +62,13 @@ const ProfileSidebar: FC<IProfileSidebarProps> = ({
 					<Button
 						variant="ghost"
 						sx={buttonStyle}
-						bg={selectedPage === "settings" ? "brand-secondary" : "unset"}
+						bg={selectedPage === "settings" ? highlight : "unset"}
+						color={selectedPage === "settings" ? text : "unset"}
 						fontWeight={selectedPage === "settings" ? "800" : "normal"}
 						onClick={() => handleClick("settings")}
+						_hover={{
+							bg: highlight,
+						}}
 					>
 						<SettingsIcon w="24px" h="24px" />
 						تنظیمات

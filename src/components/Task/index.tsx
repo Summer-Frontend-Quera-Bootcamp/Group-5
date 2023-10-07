@@ -9,8 +9,7 @@ import {
 	Stack,
 	Text,
 } from "@chakra-ui/react";
-import { DotsIcon, FlagIcon } from "../../icons";
-import { CheckIcon } from "@chakra-ui/icons";
+import { CheckmarkCircleIcon, DotsIcon, FlagIcon } from "../../icons";
 import { useRef, useState } from "react";
 import moment from "jalali-moment";
 
@@ -43,7 +42,6 @@ const Task = ({
 			gap="8px"
 			mt="19px"
 			borderRadius="16px"
-			p="8px"
 			boxShadow="lg"
 			onMouseEnter={handleMouseMove}
 			onMouseLeave={handleMouseMove}
@@ -52,7 +50,7 @@ const Task = ({
 				{img && (
 					<Image src={img} borderRadius="4px" h="134px" alt="تصویر تسک" />
 				)}
-				<Stack spacing="5" p="4px">
+				<Stack spacing="5">
 					<Box h="51px" display="flex" flexDir="row">
 						<Flex flexDir="column">
 							{itemShow && (
@@ -77,8 +75,6 @@ const Task = ({
 								size="sm"
 								name={userName}
 								src={userSrc}
-								ms="auto"
-								mt="0px"
 							/>
 						)}
 					</Box>
@@ -107,7 +103,7 @@ const Task = ({
 					<CardFooter h="50px" mt="-10px">
 						<Flex dir="row" justifyContent="space-between" w="full">
 							<Box>
-								<CheckIcon />
+								<CheckmarkCircleIcon w='20px' h='20px' />
 							</Box>
 							<Box w="24px" h="24px">
 								<DotsIcon w="20px" h="20px" />

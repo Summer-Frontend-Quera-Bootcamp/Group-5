@@ -10,6 +10,8 @@ import {
 import { FC, FormEvent } from "react";
 import { ArrowIcon } from "../../../../icons";
 import { chakra } from "@chakra-ui/react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../store";
 
 const WorkSpaceDetails: FC<IWorkSpaceDetailsProps> = ({
 	workspaceName,
@@ -17,6 +19,7 @@ const WorkSpaceDetails: FC<IWorkSpaceDetailsProps> = ({
 	workspaceOwner,
 	setModalPage,
 }) => {
+	const { accent } = useSelector((state: RootState) => state.theme);
 	return (
 		<chakra.form display="flex" flexDir="column" gap="xl" pos="relative">
 			<Button
@@ -61,7 +64,7 @@ const WorkSpaceDetails: FC<IWorkSpaceDetailsProps> = ({
 					/>
 				</HStack>
 			</VStack>
-			<Button colorScheme="teal" type="submit">
+			<Button colorScheme={accent} type="submit">
 				ادامه
 			</Button>
 		</chakra.form>

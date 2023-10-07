@@ -1,6 +1,8 @@
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { Link as ChakraLink } from "@chakra-ui/react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 interface LinkProps {
 	href: string;
@@ -9,12 +11,8 @@ interface LinkProps {
 	fontSize?: string;
 }
 
-const Link: React.FC<LinkProps> = ({
-	href,
-	children,
-	color = "teal.500",
-	fontSize,
-}) => {
+const Link: React.FC<LinkProps> = ({ href, children, fontSize }) => {
+	const { accent, highlight } = useSelector((state: RootState) => state.theme);
 	const linkStyles = {
 		textDecoration: "none",
 		fontWeight: "bold",
@@ -25,8 +23,8 @@ const Link: React.FC<LinkProps> = ({
 		<ChakraLink
 			as={RouterLink}
 			to={href}
-			color={color}
-			colorScheme="teal.500"
+			color={highlight}
+			colorScheme={accent}
 			sx={linkStyles}
 		>
 			{children}

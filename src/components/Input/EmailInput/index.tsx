@@ -10,6 +10,7 @@ interface IInputProps {
 	register: any;
 	errors: any;
 	placeholder?: string;
+	name: string;
 }
 
 const EmailInput = ({
@@ -17,23 +18,24 @@ const EmailInput = ({
 	register,
 	errors,
 	placeholder,
+	name,
 }: IInputProps): JSX.Element => {
 	return (
 		<>
-			<FormControl isInvalid={errors.email}>
+			<FormControl isInvalid={errors[name]}>
 				<FormLabel>{label}</FormLabel>
 				<Input
 					type="email"
 					placeholder={placeholder}
-					focusBorderColor={errors.email && "tomato"}
-					{...register("email", {
+					focusBorderColor={errors[name] && "tomato"}
+					{...register(name, {
 						pattern: {
 							value: /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3})$/,
 							message: "ایمیل وارد شده معتبر نیست",
 						},
 					})}
 				></Input>
-				<FormErrorMessage>{errors.email?.message}</FormErrorMessage>
+				<FormErrorMessage>{errors[name]?.message}</FormErrorMessage>
 			</FormControl>
 		</>
 	);

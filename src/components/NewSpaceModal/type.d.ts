@@ -8,14 +8,14 @@ interface IWorkSpaceNameProps {
 
 interface IWorkSpaceColorProps {
 	workspaceName: string;
-	workspaceColor: TColors;
-	setWorkspaceColor: Dispatch<SetStateAction<TColors>>;
+	workspaceColor: TColorSchemes;
+	setWorkspaceColor: Dispatch<SetStateAction<TColorSchemes>>;
 	setModalPage: Dispatch<SetStateAction<TPage>>;
 }
 
 interface IWorkSpaceDetailsProps {
 	workspaceName: string;
-	workspaceColor: TColors;
+	workspaceColor: TColorSchemes;
 	workspaceOwner: { img: string; name: string };
 	setModalPage: Dispatch<SetStateAction<TPage>>;
 }

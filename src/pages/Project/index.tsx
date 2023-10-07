@@ -13,7 +13,6 @@ import {
   chakra,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { Board, Calendar, FilterModal, Share } from "../../components";
 import NewTaskModal from "../../components/NewTaskModal";
 import { clearFilters } from "../../features/filterSlice";
@@ -25,6 +24,8 @@ import {
   tabListStyle,
   tabStyle,
 } from "./style";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 const Divider = () => {
 	return <chakra.span w="1px" h="22px" bg="gray.400"></chakra.span>;
@@ -33,6 +34,7 @@ const Divider = () => {
 const ProjectPage = () => {
 	const [activePage, setActivePage] = useState<boolean[]>([true, false, false]);
 	const dispatch = useDispatch();
+	const { accent, highlight } = useSelector((state: RootState) => state.theme);
 
 	useEffect(() => {
 		dispatch(clearFilters());
@@ -51,8 +53,9 @@ const ProjectPage = () => {
 					<Divider />
 					<Tab
 						sx={tabStyle}
+						_hover={{ color: highlight }}
 						onClick={() => setActivePage([true, false, false])}
-						color={activePage[0] ? "cyan-primary" : "unset"}
+						color={activePage[0] ? highlight : "unset"}
 					>
 						<ListIcon w="24px" h="24px" />
 						نمایش لیستی
@@ -60,8 +63,9 @@ const ProjectPage = () => {
 					<Divider />
 					<Tab
 						sx={tabStyle}
+						_hover={{ color: highlight }}
 						onClick={() => setActivePage([false, true, false])}
-						color={activePage[1] ? "cyan-primary" : "unset"}
+						color={activePage[1] ? highlight : "unset"}
 					>
 						<ArtBoardIcon w="24px" h="24px" />
 						نمایش ستونی
@@ -69,8 +73,9 @@ const ProjectPage = () => {
 					<Divider />
 					<Tab
 						sx={tabStyle}
+						_hover={{ color: highlight }}
 						onClick={() => setActivePage([false, false, true])}
-						color={activePage[2] ? "cyan-primary" : "unset"}
+						color={activePage[2] ? highlight : "unset"}
 					>
 						<CalendarIcon w="24px" h="24px" />
 						تقویم
@@ -78,7 +83,7 @@ const ProjectPage = () => {
 					<Divider />
 					<Share type="project" />
 				</TabList>
-				<TabIndicator sx={tabIndicatorStyle} />
+				<TabIndicator sx={tabIndicatorStyle} bg={highlight} />
 				{/* todo: create filters option */}
 				<Flex sx={searchFilterWrapperStyle}>
 					<InputGroup w="200px">
