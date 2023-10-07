@@ -1,6 +1,6 @@
-import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
+import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import React from "react";
-import { FlagIcon, CloseIcon } from "../../icons";
+import { CloseIcon, FlagIcon } from "../../icons";
 
 const PriorityList: React.FC = () => {
 	const menuItems = [
@@ -15,21 +15,19 @@ const PriorityList: React.FC = () => {
 		<Menu>
 			<MenuButton
 				as={Button}
-				style={{
-					background: "none",
-					border: "none",
-					padding: 0,
-					width: "fit-content",
+				sx={{
+					bg: "none",
+					alignItems: "center",
+					justifyContent: "center",
+					border: "1px dashed",
+					borderRadius: "full",
+					p: "8px",
+					w: "50px",
+					h: "50px",
+					color: "gray.400",
 				}}
 			>
-				<span style={{ display: "flex", alignItems: "center" }}>
-					<FlagIcon
-						w="20px"
-						h="20px"
-						color="gray"
-						style={{ borderRadius: "50%", border: "1px dashed" }}
-					/>
-				</span>
+				<FlagIcon />
 			</MenuButton>
 			<MenuList
 				style={{

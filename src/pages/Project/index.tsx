@@ -1,38 +1,30 @@
-import { useEffect, useState } from "react";
 import {
-	Button,
-	Flex,
-	Heading,
-	Input,
-	InputGroup,
-	InputLeftElement,
-	Tab,
-	TabIndicator,
-	TabList,
-	TabPanel,
-	TabPanels,
-	Tabs,
-	chakra,
+  Flex,
+  Heading,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Tab,
+  TabIndicator,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  chakra,
 } from "@chakra-ui/react";
-import {
-	AddSquareIcon,
-	ArtBoardIcon,
-	CalendarIcon,
-	ListIcon,
-	SearchIcon,
-} from "../../icons";
-import {
-	newTaskButtonStyle,
-	searchFilterWrapperStyle,
-	searchInputStyle,
-	tabIndicatorStyle,
-	tabListStyle,
-	tabStyle,
-} from "./style";
-import { Board, FilterModal, Share, Calendar } from "../../components";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { clearFilters } from "../../features/filterSlice";
+import { Board, Calendar, FilterModal, Share } from "../../components";
 import NewTaskModal from "../../components/NewTaskModal";
+import { clearFilters } from "../../features/filterSlice";
+import { ArtBoardIcon, CalendarIcon, ListIcon, SearchIcon } from "../../icons";
+import {
+  searchFilterWrapperStyle,
+  searchInputStyle,
+  tabIndicatorStyle,
+  tabListStyle,
+  tabStyle,
+} from "./style";
 
 const Divider = () => {
 	return <chakra.span w="1px" h="22px" bg="gray.400"></chakra.span>;
@@ -116,7 +108,7 @@ const ProjectPage = () => {
 					</TabPanel>
 				</TabPanels>
 			</Tabs>
-			<NewTaskModal place="projectPage" />
+			<NewTaskModal place="projectPage" project="پروژه اول" />
 		</>
 	);
 };
