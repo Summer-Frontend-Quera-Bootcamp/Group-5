@@ -1,11 +1,11 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { FC } from "react";
 import { ChevronIcon } from "../../../icons";
-import { useDispatch } from "react-redux";
 import { setCondition } from "../../../features/filterSlice";
+import { useAppDispatch } from "../../../hooks";
 
 const ConditionMenu: FC<IConditionMenuProps> = ({ idx, selectedItem }) => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	return (
 		<Menu>
 			<MenuButton

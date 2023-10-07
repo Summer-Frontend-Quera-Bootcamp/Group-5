@@ -1,16 +1,16 @@
 import {
-  Flex,
-  Heading,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Tab,
-  TabIndicator,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-  chakra,
+	Flex,
+	Heading,
+	Input,
+	InputGroup,
+	InputLeftElement,
+	Tab,
+	TabIndicator,
+	TabList,
+	TabPanel,
+	TabPanels,
+	Tabs,
+	chakra,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Board, Calendar, FilterModal, Share } from "../../components";
@@ -18,14 +18,13 @@ import NewTaskModal from "../../components/NewTaskModal";
 import { clearFilters } from "../../features/filterSlice";
 import { ArtBoardIcon, CalendarIcon, ListIcon, SearchIcon } from "../../icons";
 import {
-  searchFilterWrapperStyle,
-  searchInputStyle,
-  tabIndicatorStyle,
-  tabListStyle,
-  tabStyle,
+	searchFilterWrapperStyle,
+	searchInputStyle,
+	tabIndicatorStyle,
+	tabListStyle,
+	tabStyle,
 } from "./style";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 
 const Divider = () => {
 	return <chakra.span w="1px" h="22px" bg="gray.400"></chakra.span>;
@@ -33,8 +32,8 @@ const Divider = () => {
 
 const ProjectPage = () => {
 	const [activePage, setActivePage] = useState<boolean[]>([true, false, false]);
-	const dispatch = useDispatch();
-	const { accent, highlight } = useSelector((state: RootState) => state.theme);
+	const dispatch = useAppDispatch();
+	const { accent, highlight } = useAppSelector((state) => state.theme);
 
 	useEffect(() => {
 		dispatch(clearFilters());

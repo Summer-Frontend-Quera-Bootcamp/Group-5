@@ -3,11 +3,10 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Form from "../../components/Form";
 import { Checkbox } from "@chakra-ui/react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store";
+import { useAppSelector } from "../../hooks";
 
 const ForgotPage = () => {
-	const { accent } = useSelector((state: RootState) => state.theme);
+	const { accent } = useAppSelector((state) => state.theme);
 	const {
 		register,
 		handleSubmit,

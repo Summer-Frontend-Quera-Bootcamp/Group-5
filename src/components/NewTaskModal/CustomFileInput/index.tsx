@@ -1,13 +1,12 @@
 import { Button, chakra } from "@chakra-ui/react";
 import { ChangeEvent, FC, useCallback, useRef } from "react";
-import { useSelector } from "react-redux";
 import { LinkIcon } from "../../../icons";
-import { RootState } from "../../../store";
+import { useAppSelector } from "../../../hooks";
 
 const CustomFileInput: FC<{ onChange: (file: any) => void }> = ({
 	onChange,
 }) => {
-	const { accent } = useSelector((state: RootState) => state.theme);
+	const { accent } = useAppSelector((state) => state.theme);
 
 	const handleClick = useCallback(() => {
 		if (hiddenFileInput.current) {

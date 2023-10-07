@@ -7,16 +7,13 @@ import {
 	UserProfileEditIcon,
 } from "../../../icons";
 import { buttonStyle, headingStyle } from "./style";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../store";
+import { useAppSelector } from "../../../hooks";
 
 const ProfileSidebar: FC<IProfileSidebarProps> = ({
 	selectedPage,
 	handleClick,
 }) => {
-	const { accent, text, highlight } = useSelector(
-		(state: RootState) => state.theme
-	);
+	const { accent, text, highlight } = useAppSelector((state) => state.theme);
 	return (
 		<>
 			<Heading sx={headingStyle}>کوئرا تسک منیجر</Heading>

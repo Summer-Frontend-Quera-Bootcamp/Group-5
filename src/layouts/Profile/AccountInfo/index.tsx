@@ -8,11 +8,10 @@ import {
 	chakra,
 } from "@chakra-ui/react";
 import { FC } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../store";
+import { useAppSelector } from "../../../hooks";
 
 const AccountInfo: FC = () => {
-	const { accent } = useSelector((state: RootState) => state.theme);
+	const { accent } = useAppSelector((state) => state.theme);
 	return (
 		<VStack align="start">
 			<Heading fontSize="31px" mb="lg">

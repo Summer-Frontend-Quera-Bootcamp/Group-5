@@ -1,29 +1,28 @@
 import {
-  Box,
-  Button,
-  HStack,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalOverlay,
-  Text,
-  Textarea,
-  VStack,
-  useDisclosure,
+	Box,
+	Button,
+	HStack,
+	Modal,
+	ModalBody,
+	ModalCloseButton,
+	ModalContent,
+	ModalOverlay,
+	Text,
+	Textarea,
+	VStack,
+	useDisclosure,
 } from "@chakra-ui/react";
 import { ChangeEvent, FC, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { PriorityList } from "..";
 import {
-  AddIcon,
-  AddSquareIcon,
-  BookmarkIcon,
-  CalendarIcon,
-  UserProfileCheckmarkIcon,
+	AddIcon,
+	AddSquareIcon,
+	BookmarkIcon,
+	CalendarIcon,
+	UserProfileCheckmarkIcon,
 } from "../../icons";
-import { RootState } from "../../store";
 import CustomFileInput from "./CustomFileInput";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 
 const taskDetailButtonStyle = {
 	bg: "none",
@@ -42,8 +41,8 @@ const NewTaskModal: FC<{ place: "board" | "projectPage"; project: string }> = ({
 	project,
 }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const { accent } = useSelector((state: RootState) => state.theme);
-	const dispatch = useDispatch();
+	const { accent } = useAppSelector((state) => state.theme);
+	const dispatch = useAppDispatch();
 	let [taskDescription, setTaskDescription] = useState("");
 
 	let handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {

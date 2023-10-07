@@ -21,8 +21,7 @@ import { LinkIcon, ShareIcon } from "../../icons";
 import WorkSpaceOwner from "./WorkSpaceOwner";
 import AccessMenu from "./AccessMenu";
 import ProjectMenu from "./ProjectMenu";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store";
+import { useAppSelector } from "../../hooks";
 
 interface IShareProps {
 	type: "project" | "space" | "task";
@@ -33,7 +32,7 @@ const ShareButton: FC<{
 	type: "project" | "task" | "space";
 	onClick: () => void;
 }> = ({ type, onClick }) => {
-	const { accent } = useSelector((state: RootState) => state.theme);
+	const { accent } = useAppSelector((state) => state.theme);
 	switch (type) {
 		case "project":
 		case "task":
@@ -89,7 +88,7 @@ function getHeading(type: "project" | "task" | "space") {
 }
 
 const Share: FC<IShareProps> = ({ type }) => {
-	const { accent } = useSelector((state: RootState) => state.theme);
+	const { accent } = useAppSelector((state) => state.theme);
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	const btn = useMemo(() => {
