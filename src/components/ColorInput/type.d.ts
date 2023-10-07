@@ -1,3 +1,3 @@
-type TColorInputProps = Record<"color" | "selectedColor", TColors> & {
-	setSelectedColor: Dispatch<SetStateAction<TColors>>;
+type TColorInputProps = Record<"color" | "selectedColor", TColorSchemes> & {
+	setSelectedColor: Dispatch<SetStateAction<TColorSchemes>>;
 };

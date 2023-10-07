@@ -14,7 +14,9 @@ const ProfileSidebar: FC<IProfileSidebarProps> = ({
 	selectedPage,
 	handleClick,
 }) => {
-	const { accent } = useSelector((state: RootState) => state.theme);
+	const { accent, text, highlight } = useSelector(
+		(state: RootState) => state.theme
+	);
 	return (
 		<>
 			<Heading sx={headingStyle}>کوئرا تسک منیجر</Heading>
@@ -32,9 +34,13 @@ const ProfileSidebar: FC<IProfileSidebarProps> = ({
 					<Button
 						variant="ghost"
 						sx={buttonStyle}
-						bg={selectedPage === "personal" ? "brand-secondary" : "unset"}
+						bg={selectedPage === "personal" ? highlight : "unset"}
+						color={selectedPage === "personal" ? text : "unset"}
 						fontWeight={selectedPage === "personal" ? "800" : "normal"}
 						onClick={() => handleClick("personal")}
+						_hover={{
+							bg: highlight,
+						}}
 					>
 						<UserProfileEditIcon w="24px" h="24px" />
 						اطلاعات فردی
@@ -42,9 +48,13 @@ const ProfileSidebar: FC<IProfileSidebarProps> = ({
 					<Button
 						variant="ghost"
 						sx={buttonStyle}
-						bg={selectedPage === "account" ? "brand-secondary" : "unset"}
+						bg={selectedPage === "account" ? highlight : "unset"}
+						color={selectedPage === "account" ? text : "unset"}
 						fontWeight={selectedPage === "account" ? "800" : "normal"}
 						onClick={() => handleClick("account")}
+						_hover={{
+							bg: highlight,
+						}}
 					>
 						<UserProfileCheckmarkIcon w="24px" h="24px" />
 						اطلاعات اکانت
@@ -52,9 +62,13 @@ const ProfileSidebar: FC<IProfileSidebarProps> = ({
 					<Button
 						variant="ghost"
 						sx={buttonStyle}
-						bg={selectedPage === "settings" ? "brand-secondary" : "unset"}
+						bg={selectedPage === "settings" ? highlight : "unset"}
+						color={selectedPage === "settings" ? text : "unset"}
 						fontWeight={selectedPage === "settings" ? "800" : "normal"}
 						onClick={() => handleClick("settings")}
+						_hover={{
+							bg: highlight,
+						}}
 					>
 						<SettingsIcon w="24px" h="24px" />
 						تنظیمات
