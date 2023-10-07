@@ -12,15 +12,14 @@ import {
 import { FilterIcon } from "../../icons";
 import { FC } from "react";
 import FilterRow from "./FilterRow";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store";
 import { addFilter } from "../../features/filterSlice";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 
 const FilterModal: FC = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const filters = useSelector((state: RootState) => state.filters);
-	const { highlight } = useSelector((state: RootState) => state.theme);
-	const dispatch = useDispatch();
+	const filters = useAppSelector((state) => state.filters);
+	const { highlight } = useAppSelector((state) => state.theme);
+	const dispatch = useAppDispatch();
 
 	return (
 		<>

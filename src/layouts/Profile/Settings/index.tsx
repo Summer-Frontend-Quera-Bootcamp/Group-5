@@ -10,14 +10,13 @@ import {
 } from "@chakra-ui/react";
 import { FC, useEffect, useState } from "react";
 import ColorInput from "../../../components/ColorInput";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../store";
 import { setAccent } from "../../../features/themeSlice";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
 
 const Settings: FC = () => {
-	const { accent } = useSelector((state: RootState) => state.theme);
+	const { accent } = useAppSelector((state) => state.theme);
 	const [selectedColor, setSelectedColor] = useState<TColorSchemes>(accent);
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const colors: TColorSchemes[] = [
 		"red",
 		"orange",

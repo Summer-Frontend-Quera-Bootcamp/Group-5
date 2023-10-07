@@ -8,15 +8,14 @@ import {
 } from "@chakra-ui/react";
 import { FC, FormEvent } from "react";
 import { chakra } from "@chakra-ui/react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../../store";
+import { useAppSelector } from "../../../../hooks";
 
 const WorkSpaceNameForm: FC<IWorkSpaceNameProps> = ({
 	workspaceName,
 	setWorkspaceName,
 	setModalPage,
 }) => {
-	const { accent } = useSelector((state: RootState) => state.theme);
+	const { accent } = useAppSelector((state) => state.theme);
 	function handleSubmit(e: FormEvent) {
 		e.preventDefault();
 		if (workspaceName.trim().length === 0) return;

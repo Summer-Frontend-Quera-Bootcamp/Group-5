@@ -4,11 +4,11 @@ import CategoryMenu from "../CategoryMenu";
 import SubFilterMenu from "../SubFilterMenu";
 import ConditionMenu from "../ConditionMenu";
 import { TrashIcon } from "../../../icons";
-import { useDispatch } from "react-redux";
 import { deleteFilter } from "../../../features/filterSlice";
+import { useAppDispatch } from "../../../hooks";
 
 const FilterRow: FC<IFilterRowProps> = ({ idx, filter }) => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
 	const filterOptions = useMemo(() => {
 		switch (filter.category) {

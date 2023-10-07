@@ -11,8 +11,8 @@ import {
 } from "@chakra-ui/react";
 import { FC, useState } from "react";
 import { ChevronIcon, SearchIcon } from "../../../icons";
-import { useDispatch } from "react-redux";
 import { setFilterOption } from "../../../features/filterSlice";
+import { useAppDispatch } from "../../../hooks";
 
 const SubFilterMenu: FC<ISubFilterMenuProps> = ({
 	idx,
@@ -20,7 +20,7 @@ const SubFilterMenu: FC<ISubFilterMenuProps> = ({
 	selectedItem,
 	category,
 }) => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const [searchValue, setSearchValue] = useState("");
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 

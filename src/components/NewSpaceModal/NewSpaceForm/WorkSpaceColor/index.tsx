@@ -13,8 +13,7 @@ import { FC, FormEvent } from "react";
 import { ArrowIcon, DisableIcon } from "../../../../icons";
 import ColorInput from "../../../ColorInput";
 import { chakra } from "@chakra-ui/react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../../store";
+import { useAppSelector } from "../../../../hooks";
 
 const WorkSpaceColor: FC<IWorkSpaceColorProps> = ({
 	workspaceName,
@@ -22,7 +21,7 @@ const WorkSpaceColor: FC<IWorkSpaceColorProps> = ({
 	setWorkspaceColor,
 	setModalPage,
 }) => {
-	const { accent } = useSelector((state: RootState) => state.theme);
+	const { accent } = useAppSelector((state) => state.theme);
 	const colors: TColorSchemes[] = [
 		"red",
 		"orange",

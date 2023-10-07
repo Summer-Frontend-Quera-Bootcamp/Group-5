@@ -10,8 +10,7 @@ import {
 import { FC, FormEvent } from "react";
 import { ArrowIcon } from "../../../../icons";
 import { chakra } from "@chakra-ui/react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../../store";
+import { useAppSelector } from "../../../../hooks";
 
 const WorkSpaceDetails: FC<IWorkSpaceDetailsProps> = ({
 	workspaceName,
@@ -19,7 +18,7 @@ const WorkSpaceDetails: FC<IWorkSpaceDetailsProps> = ({
 	workspaceOwner,
 	setModalPage,
 }) => {
-	const { accent } = useSelector((state: RootState) => state.theme);
+	const { accent } = useAppSelector((state) => state.theme);
 	return (
 		<chakra.form display="flex" flexDir="column" gap="xl" pos="relative">
 			<Button
