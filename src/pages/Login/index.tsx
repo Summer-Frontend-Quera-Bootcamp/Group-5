@@ -2,6 +2,11 @@ import { Box, VStack } from "@chakra-ui/react";
 import { ValidateInput, Button, Link } from "../../components";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Form from "../../components/Form";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { AXIOS } from "../../utils/functions/AXIOS";
+import { setUser } from "../../features/userSlice";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const ForgotPage = () => {
 	const {
@@ -9,7 +14,40 @@ const ForgotPage = () => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
-	const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
+
+	const navigate = useNavigate();
+	const user = useAppSelector((state) => state.user);
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		AXIOS.get("/accounts/").then((res) => console.log(res.data));
+	}, []);
+
+	const handleAuthentication = (data: any) => {
+		localStorage.setItem("token", data.access);
+		AXIOS.defaults.headers.common.Authorization = `Bearer ${data.access}`;
+		dispatch(
+			setUser({
+				firstname: data.firstname,
+				lastname: data.firstname,
+				email: data.email,
+				token: data.access,
+				loggedIn: true,
+			})
+		);
+	};
+
+	const onSubmit: SubmitHandler<FieldValues> = (data) => {
+		AXIOS.post("/accounts/login/", {
+			username: "yashar_hd",
+			password: data.loginPassword,
+		})
+			.then((res) => {
+				handleAuthentication(res.data);
+				navigate("/dashboard");
+			})
+			.catch((err) => console.log(err.message));
+	};
 
 	return (
 		<Form

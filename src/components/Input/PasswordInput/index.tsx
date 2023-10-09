@@ -69,7 +69,7 @@ const PasswordInput = ({
 							pattern: {
 								value:
 									/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[a-zA-Z\d\w\W]{8,}$/,
-								message: "ایمیل وارد شده معتبر نیست",
+								message: "رمز وارد شده معتبر نیست",
 							},
 						})}
 					></Input>
