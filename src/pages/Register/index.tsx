@@ -4,6 +4,8 @@ import Form from "../../components/Form";
 import { Checkbox } from "@chakra-ui/react";
 import { useState } from "react";
 import { useAppSelector } from "../../hooks";
+import { AXIOS } from "../../utils/functions/AXIOS";
+import { useNavigate } from "react-router-dom";
 
 const ForgotPage = () => {
 	const { accent } = useAppSelector((state) => state.theme);
@@ -12,9 +14,19 @@ const ForgotPage = () => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
+	const navigate = useNavigate();
 	const [isChecked, setIsChecked] = useState(false);
 
-	const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
+	const onSubmit: SubmitHandler<FieldValues> = (data) => {
+		AXIOS.post("/accounts/", {
+			username: data.registerName,
+			email: data.registerEmail,
+			password: data.registerPassword,
+		}).then((res) => {
+			console.log(res.data);
+			navigate("/");
+		});
+	};
 
 	return (
 		<Form onSubmit={handleSubmit(onSubmit)} title="ثبت‌نام در کوئرا تسک منیجر">
