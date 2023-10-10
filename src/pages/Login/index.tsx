@@ -4,7 +4,6 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Form from "../../components/Form";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { AXIOS } from "../../utils/functions/AXIOS";
-import { setUser } from "../../features/userSlice";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -16,30 +15,29 @@ const ForgotPage = () => {
 	} = useForm();
 
 	const navigate = useNavigate();
-	const user = useAppSelector((state) => state.user);
+	let { loggedIn } = useAppSelector((state) => state.user);
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		AXIOS.get("/accounts/").then((res) => console.log(res.data));
+		const token = localStorage.getItem("token");
+		if (token) {
+			navigate("/dashboard");
+		}
 	}, []);
 
 	const handleAuthentication = (data: any) => {
 		localStorage.setItem("token", data.access);
+		localStorage.setItem("refresh", data.refresh);
+		localStorage.setItem("email", data.email);
+		localStorage.setItem("username", data.username);
 		AXIOS.defaults.headers.common.Authorization = `Bearer ${data.access}`;
-		dispatch(
-			setUser({
-				firstname: data.firstname,
-				lastname: data.firstname,
-				email: data.email,
-				token: data.access,
-				loggedIn: true,
-			})
-		);
+		loggedIn = !loggedIn;
+		localStorage.setItem("id", data.user_id);
 	};
 
 	const onSubmit: SubmitHandler<FieldValues> = (data) => {
 		AXIOS.post("/accounts/login/", {
-			username: "yashar_hd",
+			username: data.loginName,
 			password: data.loginPassword,
 		})
 			.then((res) => {
@@ -55,11 +53,11 @@ const ForgotPage = () => {
 			title="به کوئرا تسک منیجر خوش برگشتی :) "
 		>
 			<ValidateInput
-				type="email"
-				label="ایمیل"
+				type="text"
+				label="نام کاربری"
 				errors={errors}
 				register={register}
-				name="loginEmail"
+				name="loginName"
 			/>
 			<ValidateInput
 				type="password"
