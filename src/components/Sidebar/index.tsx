@@ -20,6 +20,8 @@ import { NewSpaceModal } from "..";
 import { ExitIcon } from "../../icons";
 import SearchIput from "./SearchInput";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../hooks";
+import { switchLoggedIn } from "../../features/userSlice";
 
 interface ISidebarProp {
 	items?: any[];
@@ -28,9 +30,12 @@ interface ISidebarProp {
 }
 const Sidebar = ({ items, name, src }: ISidebarProp): JSX.Element => {
 	const { colorMode, toggleColorMode } = useColorMode();
+	const dispatch = useAppDispatch();
+
 	const navigate = useNavigate();
 	const handleExit = () => {
 		localStorage.removeItem("token");
+		dispatch(switchLoggedIn());
 		navigate("/");
 	};
 	return (

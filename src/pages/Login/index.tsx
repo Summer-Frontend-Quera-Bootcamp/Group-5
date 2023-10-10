@@ -7,6 +7,7 @@ import { AXIOS } from "../../utils/functions/AXIOS";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { loginAPI } from "../../services/api";
+import { switchLoggedIn } from "../../features/userSlice";
 
 const ForgotPage = () => {
 	const {
@@ -20,11 +21,10 @@ const ForgotPage = () => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		const token = localStorage.getItem("token");
-		if (token) {
+		if (loggedIn) {
 			navigate("/dashboard");
 		}
-	}, []);
+	}, [loggedIn]);
 
 	const handleAuthentication = (data: any) => {
 		localStorage.setItem("token", data.access);
@@ -32,7 +32,6 @@ const ForgotPage = () => {
 		localStorage.setItem("email", data.email);
 		localStorage.setItem("username", data.username);
 		AXIOS.defaults.headers.common.Authorization = `Bearer ${data.access}`;
-		loggedIn = !loggedIn;
 		localStorage.setItem("id", data.user_id);
 	};
 
@@ -43,7 +42,7 @@ const ForgotPage = () => {
 		})
 			.then((res) => {
 				handleAuthentication(res.data);
-				navigate("/dashboard");
+				dispatch(switchLoggedIn());
 			})
 			.catch((err) => console.log(err.message));
 	};
