@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks";
 import { AXIOS } from "../../utils/functions/AXIOS";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { loginAPI } from "../../services/api";
 
 const ForgotPage = () => {
 	const {
@@ -36,7 +37,7 @@ const ForgotPage = () => {
 	};
 
 	const onSubmit: SubmitHandler<FieldValues> = (data) => {
-		AXIOS.post("/accounts/login/", {
+		loginAPI({
 			username: data.loginName,
 			password: data.loginPassword,
 		})
