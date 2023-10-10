@@ -19,6 +19,7 @@ import { headingStyle } from "../../layouts/Authentication/style";
 import { NewSpaceModal } from "..";
 import { ExitIcon } from "../../icons";
 import SearchIput from "./SearchInput";
+import { useNavigate } from "react-router-dom";
 
 interface ISidebarProp {
 	items?: any[];
@@ -27,6 +28,11 @@ interface ISidebarProp {
 }
 const Sidebar = ({ items, name, src }: ISidebarProp): JSX.Element => {
 	const { colorMode, toggleColorMode } = useColorMode();
+	const navigate = useNavigate();
+	const handleExit = () => {
+		localStorage.removeItem("token");
+		navigate("/");
+	};
 	return (
 		<Flex flexDir="column" h="full">
 			<Heading sx={headingStyle}>کوئرا تسک منیجر</Heading>
@@ -63,6 +69,7 @@ const Sidebar = ({ items, name, src }: ISidebarProp): JSX.Element => {
 							gap="4px"
 							p={1}
 							color="#818181"
+							onClick={handleExit}
 						>
 							خروج
 						</Button>
