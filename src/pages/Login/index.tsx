@@ -3,7 +3,6 @@ import { ValidateInput, Button, Link } from "../../components";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Form from "../../components/Form";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { AXIOS } from "../../utils/functions/AXIOS";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { loginAPI } from "../../services/api";
@@ -31,7 +30,6 @@ const LoginPage = () => {
 		localStorage.setItem("refresh", data.refresh);
 		localStorage.setItem("email", data.email);
 		localStorage.setItem("username", data.username);
-		AXIOS.defaults.headers.common.Authorization = `Bearer ${data.access}`;
 		localStorage.setItem("id", data.user_id);
 	};
 
