@@ -1,14 +1,29 @@
-import { ValidateInput, Button } from "../../components";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { Button, ValidateInput } from "../../components";
 import Form from "../../components/Form";
+import { AXIOS } from "../../utils/functions/AXIOS";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const ForgotPage = () => {
+const ResetPage = () => {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
-	const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
+	const token = useLocation().search.split("=")[1];
+	const navigate = useNavigate();
+	const onSubmit: SubmitHandler<FieldValues> = (data) => {
+		AXIOS.patch("/accounts/reset-password/set-password/", {
+			token: token,
+			password: data.newPassword,
+			password1: data.repeatPassword,
+		})
+			.then((res) => {
+				console.log(res);
+				navigate("/");
+			})
+			.catch((err) => console.error(err));
+	};
 
 	return (
 		<Form onSubmit={handleSubmit(onSubmit)} title="بازیابی رمز عبور">
@@ -17,7 +32,15 @@ const ForgotPage = () => {
 				label="رمز عبور جدید را وارد کنید"
 				errors={errors}
 				register={register}
-				name="resetPassword"
+				name="newPassword"
+				// formHelper={true}
+			/>
+			<ValidateInput
+				type="password"
+				label="تکرار رمز عبور"
+				errors={errors}
+				register={register}
+				name="repeatPassword"
 				formHelper={true}
 			/>
 			<Button isActive={true} type="submit" fullWidth>
@@ -27,4 +50,4 @@ const ForgotPage = () => {
 	);
 };
 
-export default ForgotPage;
+export default ResetPage;
