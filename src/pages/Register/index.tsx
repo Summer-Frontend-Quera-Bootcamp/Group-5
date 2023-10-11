@@ -7,7 +7,7 @@ import { useAppSelector } from "../../hooks";
 import { AXIOS } from "../../utils/functions/AXIOS";
 import { useNavigate } from "react-router-dom";
 
-const ForgotPage = () => {
+const RegisterPage = () => {
 	const { accent } = useAppSelector((state) => state.theme);
 	const {
 		register,
@@ -66,4 +66,4 @@ const ForgotPage = () => {
 	);
 };
 
-export default ForgotPage;
+export default RegisterPage;

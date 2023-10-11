@@ -1,8 +1,9 @@
 import { Text } from "@chakra-ui/react";
-import { ValidateInput, Button } from "../../components";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { Button, ValidateInput } from "../../components";
 import Form from "../../components/Form";
+import { AXIOS } from "../../utils/functions/AXIOS";
 
 const ForgotPage = () => {
 	const {
@@ -13,8 +14,16 @@ const ForgotPage = () => {
 	const [showForm, setShowForm] = useState<boolean>(true);
 
 	const onSubmit: SubmitHandler<FieldValues> = (data) => {
-		console.log(data);
-		setShowForm(false);
+		AXIOS.post("/accounts/reset-password/", {
+			email: data.forgetEmail,
+		})
+			.then((res) => {
+				console.log(res.data);
+				setShowForm(false);
+			})
+			.catch((err) => {
+				console.error(err);
+			});
 	};
 
 	const renderFormContent = () => (

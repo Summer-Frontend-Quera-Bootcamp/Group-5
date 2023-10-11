@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import { loginAPI } from "../../services/api";
 import { switchLoggedIn } from "../../features/userSlice";
 
-const ForgotPage = () => {
+const LoginPage = () => {
 	const {
 		register,
 		handleSubmit,
@@ -80,4 +80,4 @@ const ForgotPage = () => {
 	);
 };
 
-export default ForgotPage;
+export default LoginPage;
