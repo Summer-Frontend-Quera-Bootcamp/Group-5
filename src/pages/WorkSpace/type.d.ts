@@ -1,16 +1,22 @@
 interface IProjectProps {
-	projectId: string;
+	projectId: number;
 	projectTitle: string;
 	color: string;
 	children: string;
 }
 
 interface IProject {
-	projectId: string;
-	title: string;
+	id: number;
+	name: string;
+}
+
+interface IWorkspace {
+	id: number;
+	name: string;
+	color: string;
 }
 
 interface IProjectRowProps {
-	projects: IProject[];
+	workspaceId: number;
 	color: string;
 }
