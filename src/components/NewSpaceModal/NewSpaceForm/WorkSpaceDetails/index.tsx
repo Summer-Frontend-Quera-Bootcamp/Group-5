@@ -11,7 +11,8 @@ import { FC, FormEvent } from "react";
 import { ArrowIcon } from "../../../../icons";
 import { chakra } from "@chakra-ui/react";
 import { useAppSelector } from "../../../../hooks";
-
+import { SubmitHandler, FieldValues } from "react-hook-form";
+import { AXIOS } from "../../../../utils/functions/AXIOS";
 const WorkSpaceDetails: FC<IWorkSpaceDetailsProps> = ({
 	workspaceName,
 	workspaceColor,
@@ -19,8 +20,37 @@ const WorkSpaceDetails: FC<IWorkSpaceDetailsProps> = ({
 	setModalPage,
 }) => {
 	const { accent } = useAppSelector((state) => state.theme);
+	const onSubmit: SubmitHandler<FieldValues> = (data) => {
+		const workspaceData = {
+			name: data.workspaceName,
+			color: data.workspaceColor,
+		};
+	};
+
+	const handleSubmit = async (event: FormEvent) => {
+		event.preventDefault();
+
+		const data = {
+			name: { workspaceName },
+			color: { workspaceColor },
+		};
+
+		try {
+			await AXIOS.post("/workspaces/", data);
+			// Request successful, handle the response or any further actions here
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	return (
-		<chakra.form display="flex" flexDir="column" gap="xl" pos="relative">
+		<chakra.form
+			display="flex"
+			flexDir="column"
+			gap="xl"
+			pos="relative"
+			onSubmit={handleSubmit}
+		>
 			<Button
 				type="button"
 				variant="unstyled"
@@ -71,3 +101,5 @@ const WorkSpaceDetails: FC<IWorkSpaceDetailsProps> = ({
 };
 
 export default WorkSpaceDetails;
+
+
