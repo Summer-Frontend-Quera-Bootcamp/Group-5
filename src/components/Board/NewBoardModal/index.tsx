@@ -1,24 +1,33 @@
+import { SmallAddIcon } from "@chakra-ui/icons";
 import {
+	Box,
+	Button,
+	FormControl,
+	FormLabel,
+	HStack,
+	Heading,
 	Modal,
-	ModalOverlay,
-	ModalContent,
 	ModalBody,
 	ModalCloseButton,
-	useDisclosure,
-	Heading,
+	ModalContent,
+	ModalOverlay,
+	RadioGroup,
 	Text,
-	Box,
+	chakra,
+	useDisclosure,
 } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
-import { chakra } from "@chakra-ui/react";
-import { Button, Column, ValidateInput } from "../..";
-import { SmallAddIcon } from "@chakra-ui/icons";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { Column, ValidateInput } from "../..";
+import { useAppSelector } from "../../../hooks";
+import ColorInput from "../../ColorInput";
 
 const NewBoardModal = (): JSX.Element => {
 	const [flag, setFlag] = useState<boolean>(false);
 	const [array, setArray] = useState<JSX.Element[]>([]);
+	const [boardColor, setBoardColor] = useState<TColorSchemes>("red");
 	const { isOpen, onOpen, onClose } = useDisclosure();
+	const { accent } = useAppSelector((state) => state.theme);
 	const {
 		handleSubmit,
 		formState: { errors },
@@ -26,11 +35,24 @@ const NewBoardModal = (): JSX.Element => {
 	} = useForm();
 	const submit = (data: any) => {
 		setFlag(true);
+		console.log(boardColor);
+		console.log(data);
 		setArray((old) => [
 			...old,
-			<Column text={data.taskBoardName} color={data.taskBoardColor} />,
+			<Column text={data.taskBoardName} color={boardColor} />,
 		]);
 	};
+	const colors: TColorSchemes[] = [
+		"red",
+		"orange",
+		"yellow",
+		"green",
+		"teal",
+		"blue",
+		"cyan",
+		"purple",
+		"pink",
+	];
 	return (
 		<>
 			<Box display="Flex" flexDir="row" gap="20px">
@@ -79,15 +101,25 @@ const NewBoardModal = (): JSX.Element => {
 								errors={errors}
 								name="taskBoardName"
 							/>
-							<ValidateInput
-								type="text"
-								label="رنگ دلخواه را وارد کنید"
-								register={register}
-								errors={errors}
-								name="taskBoardColor"
-							/>
+							<FormControl as="fieldset" display="flex" gap="sm">
+								<FormLabel as="legend" fontSize="md">
+									رنگ دلخواه را وارد کنید
+								</FormLabel>
+								<RadioGroup>
+									<HStack wrap="wrap" columnGap="sm" rowGap="0">
+										{colors.map((c) => (
+											<ColorInput
+												key={c}
+												color={c}
+												selectedColor={boardColor}
+												setSelectedColor={setBoardColor}
+											/>
+										))}
+									</HStack>
+								</RadioGroup>
+							</FormControl>
 							<Box as="button" onClick={onClose}>
-								<Button isActive={true} type="submit" fullWidth={true}>
+								<Button w="full" colorScheme={accent} type="submit">
 									ثبت
 								</Button>
 							</Box>
