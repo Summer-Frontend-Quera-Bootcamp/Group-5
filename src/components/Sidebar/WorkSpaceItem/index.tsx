@@ -7,22 +7,38 @@ import {
 	AccordionButton,
 	AccordionPanel,
 	Button,
+	useDisclosure,
 } from "@chakra-ui/react";
 import ColumnMore from "../Columnmore";
 import { useAppSelector } from "../../../hooks";
+import ModalItem from "../../NewProjectModal/modalItem";
+import { key } from "localforage";
+import { useEffect, useState } from "react";
+import { AXIOS } from "../../../utils/functions/AXIOS";
+import ProjectItem from "../ProjectItem";
 
 interface IWorkSpaceItemProps {
 	content: string;
 	color: string;
-	items?: any[];
+	key: any;
 }
 
 const WorkSpaceItem = ({
 	content,
 	color,
-	items,
 }: IWorkSpaceItemProps): JSX.Element => {
 	const { accent } = useAppSelector((state) => state.theme);
+	const { isOpen, onOpen, onClose } = useDisclosure();
+	const [projects, setProjects] = useState<any[]>();
+	useEffect(() => {
+		AXIOS.get(`/workspaces/0/projects/`)
+			.then((res) => {
+				setProjects(res.data);
+				console.log(res.data);
+			})
+			.catch((err) => console.log(err.message));
+	}, []);
+
 	return (
 		<>
 			<Accordion bg="FAFAFA" borderRadius="4px" p="6px" allowToggle>
@@ -39,20 +55,26 @@ const WorkSpaceItem = ({
 						</Box>
 					</AccordionButton>
 					<AccordionPanel textAlign={"right"}>
-						{!items ? (
-							<Button
-								colorScheme={accent}
-								variant="outline"
-								w="full"
-								border="2px"
-								borderRadius="7px"
-								p="4px"
-								gap="8px"
-							>
-								ساختن پروژه جدید
-							</Button>
+						{!projects ? (
+							<>
+								<Button
+									colorScheme={accent}
+									variant="outline"
+									w="full"
+									border="2px"
+									borderRadius="7px"
+									p="4px"
+									gap="8px"
+									onClick={onOpen}
+								>
+									ساختن پروژه جدید
+								</Button>
+								<ModalItem isOpen={isOpen} onClose={onClose} key={key} />
+							</>
 						) : (
-							items.map((x) => x)
+							projects.map((x) => (
+								<ProjectItem content={x.name} key={x.id} path="1" />
+							))
 						)}
 					</AccordionPanel>
 				</AccordionItem>
