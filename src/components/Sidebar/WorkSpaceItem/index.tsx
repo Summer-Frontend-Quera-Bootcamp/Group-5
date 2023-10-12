@@ -34,13 +34,11 @@ const WorkSpaceItem = ({
 								{content}
 							</Text>
 						</Stack>
-						{/*todo dots-component replaced bottom box element*/}
 						<Box as="button" w="24px" h="24px" ms="auto">
 							<ColumnMore type="workspace" />
 						</Box>
 					</AccordionButton>
 					<AccordionPanel textAlign={"right"}>
-						{/*todo The below button should replace with button-component*/}
 						{!items ? (
 							<Button
 								colorScheme={accent}
