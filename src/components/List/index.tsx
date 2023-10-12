@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import moment from "moment-jalaali";
-import "moment/locale/fa";
 import Box from "../BoxColor";
 import Dropdownlist from "../../icons/DropDownlist";
+import moment from "moment-jalaali";
+import "moment/locale/fa";
 
 interface ListItem {
 	avatar: string;
@@ -13,9 +13,19 @@ interface ListItem {
 
 interface ListProps {
 	listData: ListItem[];
+	boxColor: string;
+	title: string;
+	width: number;
+	height: number;
 }
 
-const List: React.FC<ListProps> = ({ listData }) => {
+const List: React.FC<ListProps> = ({
+	listData,
+	boxColor,
+	title,
+	width,
+	height,
+}) => {
 	const [showList, setShowList] = useState(false);
 
 	const toggleList = () => {
@@ -25,15 +35,24 @@ const List: React.FC<ListProps> = ({ listData }) => {
 	const listItemContainerStyle: React.CSSProperties = {
 		display: "flex",
 		marginBottom: "20px",
+		position: "sticky",
+		marginRight: "10px",
+		width: "100%",
 	};
 
 	const listItemStyle: React.CSSProperties = {
-		marginRight: "90px",
+		marginLeft: "10px",
+		whiteSpace: "nowrap",
+		flexGrow: 2, // Add this property to make all list items take up equal space
+		minWidth: "150px",
 	};
 
 	const listItemMarginTop: React.CSSProperties = {
-		marginTop: "60px",
+		marginBottom: "50px",
+		marginTop: "50px",
 	};
+
+	const persianNumber = new Intl.NumberFormat("fa-IR");
 
 	return (
 		<div>
@@ -43,21 +62,35 @@ const List: React.FC<ListProps> = ({ listData }) => {
 				</div>
 
 				<div style={listItemStyle}>
-					{/* Render the pink rectangle box */}
-					<div style={{ display: "flex" }}>
-						<Dropdownlist w="40px" h="40px" mt="10px" onClick={toggleList} />
-						<Box width={90} height={45} color="#E30B5C">
-							Pending
+					{/* Render the colored rectangle box */}
+					<div
+						style={{
+							display: "flex",
+							alignItems: "center",
+							marginLeft: "50px",
+						}}
+					>
+						<Dropdownlist
+							w="40px"
+							h="40px"
+							mt="10px"
+							ml="8px"
+							onClick={toggleList}
+						/>
+						<Box width={width} height={height} color={boxColor}>
+							{title}
 						</Box>
 						<p
 							style={{
-								marginLeft: "420px",
 								marginRight: "10px",
+								marginLeft: "100px",
 								whiteSpace: "nowrap",
 								marginTop: "8px",
+								flexGrow: 5,
+								minWidth: "250px",
 							}}
 						>
-							{listData.length} تسک
+							{persianNumber.format(listData.length)} تسک
 						</p>
 					</div>
 
@@ -66,11 +99,19 @@ const List: React.FC<ListProps> = ({ listData }) => {
 						listData.map((item, index) => (
 							<div key={index} style={listItemMarginTop}>
 								<div style={{ display: "flex", alignItems: "center" }}>
-									<Box width={15} height={15} color="#E30B5C">
-										{" "}
-									</Box>
-
-									<p style={{ whiteSpace: "nowrap", marginLeft: "5px" }}>
+									<Box
+										width={15}
+										height={15}
+										color={boxColor}
+										marginRight={55}
+									/>
+									<p
+										style={{
+											whiteSpace: "nowrap",
+											marginLeft: "5px",
+											marginRight: "8px",
+										}}
+									>
 										این یک تیتر برای این تسک است.
 									</p>
 								</div>
@@ -100,7 +141,10 @@ const List: React.FC<ListProps> = ({ listData }) => {
 					{/* Render the listData items */}
 					{showList &&
 						listData.map((item, index) => (
-							<div key={index} style={listItemMarginTop}>
+							<div
+								key={index}
+								style={{ ...listItemMarginTop, marginBottom: "10px" }}
+							>
 								<p style={{ whiteSpace: "nowrap" }}>
 									{moment(item.deadline).locale("fa").format("jD jMMMM")}
 								</p>
@@ -121,6 +165,7 @@ const List: React.FC<ListProps> = ({ listData }) => {
 							</div>
 						))}
 				</div>
+
 				<div style={listItemStyle}>
 					<h2>
 						<b>توضیحات</b>
