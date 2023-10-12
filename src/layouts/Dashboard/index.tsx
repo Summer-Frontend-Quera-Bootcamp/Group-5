@@ -3,7 +3,6 @@ import { Outlet } from "react-router-dom";
 import { Sidebar } from "../../components";
 import { mainPageStyle, sidebarStyle } from "./style";
 import WorkSpaceItem from "../../components/Sidebar/WorkSpaceItem";
-import ProjectItem from "../../components/Sidebar/ProjectItem";
 import { useEffect, useState } from "react";
 import { getAllWorkSpaces } from "../../services/api";
 
