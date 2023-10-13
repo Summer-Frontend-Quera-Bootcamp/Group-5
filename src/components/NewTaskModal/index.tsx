@@ -23,7 +23,13 @@ const NewTaskModal: FC<{ place: "board" | "projectPage"; project: string }> = ({
 		switch (place) {
 			case "board":
 				return (
-					<Button variant="unstyled" colorScheme={accent} onClick={onOpen}>
+					<Button
+						variant="unstyled"
+						colorScheme={accent}
+						onClick={onOpen}
+						w="24px"
+						h="24px"
+					>
 						<AddIcon w="24px" h="24px" />
 					</Button>
 				);

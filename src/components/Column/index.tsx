@@ -3,6 +3,7 @@ import { AddIcon } from "../../icons";
 import { useState } from "react";
 import DotsMenu from "./DotsMenu";
 import { Task } from "..";
+import NewTaskModal from "../NewTaskModal";
 
 interface IColumnProps {
 	text: string;
@@ -13,21 +14,27 @@ const Column = ({ text, color }: IColumnProps): JSX.Element => {
 	const [display, setDisplay] = useState<boolean>(false);
 	const [flag, setFlag] = useState<boolean>(false);
 	const [array, setArray] = useState<JSX.Element[]>([]);
-	const handleAddIcon = () => {
-		setFlag(true);
-		setArray((old) => [
-			...old,
-			<Task projectName="پروژه اول" userName="amir menshad" />,
-		]);
+
+	// const handleAddIcon = () => {
+	// 	setFlag(true);
+	// 	setArray((old) => [
+	// 		...old,
+	// 		<Task projectName="پروژه اول" userName="amir menshad" />,
+	// 	]);
+	// };
+
+	const handleMouseEnter = () => {
+		setDisplay(true);
 	};
-	const handleMouseMove = () => {
-		setDisplay(!display);
+	const handleMouseLeave = () => {
+		setDisplay(false);
 	};
+
 	return (
 		<Box display="flex" flexDir="column" h="max-content">
 			<Box
-				onMouseEnter={handleMouseMove}
-				onMouseLeave={handleMouseMove}
+				onMouseEnter={handleMouseEnter}
+				onMouseLeave={handleMouseLeave}
 				display="flex"
 				flexDir="row"
 				justifyContent="space-between"
@@ -57,23 +64,15 @@ const Column = ({ text, color }: IColumnProps): JSX.Element => {
 						display="flex"
 						justifyContent="center"
 						alignItems="center"
-						color='blackAlpha.900'
+						color="blackAlpha.900"
 					>
 						۰
 					</Box>
 				</Text>
-				<Box
-					as="div"
-					w="48px"
-					h="24px"
-					gap="4px"
-					display={display ? "block" : "none"}
-				>
+				<Box w="48px" h="24px" gap="4px" display={display ? "flex" : "none"}>
 					<DotsMenu />
 					<Tooltip hasArrow label="افزودن تسک" placement="top" ml={1}>
-						<Box as="button" onClick={handleAddIcon} w="24px" h="24px">
-							<AddIcon w="20px" h="20px" />
-						</Box>
+						<NewTaskModal place="board" project="پروژه اول" />
 					</Tooltip>
 				</Box>
 			</Box>
