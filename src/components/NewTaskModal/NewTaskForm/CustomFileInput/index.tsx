@@ -1,11 +1,14 @@
 import { Button, chakra } from "@chakra-ui/react";
 import { ChangeEvent, FC, useCallback, useRef } from "react";
-import { LinkIcon } from "../../../icons";
-import { useAppSelector } from "../../../hooks";
+import { useAppSelector } from "../../../../hooks";
+import { LinkIcon } from "../../../../icons";
 
-const CustomFileInput: FC<{ onChange: (file: any) => void }> = ({
-	onChange,
-}) => {
+interface ICustomFileInputProps {
+	file: any;
+	onChange: (file: any) => void;
+}
+
+const CustomFileInput: FC<ICustomFileInputProps> = ({ file, onChange }) => {
 	const { accent } = useAppSelector((state) => state.theme);
 
 	const handleClick = useCallback(() => {
@@ -24,7 +27,6 @@ const CustomFileInput: FC<{ onChange: (file: any) => void }> = ({
 
 	return (
 		<>
-			{" "}
 			<chakra.input
 				ref={hiddenFileInput}
 				type="file"
@@ -37,7 +39,7 @@ const CustomFileInput: FC<{ onChange: (file: any) => void }> = ({
 				onClick={handleClick}
 				colorScheme={accent}
 			>
-				آپلود فایل
+				{file ? `تغییر فایل` : `آپلود فایل`}
 			</Button>
 		</>
 	);
