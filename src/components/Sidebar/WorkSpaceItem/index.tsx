@@ -12,7 +12,6 @@ import {
 import ColumnMore from "../Columnmore";
 import { useAppSelector } from "../../../hooks";
 import ModalItem from "../../NewProjectModal/modalItem";
-import { key } from "localforage";
 import { useEffect, useState } from "react";
 import { AXIOS } from "../../../utils/functions/AXIOS";
 import ProjectItem from "../ProjectItem";
@@ -20,18 +19,19 @@ import ProjectItem from "../ProjectItem";
 interface IWorkSpaceItemProps {
 	content: string;
 	color: string;
-	key: any;
+	workSpaceKey?: any;
 }
 
 const WorkSpaceItem = ({
 	content,
 	color,
+	workSpaceKey,
 }: IWorkSpaceItemProps): JSX.Element => {
 	const { accent } = useAppSelector((state) => state.theme);
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const [projects, setProjects] = useState<any[]>();
+	const [projects, setProjects] = useState<any[]>([]);
 	useEffect(() => {
-		AXIOS.get(`/workspaces/0/projects/`)
+		AXIOS.get(`/workspaces/${workSpaceKey}/projects/`)
 			.then((res) => {
 				setProjects(res.data);
 				console.log(res.data);
@@ -55,7 +55,7 @@ const WorkSpaceItem = ({
 						</Box>
 					</AccordionButton>
 					<AccordionPanel textAlign={"right"}>
-						{!projects ? (
+						{!projects?.length ? (
 							<>
 								<Button
 									colorScheme={accent}
@@ -69,11 +69,15 @@ const WorkSpaceItem = ({
 								>
 									ساختن پروژه جدید
 								</Button>
-								<ModalItem isOpen={isOpen} onClose={onClose} key={key} />
+								<ModalItem
+									isOpen={isOpen}
+									onClose={onClose}
+									modalItemKey={workSpaceKey}
+								/>
 							</>
 						) : (
 							projects.map((x) => (
-								<ProjectItem content={x.name} key={x.id} path="1" />
+								<ProjectItem content={x.name} projectKey={x.id} path="1" />
 							))
 						)}
 					</AccordionPanel>

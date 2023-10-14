@@ -6,7 +6,8 @@ import { useAppDispatch, useAppSelector } from "../../hooks";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { loginAPI } from "../../services/api";
-import { switchLoggedIn } from "../../features/userSlice";
+import { setUser, switchLoggedIn } from "../../features/userSlice";
+import { AXIOS } from "../../utils/functions/AXIOS";
 
 const LoginPage = () => {
 	const {
@@ -16,21 +17,20 @@ const LoginPage = () => {
 	} = useForm();
 
 	const navigate = useNavigate();
-	let { loggedIn } = useAppSelector((state) => state.user);
+	let user = useAppSelector((state) => state.user);
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		if (loggedIn) {
+		if (user.loggedIn) {
 			navigate("/dashboard");
 		}
-	}, [loggedIn]);
+	}, [user.loggedIn]);
 
 	const handleAuthentication = (data: any) => {
 		localStorage.setItem("token", data.access);
 		localStorage.setItem("refresh", data.refresh);
-		localStorage.setItem("email", data.email);
-		localStorage.setItem("username", data.username);
-		localStorage.setItem("id", data.user_id);
+		AXIOS.defaults.headers.common.Authorization = `Bearer ${data.access}`;
+		dispatch(setUser(data));
 	};
 
 	const onSubmit: SubmitHandler<FieldValues> = (data) => {
@@ -41,6 +41,7 @@ const LoginPage = () => {
 			.then((res) => {
 				handleAuthentication(res.data);
 				dispatch(switchLoggedIn());
+				console.log(user);
 			})
 			.catch((err) => console.log(err.message));
 	};

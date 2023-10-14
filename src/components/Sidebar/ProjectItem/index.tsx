@@ -6,8 +6,13 @@ import ColumnMore from "../Columnmore";
 interface IProjectItemProp {
 	content: string;
 	path: string;
+	projectKey: any;
 }
-const ProjectItem = ({ content, path }: IProjectItemProp): JSX.Element => {
+const ProjectItem = ({
+	content,
+	path,
+	projectKey,
+}: IProjectItemProp): JSX.Element => {
 	return (
 		<>
 			<Box
