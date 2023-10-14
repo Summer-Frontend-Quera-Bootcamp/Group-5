@@ -1,21 +1,30 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { useEffect } from "react";
-import { AXIOS } from "../../utils/functions/AXIOS";
-import { useNavigate } from "react-router-dom";
+
 interface IUserstate {
+	refresh: string;
+	access: string;
+	user_id: number;
+	username: string;
+	email: string;
+	first_name: string;
+	last_name: string;
+	phone_number: string;
+	thumbnail: string;
 	loggedIn: boolean;
 }
 
 let initialState: IUserstate = {
+	refresh: "",
+	access: "",
+	user_id: 0,
+	username: "",
+	email: "",
+	first_name: "",
+	last_name: "",
+	phone_number: "",
+	thumbnail: "",
 	loggedIn: false,
 };
-const token = localStorage.getItem("token");
-if (token) {
-	initialState = {
-		loggedIn: true,
-	};
-}
-
 // useEffect(() => {
 // 	const token = localStorage.getItem("token");
 // 	if (token) {
@@ -42,9 +51,21 @@ export const userSlice = createSlice({
 		switchLoggedIn(state) {
 			state.loggedIn = state.loggedIn ? false : true;
 		},
+		setUser(state, action: PayloadAction<any>) {
+			state.refresh = action.payload.refresh;
+			state.access = action.payload.access;
+			state.user_id = action.payload.user_id;
+			state.username = action.payload.username;
+			state.email = action.payload.email;
+			state.first_name = action.payload.first_name;
+			state.last_name = action.payload.last_name;
+			state.phone_number = action.payload.phone_number;
+			state.thumbnail = action.payload.thumbnail;
+			state.loggedIn = action.payload.loggedIn;
+		},
 	},
 });
 
-export const { switchLoggedIn } = userSlice.actions;
+export const { switchLoggedIn, setUser } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { getAllWorkSpaces } from "../../services/api";
 
 const DashboardLayout = () => {
-	const [workSpaces, setWorkSpaces] = useState<any[]>();
+	const [workSpaces, setWorkSpaces] = useState<any[]>([]);
 	useEffect(() => {
 		getAllWorkSpaces().then((res) => setWorkSpaces(res.data));
 	}, []);
@@ -16,9 +16,12 @@ const DashboardLayout = () => {
 		<Flex wrap="nowrap">
 			<Box sx={sidebarStyle}>
 				<Sidebar
-					name="amir"
 					items={workSpaces?.map((x) => (
-						<WorkSpaceItem color={x.color} content={x.name} key={x.id} />
+						<WorkSpaceItem
+							color={x.color}
+							content={x.name}
+							workSpaceKey={x.id}
+						/>
 					))}
 				/>
 			</Box>

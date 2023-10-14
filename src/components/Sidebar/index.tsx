@@ -20,21 +20,21 @@ import { NewSpaceModal } from "..";
 import { ExitIcon } from "../../icons";
 import SearchIput from "./SearchInput";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import { switchLoggedIn } from "../../features/userSlice";
 
 interface ISidebarProp {
-	items?: any[];
-	name: string;
-	src?: string;
+	items: any[];
 }
-const Sidebar = ({ items, name, src }: ISidebarProp): JSX.Element => {
+const Sidebar = ({ items }: ISidebarProp): JSX.Element => {
 	const { colorMode, toggleColorMode } = useColorMode();
+	const { username, thumbnail } = useAppSelector((state) => state.user);
 	const dispatch = useAppDispatch();
 
 	const navigate = useNavigate();
 	const handleExit = () => {
 		localStorage.removeItem("token");
+		localStorage.removeItem("refresh");
 		dispatch(switchLoggedIn());
 		navigate("/");
 	};
@@ -62,9 +62,9 @@ const Sidebar = ({ items, name, src }: ISidebarProp): JSX.Element => {
 
 			<Box w="full" h="50px" gap="4px" mt="auto">
 				<Stack direction="row" w="144px" spacing="4px">
-					<Avatar size="sm" name={name} src={src} mb={2} />
+					<Avatar size="sm" name={username} src={thumbnail} mb={2} />
 					<Text p="4px" fontWeight="500px" align="right">
-						{name}
+						{username}
 					</Text>
 				</Stack>
 				<Box>

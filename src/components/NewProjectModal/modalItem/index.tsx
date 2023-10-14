@@ -12,7 +12,7 @@ import { chakra } from "@chakra-ui/react";
 import { ValidateInput, Button } from "../..";
 import { AXIOS } from "../../../utils/functions/AXIOS";
 
-const ModalItem: React.FC<any> = ({ isOpen, onClose, key }) => {
+const ModalItem: React.FC<any> = ({ isOpen, onClose, modalItemKey }) => {
 	const {
 		handleSubmit,
 		watch,
@@ -22,7 +22,7 @@ const ModalItem: React.FC<any> = ({ isOpen, onClose, key }) => {
 	const watchField = watch();
 
 	const onsubmit: SubmitHandler<FieldValues> = (data) => {
-		AXIOS.post(`/workspaces/${key}/projects/`, {
+		AXIOS.post(`/workspaces/${modalItemKey}/projects/`, {
 			name: data.newProject,
 		});
 	};
