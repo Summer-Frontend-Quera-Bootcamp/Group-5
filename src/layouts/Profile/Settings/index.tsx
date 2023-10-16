@@ -12,6 +12,7 @@ import { FC, useEffect, useState } from "react";
 import ColorInput from "../../../components/ColorInput";
 import { setAccent } from "../../../features/themeSlice";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
+import DarkModeSwitch from "../../../components/DarkModeSwitch";
 
 const Settings: FC = () => {
 	const { accent } = useAppSelector((state) => state.theme);
@@ -55,6 +56,7 @@ const Settings: FC = () => {
 						</HStack>
 					</RadioGroup>
 				</FormControl>
+				<DarkModeSwitch />
 				<Button colorScheme={accent} w="350px" mt="lg">
 					ثبت تغییرات
 				</Button>

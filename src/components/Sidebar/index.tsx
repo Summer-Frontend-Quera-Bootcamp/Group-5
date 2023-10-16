@@ -22,12 +22,12 @@ import SearchIput from "./SearchInput";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { switchLoggedIn } from "../../features/userSlice";
+import DarkModeSwitch from "../DarkModeSwitch";
 
 interface ISidebarProp {
 	items: any[];
 }
 const Sidebar = ({ items }: ISidebarProp): JSX.Element => {
-	const { colorMode, toggleColorMode } = useColorMode();
 	const { username, thumbnail } = useAppSelector((state) => state.user);
 	const dispatch = useAppDispatch();
 
@@ -79,7 +79,7 @@ const Sidebar = ({ items }: ISidebarProp): JSX.Element => {
 							خروج
 						</Button>
 						<Spacer />
-						<Switch w="64px" mt="3px" onChange={toggleColorMode} isInvalid />
+						<DarkModeSwitch />
 					</Flex>
 				</Box>
 			</Box>
