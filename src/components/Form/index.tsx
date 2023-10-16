@@ -1,6 +1,6 @@
 import { BaseSyntheticEvent, ReactNode } from "react";
 import { authenticationFormStyle } from "./style";
-import { Heading, VStack, chakra } from "@chakra-ui/react";
+import { Heading, VStack, chakra, useColorMode } from "@chakra-ui/react";
 
 interface IFormProps {
 	// onSubmit: (
@@ -12,8 +12,13 @@ interface IFormProps {
 }
 
 const Form = ({ onSubmit, title, children }: IFormProps) => {
+	const { colorMode } = useColorMode();
 	return (
-		<chakra.form sx={authenticationFormStyle} onSubmit={onSubmit}>
+		<chakra.form
+			sx={authenticationFormStyle}
+			bg={colorMode === "dark" ? "#1A202C" : "#fff"}
+			onSubmit={onSubmit}
+		>
 			<Heading fontSize="32px" fontWeight="extrabold">
 				{title}
 			</Heading>
