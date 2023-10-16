@@ -22,8 +22,10 @@ import SearchIput from "./SearchInput";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { switchLoggedIn } from "../../features/userSlice";
+import { AXIOS } from "../../utils/functions/AXIOS";
 import DarkModeSwitch from "../DarkModeSwitch";
 import { chakra } from "@chakra-ui/react";
+
 
 interface ISidebarProp {
 	items: any[];
@@ -36,7 +38,9 @@ const Sidebar = ({ items }: ISidebarProp): JSX.Element => {
 	const handleExit = () => {
 		localStorage.removeItem("token");
 		localStorage.removeItem("refresh");
-		dispatch(switchLoggedIn());
+		localStorage.removeItem("user");
+		dispatch(switchLoggedIn(false));
+		AXIOS.defaults.headers.common.Authorization = "";
 		navigate("/");
 	};
 	return (

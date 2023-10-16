@@ -10,7 +10,7 @@ const DashboardLayout = () => {
 	const [workSpaces, setWorkSpaces] = useState<any[]>([]);
 	useEffect(() => {
 		getAllWorkSpaces().then((res) => setWorkSpaces(res.data));
-	}, []);
+	}, [workSpaces]);
 
 	return (
 		<Flex wrap="nowrap">

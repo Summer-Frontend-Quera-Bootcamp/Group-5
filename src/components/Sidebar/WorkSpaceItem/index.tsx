@@ -34,10 +34,9 @@ const WorkSpaceItem = ({
 		AXIOS.get(`/workspaces/${workSpaceKey}/projects/`)
 			.then((res) => {
 				setProjects(res.data);
-				console.log(res.data);
 			})
 			.catch((err) => console.log(err.message));
-	}, []);
+	}, [projects]);
 
 	return (
 		<>
