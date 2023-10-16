@@ -19,10 +19,11 @@ import { headingStyle } from "../../layouts/Authentication/style";
 import { NewSpaceModal } from "..";
 import { ExitIcon } from "../../icons";
 import SearchIput from "./SearchInput";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { switchLoggedIn } from "../../features/userSlice";
 import DarkModeSwitch from "../DarkModeSwitch";
+import { chakra } from "@chakra-ui/react";
 
 interface ISidebarProp {
 	items: any[];
@@ -61,12 +62,14 @@ const Sidebar = ({ items }: ISidebarProp): JSX.Element => {
 			</Box>
 
 			<Box w="full" h="50px" gap="4px" mt="auto">
-				<Stack direction="row" w="144px" spacing="4px">
-					<Avatar size="sm" name={username} src={thumbnail} mb={2} />
-					<Text p="4px" fontWeight="500px" align="right">
-						{username}
-					</Text>
-				</Stack>
+				<chakra.a as={Link} to="/profile">
+					<Stack direction="row" w="144px" spacing="4px">
+						<Avatar size="sm" name={username} src={thumbnail} mb={2} />
+						<Text p="4px" fontWeight="500px" align="right">
+							{username}
+						</Text>
+					</Stack>
+				</chakra.a>
 				<Box>
 					<Flex>
 						<Button
