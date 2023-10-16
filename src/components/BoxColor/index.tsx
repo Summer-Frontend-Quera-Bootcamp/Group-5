@@ -7,6 +7,7 @@ interface BoxProps {
 	borderRadius?: number;
 	fontSize?: number;
 	children: ReactNode;
+	marginRight:number;
 }
 
 const Box: React.FC<BoxProps> = ({
@@ -16,6 +17,7 @@ const Box: React.FC<BoxProps> = ({
 	borderRadius = 5,
 	fontSize = 18,
 	children,
+	marginRight
 }) => {
 	``;
 	const boxStyle = {
@@ -28,6 +30,7 @@ const Box: React.FC<BoxProps> = ({
 		color: "white",
 		justifyContent: "center",
 		alignItems: "center",
+		marginRight: `${marginRight}px`
 	};
 
 	return <div style={boxStyle}>{children}</div>;
