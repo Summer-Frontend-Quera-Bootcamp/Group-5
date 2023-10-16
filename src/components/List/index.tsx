@@ -109,7 +109,7 @@ const List: React.FC<ListProps> = ({
 										style={{
 											whiteSpace: "nowrap",
 											marginLeft: "5px",
-											marginRight: "8px",
+											marginRight: "5px",
 										}}
 									>
 										این یک تیتر برای این تسک است.
