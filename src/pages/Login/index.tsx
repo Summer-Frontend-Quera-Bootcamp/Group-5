@@ -27,10 +27,22 @@ const LoginPage = () => {
 	}, [user.loggedIn]);
 
 	const handleAuthentication = (data: any) => {
-		localStorage.setItem("token", data.access);
+		localStorage.setItem("access", data.access);
 		localStorage.setItem("refresh", data.refresh);
 		AXIOS.defaults.headers.common.Authorization = `Bearer ${data.access}`;
 		dispatch(setUser(data));
+		localStorage.setItem(
+			"user",
+			JSON.stringify({
+				user_id: data.user_id,
+				username: data.username,
+				email: data.email,
+				first_name: data.first_name,
+				last_name: data.last_name,
+				phone_number: data.phone_number,
+				thumbnail: data.thumbnail,
+			})
+		);
 	};
 
 	const onSubmit: SubmitHandler<FieldValues> = (data) => {
@@ -40,8 +52,7 @@ const LoginPage = () => {
 		})
 			.then((res) => {
 				handleAuthentication(res.data);
-				dispatch(switchLoggedIn());
-				console.log(user);
+				dispatch(switchLoggedIn(true));
 			})
 			.catch((err) => console.log(err.message));
 	};

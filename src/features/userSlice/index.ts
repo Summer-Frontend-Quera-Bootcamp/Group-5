@@ -1,4 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { AXIOS } from "../../utils/functions/AXIOS";
+import { RefreshUserToken } from "../../utils/functions/RefreshUserToken";
 
 interface IUserstate {
 	refresh: string;
@@ -25,31 +27,36 @@ let initialState: IUserstate = {
 	thumbnail: "",
 	loggedIn: false,
 };
-// useEffect(() => {
-// 	const token = localStorage.getItem("token");
-// 	if (token) {
-// 		const email = localStorage.getItem("email");
-// 		if (email) {
-// 			initialState = {
-// 				username: localStorage.getItem("username"),
-// 				email: email,
-// 				token,
-// 				loggedIn: true,
-// 			};
-// 		}
-// 		AXIOS.defaults.headers.common.Authorization = `Bearer ${token}`;
-// 		navigate("/dashboard");
-// 	} else {
-// 		navigate("/");
-// 	}
-// }, []);
+
+const access = localStorage.getItem("access");
+const refresh = localStorage.getItem("refresh");
+const localUser = localStorage.getItem("user");
+if (access && refresh && localUser) {
+	const userPayload = JSON.parse(localUser);
+	initialState = {
+		refresh,
+		access,
+		...userPayload,
+		loggedIn: true,
+	};
+	AXIOS.defaults.headers.common.Authorization = `Bearer ${initialState.access}`;
+}
+AXIOS.interceptors.response.use(
+	(response) => response,
+	(error) => {
+		if (error.response.status === 401) {
+			RefreshUserToken();
+		}
+		return Promise.reject(error);
+	}
+);
 
 export const userSlice = createSlice({
 	name: "user",
 	initialState,
 	reducers: {
-		switchLoggedIn(state) {
-			state.loggedIn = state.loggedIn ? false : true;
+		switchLoggedIn(state, action: PayloadAction<boolean>) {
+			state.loggedIn = action.payload;
 		},
 		setUser(state, action: PayloadAction<any>) {
 			state.refresh = action.payload.refresh;
@@ -61,7 +68,6 @@ export const userSlice = createSlice({
 			state.last_name = action.payload.last_name;
 			state.phone_number = action.payload.phone_number;
 			state.thumbnail = action.payload.thumbnail;
-			state.loggedIn = action.payload.loggedIn;
 		},
 	},
 });
