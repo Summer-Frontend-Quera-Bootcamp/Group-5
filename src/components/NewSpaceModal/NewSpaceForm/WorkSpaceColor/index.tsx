@@ -20,6 +20,7 @@ const WorkSpaceColor: FC<IWorkSpaceColorProps> = ({
 	workspaceColor,
 	setWorkspaceColor,
 	setModalPage,
+	type,
 }) => {
 	const { accent } = useAppSelector((state) => state.theme);
 	const colors: TColorSchemes[] = [
@@ -61,7 +62,7 @@ const WorkSpaceColor: FC<IWorkSpaceColorProps> = ({
 				<ArrowIcon w="24px" h="24px" />
 			</Button>
 			<Heading textAlign="center" fontWeight="800" fontSize="24px">
-				انتخاب رنگ ورک‌اسپیس
+				{type === "edit" ? "ویرایش رنگ ورک‌اسپیس" : "انتخاب رنگ ورک‌اسپیس"}
 			</Heading>
 			<Box>
 				<FormControl as="fieldset" display="flex" gap="sm">

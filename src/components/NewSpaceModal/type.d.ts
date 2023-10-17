@@ -4,6 +4,8 @@ interface IWorkSpaceNameProps {
 	workspaceName: string;
 	setWorkspaceName: Dispatch<SetStateAction<string>>;
 	setModalPage: Dispatch<SetStateAction<TPage>>;
+	type?: TType;
+	workSpaseKey?: any;
 }
 
 interface IWorkSpaceColorProps {
@@ -11,6 +13,8 @@ interface IWorkSpaceColorProps {
 	workspaceColor: TColorSchemes;
 	setWorkspaceColor: Dispatch<SetStateAction<TColorSchemes>>;
 	setModalPage: Dispatch<SetStateAction<TPage>>;
+	type?: TType;
+	workSpaseKey?: any;
 }
 
 interface IWorkSpaceDetailsProps {

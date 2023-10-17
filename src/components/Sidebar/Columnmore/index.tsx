@@ -21,13 +21,33 @@ import { AXIOS } from "../../../utils/functions/AXIOS";
 type TType = "workspace" | "projectitem";
 interface IColumnMoreProp {
 	type: TType;
-	workSpaseKey: any;
+	workSpaseKey?: any;
+	projectKey?: any;
 }
 
-const ColumnMore = ({ type, workSpaseKey }: IColumnMoreProp): JSX.Element => {
-	const { isOpen, onOpen, onClose } = useDisclosure();
+const ColumnMore = ({
+	type,
+	workSpaseKey,
+	projectKey,
+}: IColumnMoreProp): JSX.Element => {
+	const {
+		isOpen: isFirstModalOpen,
+		onOpen: onFirstModalOpen,
+		onClose: onFirstModalClose,
+	} = useDisclosure();
+	const {
+		isOpen: isSecondModalOpen,
+		onOpen: onSecondModalOpen,
+		onClose: onSecondModalClose,
+	} = useDisclosure();
+
 	const handleDeleteWorkspace = () => {
 		AXIOS.delete(`/workspaces/${workSpaseKey}/`);
+	};
+	const handleDeletePoroject = () => {
+		AXIOS.delete(`/workspaces/${workSpaseKey}/projects/${projectKey}/`)
+			.then((res) => console.log(res))
+			.catch((err) => console.log(err.response.status));
 	};
 	return (
 		<Menu>
@@ -36,32 +56,54 @@ const ColumnMore = ({ type, workSpaseKey }: IColumnMoreProp): JSX.Element => {
 			</MenuButton>
 			<MenuList>
 				<Box mb="sm">
-					<MenuItem icon={<AddIcon />} onClick={onOpen}>
-						{type === "workspace" ? "ساختن پروژه جدید" : "ساختن تسک جدید"}
-					</MenuItem>
-					<ModalItem
-						isOpen={isOpen}
-						onClose={onClose}
-						modalItemKey={workSpaseKey}
-					/>
-					<MenuItem icon={<EditIcon />} onClick={onOpen}>
-						{type === "workspace" ? "ویرایش ورک اسپیس" : "ویرایش نام پروژه"}
-					</MenuItem>
-					<Modal
-						onClose={onClose}
-						isOpen={isOpen}
-						isCentered
-						blockScrollOnMount={true}
-						size="xl"
-					>
-						<ModalOverlay />
-						<ModalContent borderRadius="8px" p="24px">
-							<ModalCloseButton left="unset" right="sm" top="sm" zIndex="2" />
-							<ModalBody overflow="hidden">
-								<NewWorkSpaceContent type="edit" workSpaseKey={workSpaseKey} />
-							</ModalBody>
-						</ModalContent>
-					</Modal>
+					<Box>
+						<MenuItem icon={<AddIcon />} onClick={onFirstModalOpen}>
+							{type === "workspace" ? "ساختن پروژه جدید" : "ساختن تسک جدید"}
+						</MenuItem>
+						<ModalItem
+							isOpen={isFirstModalOpen}
+							onClose={onFirstModalClose}
+							workSpacekey={workSpaseKey}
+						/>
+					</Box>
+					<Box>
+						<MenuItem icon={<EditIcon />} onClick={onSecondModalOpen}>
+							{type === "workspace" ? "ویرایش ورک اسپیس" : "ویرایش نام پروژه"}
+						</MenuItem>
+						{type === "workspace" ? (
+							<Modal
+								onClose={onSecondModalClose}
+								isOpen={isSecondModalOpen}
+								isCentered
+								blockScrollOnMount={true}
+								size="xl"
+							>
+								<ModalOverlay />
+								<ModalContent borderRadius="8px" p="24px">
+									<ModalCloseButton
+										left="unset"
+										right="sm"
+										top="sm"
+										zIndex="2"
+									/>
+									<ModalBody overflow="hidden">
+										<NewWorkSpaceContent
+											type="edit"
+											workSpaseKey={workSpaseKey}
+										/>
+									</ModalBody>
+								</ModalContent>
+							</Modal>
+						) : (
+							<ModalItem
+								isOpen={isSecondModalOpen}
+								onClose={onSecondModalClose}
+								workSpacekey={workSpaseKey}
+								porojectItemkey={projectKey}
+								type="edit"
+							/>
+						)}
+					</Box>
 					{/* {type === "workspace" && (
 						<MenuItem icon={<ColorPaletteIcon w="20px" h="20px" />}>
 							ویرایش رنگ
@@ -77,7 +119,11 @@ const ColumnMore = ({ type, workSpaseKey }: IColumnMoreProp): JSX.Element => {
 							حذف
 						</MenuItem>
 					) : (
-						<MenuItem icon={<DeleteIcon />} color="#E53E3E">
+						<MenuItem
+							icon={<DeleteIcon />}
+							color="#E53E3E"
+							onClick={handleDeletePoroject}
+						>
 							حذف
 						</MenuItem>
 					)}
