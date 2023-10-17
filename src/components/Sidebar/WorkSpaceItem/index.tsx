@@ -50,7 +50,7 @@ const WorkSpaceItem = ({
 							</Text>
 						</Stack>
 						<Box as="button" w="24px" h="24px" ms="auto">
-							<ColumnMore type="workspace" />
+							<ColumnMore type="workspace" workSpaseKey={workSpaceKey} />
 						</Box>
 					</AccordionButton>
 					<AccordionPanel textAlign={"right"}>

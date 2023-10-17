@@ -1,6 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AXIOS } from "../../utils/functions/AXIOS";
-import { RefreshUserToken } from "../../utils/functions/RefreshUserToken";
 
 interface IUserstate {
 	refresh: string;
@@ -39,17 +37,7 @@ if (access && refresh && localUser) {
 		...userPayload,
 		loggedIn: true,
 	};
-	AXIOS.defaults.headers.common.Authorization = `Bearer ${initialState.access}`;
 }
-AXIOS.interceptors.response.use(
-	(response) => response,
-	(error) => {
-		if (error.response.status === 401) {
-			RefreshUserToken();
-		}
-		return Promise.reject(error);
-	}
-);
 
 export const userSlice = createSlice({
 	name: "user",
