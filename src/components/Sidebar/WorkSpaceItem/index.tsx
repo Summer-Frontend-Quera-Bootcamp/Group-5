@@ -71,12 +71,16 @@ const WorkSpaceItem = ({
 								<ModalItem
 									isOpen={isOpen}
 									onClose={onClose}
-									modalItemKey={workSpaceKey}
+									workSpacekey={workSpaceKey}
 								/>
 							</>
 						) : (
 							projects.map((x) => (
-								<ProjectItem content={x.name} projectKey={x.id} path="1" />
+								<ProjectItem
+									content={x.name}
+									projectKey={x.id}
+									workSpaceKey={workSpaceKey}
+								/>
 							))
 						)}
 					</AccordionPanel>

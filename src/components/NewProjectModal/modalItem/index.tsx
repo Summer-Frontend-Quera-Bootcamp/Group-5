@@ -12,7 +12,21 @@ import { chakra } from "@chakra-ui/react";
 import { ValidateInput, Button } from "../..";
 import { AXIOS } from "../../../utils/functions/AXIOS";
 
-const ModalItem: React.FC<any> = ({ isOpen, onClose, modalItemKey }) => {
+interface IModalItemProps {
+	isOpen: any;
+	onClose: any;
+	workSpacekey?: any;
+	porojectItemkey?: any;
+	type?: string;
+}
+
+const ModalItem: React.FC<IModalItemProps> = ({
+	isOpen,
+	onClose,
+	workSpacekey,
+	porojectItemkey,
+	type,
+}) => {
 	const {
 		handleSubmit,
 		watch,
@@ -22,9 +36,19 @@ const ModalItem: React.FC<any> = ({ isOpen, onClose, modalItemKey }) => {
 	const watchField = watch();
 
 	const onsubmit: SubmitHandler<FieldValues> = (data) => {
-		AXIOS.post(`/workspaces/${modalItemKey}/projects/`, {
+		const dataObj = {
 			name: data.newProject,
-		});
+		};
+		if (type === "edit") {
+			AXIOS.patch(
+				`/workspaces/${workSpacekey}/projects/${porojectItemkey}/`,
+				dataObj
+			)
+				.then((res) => console.log(res))
+				.catch((err) => console.log(err.response.status));
+		} else {
+			AXIOS.post(`/workspaces/${workSpacekey}/projects/`, dataObj);
+		}
 	};
 
 	return (
@@ -47,7 +71,7 @@ const ModalItem: React.FC<any> = ({ isOpen, onClose, modalItemKey }) => {
 							onSubmit={handleSubmit(onsubmit)}
 						>
 							<Heading textAlign="center" fontWeight="800" fontSize="24px">
-								ساختن پروژه جدید
+								{type === "edit" ? "ویرایش نام پروژه" : "ساختن پروژه جدید"}
 							</Heading>
 							<ValidateInput
 								type="text"
@@ -62,7 +86,7 @@ const ModalItem: React.FC<any> = ({ isOpen, onClose, modalItemKey }) => {
 								disabled={!watchField.newProject}
 							>
 								<Button isActive={true} type="submit" fullWidth={true}>
-									ثبت
+									{type === "edit" ? "ویرایش" : "ثبت"}
 								</Button>
 							</Box>
 						</chakra.form>

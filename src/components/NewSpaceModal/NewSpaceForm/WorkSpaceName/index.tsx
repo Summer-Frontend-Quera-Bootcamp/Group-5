@@ -14,6 +14,7 @@ const WorkSpaceNameForm: FC<IWorkSpaceNameProps> = ({
 	workspaceName,
 	setWorkspaceName,
 	setModalPage,
+	type,
 }) => {
 	const { accent } = useAppSelector((state) => state.theme);
 	function handleSubmit(e: FormEvent) {
@@ -30,7 +31,7 @@ const WorkSpaceNameForm: FC<IWorkSpaceNameProps> = ({
 			gap="xl"
 		>
 			<Heading textAlign="center" fontWeight="800" fontSize="24px">
-				ساختن ورک‌اسپیس جدید
+				{type === "edit" ? "ویرایش ورک‌اسپیس" : "ساختن ورک‌اسپیس جدید"}
 			</Heading>
 			<FormControl>
 				<FormLabel>نام ورک‌اسپیس</FormLabel>

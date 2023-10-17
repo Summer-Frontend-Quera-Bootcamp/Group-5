@@ -17,6 +17,7 @@ const NewWorkSpaceContent: FC<INewWorkSpaceProp> = ({ type, workSpaseKey }) => {
 					setModalPage={setModalPage}
 					workspaceName={workspaceName}
 					setWorkspaceName={setWorkspaceName}
+					type={type}
 				/>
 			);
 			break;
@@ -27,6 +28,7 @@ const NewWorkSpaceContent: FC<INewWorkSpaceProp> = ({ type, workSpaseKey }) => {
 					workspaceName={workspaceName}
 					workspaceColor={workspaceColor}
 					setWorkspaceColor={setWorkspaceColor}
+					type={type}
 				/>
 			);
 			break;

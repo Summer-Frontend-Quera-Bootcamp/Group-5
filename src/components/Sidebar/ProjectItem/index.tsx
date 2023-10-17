@@ -5,13 +5,13 @@ import ColumnMore from "../Columnmore";
 
 interface IProjectItemProp {
 	content: string;
-	path: string;
 	projectKey: any;
+	workSpaceKey: any;
 }
 const ProjectItem = ({
 	content,
-	path,
 	projectKey,
+	workSpaceKey,
 }: IProjectItemProp): JSX.Element => {
 	return (
 		<>
@@ -30,7 +30,7 @@ const ProjectItem = ({
 				<Flex>
 					<ChakraLink
 						as={ReactRouterLink}
-						to={path}
+						to={`workspaces/${workSpaceKey}/projects/${projectKey}`}
 						lineHeight="27.64px"
 						mr="25px"
 					>
@@ -38,7 +38,7 @@ const ProjectItem = ({
 					</ChakraLink>
 					<Spacer />
 					<Box as="button" ml="10px" w="24px" h="24px">
-						<ColumnMore type="projectitem" />
+						<ColumnMore type="projectitem" projectKey={projectKey} />
 					</Box>
 				</Flex>
 			</Box>
