@@ -3,7 +3,7 @@ import WorkSpaceNameForm from "./WorkSpaceName";
 import WorkSpaceColor from "./WorkSpaceColor";
 import WorkSpaceDetails from "./WorkSpaceDetails";
 
-const NewWorkSpaceContent: FC = () => {
+const NewWorkSpaceContent: FC<INewWorkSpaceProp> = ({ type, workSpaseKey }) => {
 	const [modalPage, setModalPage] = useState<TPage>("workspaceName");
 	const [workspaceName, setWorkspaceName] = useState<string>("");
 	const [workspaceColor, setWorkspaceColor] = useState<TColorSchemes>("gray");
@@ -37,6 +37,8 @@ const NewWorkSpaceContent: FC = () => {
 					workspaceColor={workspaceColor}
 					workspaceName={workspaceName}
 					workspaceOwner={{ img: "slkdjfoi", name: "sara ahimi" }}
+					type={type}
+					workSpaseKey={workSpaseKey}
 				/>
 			);
 			break;

@@ -17,6 +17,8 @@ const WorkSpaceDetails: FC<IWorkSpaceDetailsProps> = ({
 	workspaceColor,
 	workspaceOwner,
 	setModalPage,
+	type,
+	workSpaseKey,
 }) => {
 	const { accent } = useAppSelector((state) => state.theme);
 
@@ -26,10 +28,18 @@ const WorkSpaceDetails: FC<IWorkSpaceDetailsProps> = ({
 			name: workspaceName,
 			color: workspaceColor,
 		};
-		try {
-			await AXIOS.post("/workspaces/", data);
-		} catch (error) {
-			console.error(error);
+		if (type === "edit") {
+			try {
+				await AXIOS.patch(`/workspaces/${workSpaseKey}/`, data);
+			} catch (error) {
+				console.error(error);
+			}
+		} else {
+			try {
+				await AXIOS.post("/workspaces/", data);
+			} catch (error) {
+				console.error(error);
+			}
 		}
 	};
 
@@ -84,7 +94,7 @@ const WorkSpaceDetails: FC<IWorkSpaceDetailsProps> = ({
 				</HStack>
 			</VStack>
 			<Button colorScheme={accent} type="submit">
-				ادامه
+				{type === "edit" ? "ویرایش" : "ثبت"}
 			</Button>
 		</chakra.form>
 	);
