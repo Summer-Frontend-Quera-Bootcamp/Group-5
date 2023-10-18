@@ -13,7 +13,6 @@ import {
 	ResetPage,
 	WorkSpacePage,
 } from "./pages";
-import { WorkSpaceLoader } from "./pages/WorkSpace";
 
 const router = createBrowserRouter([
 	{
@@ -59,10 +58,9 @@ const router = createBrowserRouter([
 					{
 						index: true,
 						element: <WorkSpacePage />,
-						loader: WorkSpaceLoader,
 					},
 					{
-						path: "projectId",
+						path: "workspaces/:workspaceId/projects/:projectId",
 						element: <ProjectPage />,
 					},
 				],

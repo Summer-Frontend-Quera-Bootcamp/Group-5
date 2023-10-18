@@ -23,15 +23,18 @@ import { switchLoggedIn } from "../../features/userSlice";
 import { AXIOS } from "../../utils/functions/AXIOS";
 import DarkModeSwitch from "../DarkModeSwitch";
 import { chakra } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { getAllWorkSpaces } from "../../services/api";
+import WorkSpaceItem from "./WorkSpaceItem";
 
-interface ISidebarProp {
-	items: any[];
-}
-const Sidebar = ({ items }: ISidebarProp): JSX.Element => {
+const Sidebar = (): JSX.Element => {
+	const [workSpaces, setWorkSpaces] = useState<any[]>([]);
 	const { username, thumbnail } = useAppSelector((state) => state.user);
 	const dispatch = useAppDispatch();
-
 	const navigate = useNavigate();
+	useEffect(() => {
+		getAllWorkSpaces().then((res) => setWorkSpaces(res.data));
+	}, [workSpaces]);
 	const handleExit = () => {
 		localStorage.removeItem("token");
 		localStorage.removeItem("refresh");
@@ -56,8 +59,14 @@ const Sidebar = ({ items }: ISidebarProp): JSX.Element => {
 						<AccordionPanel pb={4} px="0">
 							<SearchIput />
 							<NewSpaceModal />
-							{items && items.map((x) => x)}
-							{items && items.map((x) => x)}
+							{workSpaces &&
+								workSpaces?.map((ws) => (
+									<WorkSpaceItem
+										color={ws.color}
+										content={ws.name}
+										workSpaceKey={ws.id}
+									/>
+								))}
 						</AccordionPanel>
 					</AccordionItem>
 				</Accordion>

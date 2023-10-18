@@ -1,18 +1,16 @@
 import { Divider, Flex, Heading, VStack } from "@chakra-ui/react";
-import { useLoaderData } from "react-router-dom";
-import { AXIOS } from "../../utils/functions/AXIOS";
 import ProjectRow from "./ProjectRow";
-
-export async function WorkSpaceLoader() {
-	const res = await AXIOS.get("/workspaces/");
-	return res.data;
-}
+import { useEffect, useState } from "react";
+import { getAllWorkSpaces } from "../../services/api";
 
 const WorkSpacePage = () => {
-	const workspaces = useLoaderData() as IWorkspace[];
+	const [workSpaces, setWorkSpaces] = useState<any[]>([]);
+	useEffect(() => {
+		getAllWorkSpaces().then((res) => setWorkSpaces(res.data));
+	}, [workSpaces]);
 	return (
 		<Flex flexDir="column" w="100%">
-			{workspaces.map((ws, idx, arr) => (
+			{workSpaces.map((ws, idx, arr) => (
 				<VStack align="start" gap="lg" mb="lg">
 					<Heading as="h4" fontSize="24px" fontWeight="extrabold">
 						{ws.name}

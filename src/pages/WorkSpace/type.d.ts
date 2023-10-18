@@ -1,4 +1,5 @@
 interface IProjectProps {
+	workspaceId: number;
 	projectId: number;
 	projectTitle: string;
 	color: string;
