@@ -2,11 +2,15 @@ import { useDisclosure } from "@chakra-ui/react";
 import { NewProjectButton } from "..";
 import ModalItem from "./modalItem";
 
-const NewProjectModal: React.FC = () => {
+interface INewProjectModalProps {
+	color: string;
+}
+
+const NewProjectModal: React.FC<INewProjectModalProps> = ({ color }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	return (
 		<>
-			<NewProjectButton color="blue" onClick={onOpen} />
+			<NewProjectButton color={color} onClick={onOpen} />
 			<ModalItem isOpen={isOpen} onClose={onClose} />
 		</>
 	);
