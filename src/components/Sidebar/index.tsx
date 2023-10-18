@@ -12,8 +12,6 @@ import {
 	Avatar,
 	Spacer,
 	Flex,
-	Switch,
-	useColorMode,
 } from "@chakra-ui/react";
 import { headingStyle } from "../../layouts/Authentication/style";
 import { NewSpaceModal } from "..";
@@ -25,7 +23,6 @@ import { switchLoggedIn } from "../../features/userSlice";
 import { AXIOS } from "../../utils/functions/AXIOS";
 import DarkModeSwitch from "../DarkModeSwitch";
 import { chakra } from "@chakra-ui/react";
-
 
 interface ISidebarProp {
 	items: any[];
@@ -47,7 +44,7 @@ const Sidebar = ({ items }: ISidebarProp): JSX.Element => {
 		<Flex flexDir="column" h="full">
 			<Heading sx={headingStyle}>کوئرا تسک منیجر</Heading>
 
-			<Box gap="50px">
+			<Box gap="50px" overflowY="auto" overflowX="hidden">
 				<Accordion w="274px" allowToggle>
 					<AccordionItem>
 						<AccordionButton>
@@ -59,6 +56,7 @@ const Sidebar = ({ items }: ISidebarProp): JSX.Element => {
 						<AccordionPanel pb={4} px="0">
 							<SearchIput />
 							<NewSpaceModal />
+							{items && items.map((x) => x)}
 							{items && items.map((x) => x)}
 						</AccordionPanel>
 					</AccordionItem>
