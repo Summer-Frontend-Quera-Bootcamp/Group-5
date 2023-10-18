@@ -6,6 +6,8 @@ export const sidebarStyle = {
 	pe: "md",
 	py: "lg",
 	h: "100dvh",
+	pos: "sticky",
+	top: "0",
 };
 
 export const mainPageStyle = {
