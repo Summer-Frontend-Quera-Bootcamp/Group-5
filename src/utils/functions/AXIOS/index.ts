@@ -6,9 +6,11 @@ export const AXIOS = axios.create({
 });
 
 AXIOS.interceptors.response.use(
-	(response) => response,
+	(response) => {
+		return response;
+	},
 	(error) => {
-		if (error.response === 401) {
+		if (error.response.status === 401) {
 			RefreshUserToken();
 		}
 		return Promise.reject(error);
