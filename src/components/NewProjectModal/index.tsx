@@ -4,14 +4,15 @@ import ModalItem from "./modalItem";
 
 interface INewProjectModalProps {
 	color: string;
+  workspaceId: number;
 }
 
-const NewProjectModal: React.FC<INewProjectModalProps> = ({ color }) => {
+const NewProjectModal: React.FC<INewProjectModalProps> = ({ color, workspaceId }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	return (
 		<>
 			<NewProjectButton color={color} onClick={onOpen} />
-			<ModalItem isOpen={isOpen} onClose={onClose} />
+			<ModalItem isOpen={isOpen} onClose={onClose} workSpacekey={workspaceId} />
 		</>
 	);
 };
