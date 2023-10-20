@@ -10,8 +10,10 @@ import {
 import { FC, FormEvent } from "react";
 import { ArrowIcon } from "../../../../icons";
 import { chakra } from "@chakra-ui/react";
-import { useAppSelector } from "../../../../hooks";
+import { useAppDispatch, useAppSelector } from "../../../../hooks";
 import { AXIOS } from "../../../../utils/functions/AXIOS";
+import { setWorkspaceItems } from "../../../../features/workspaceSlice";
+
 const WorkSpaceDetails: FC<IWorkSpaceDetailsProps> = ({
 	workspaceName,
 	workspaceColor,
@@ -21,6 +23,7 @@ const WorkSpaceDetails: FC<IWorkSpaceDetailsProps> = ({
 	workSpaseKey,
 }) => {
 	const { accent } = useAppSelector((state) => state.theme);
+	const dispatch = useAppDispatch();
 
 	const handleSubmit = async (event: FormEvent) => {
 		event.preventDefault();
@@ -30,13 +33,17 @@ const WorkSpaceDetails: FC<IWorkSpaceDetailsProps> = ({
 		};
 		if (type === "edit") {
 			try {
-				await AXIOS.patch(`/workspaces/${workSpaseKey}/`, data);
+				await AXIOS.patch(`/workspaces/${workSpaseKey}/`, data).then(() =>
+					dispatch(setWorkspaceItems())
+				);
 			} catch (error) {
 				console.error(error);
 			}
 		} else {
 			try {
-				await AXIOS.post("/workspaces/", data);
+				await AXIOS.post("/workspaces/", data).then(() =>
+					dispatch(setWorkspaceItems())
+				);
 			} catch (error) {
 				console.error(error);
 			}
