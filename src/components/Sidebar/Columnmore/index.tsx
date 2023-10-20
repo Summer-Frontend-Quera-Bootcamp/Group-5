@@ -17,6 +17,8 @@ import { Share } from "../..";
 import ModalItem from "../../NewProjectModal/modalItem";
 import NewWorkSpaceContent from "../../NewSpaceModal/NewSpaceForm";
 import { AXIOS } from "../../../utils/functions/AXIOS";
+import { useAppDispatch } from "../../../hooks";
+import { setWorkspaceItems } from "../../../features/workspaceSlice";
 
 type TType = "workspace" | "projectitem";
 interface IColumnMoreProp {
@@ -40,9 +42,12 @@ const ColumnMore = ({
 		onOpen: onSecondModalOpen,
 		onClose: onSecondModalClose,
 	} = useDisclosure();
+	const dispatch = useAppDispatch();
 
 	const handleDeleteWorkspace = () => {
-		AXIOS.delete(`/workspaces/${workSpaseKey}/`);
+		AXIOS.delete(`/workspaces/${workSpaseKey}/`).then(() =>
+			dispatch(setWorkspaceItems())
+		);
 	};
 	const handleDeletePoroject = () => {
 		AXIOS.delete(`/workspaces/${workSpaseKey}/projects/${projectKey}/`)
