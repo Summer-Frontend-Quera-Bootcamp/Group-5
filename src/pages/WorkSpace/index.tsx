@@ -2,12 +2,15 @@ import { Divider, Flex, Heading, VStack } from "@chakra-ui/react";
 import ProjectRow from "./ProjectRow";
 import { useEffect, useState } from "react";
 import { getAllWorkSpaces } from "../../services/api";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { setWorkspaceItems } from "../../features/workspaceSlice";
 
 const WorkSpacePage = () => {
-	const [workSpaces, setWorkSpaces] = useState<any[]>([]);
+	const workSpaces = useAppSelector((state) => state.workspaces);
+	const dispatch = useAppDispatch();
 	useEffect(() => {
-		getAllWorkSpaces().then((res) => setWorkSpaces(res.data));
-	}, [workSpaces]);
+		dispatch(setWorkspaceItems())
+	}, []);
 	return (
 		<Flex flexDir="column" w="100%">
 			{workSpaces.map((ws, idx, arr) => (

@@ -34,7 +34,7 @@ const Sidebar = (): JSX.Element => {
 	const navigate = useNavigate();
 	useEffect(() => {
 		getAllWorkSpaces().then((res) => setWorkSpaces(res.data));
-	}, [workSpaces]);
+	}, []);
 	const handleExit = () => {
 		localStorage.removeItem("token");
 		localStorage.removeItem("refresh");

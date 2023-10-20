@@ -11,9 +11,8 @@ const ProjectRow = ({ workspaceId, color }: IProjectRowProps) => {
 			const res = await AXIOS.get(`/workspaces/${workspaceId}/projects/`);
 			return res.data;
 		};
-
 		getProjects().then((res) => setProjects(res));
-	}, [workspaceId]);
+	}, []);
 	return (
 		<Flex gap="lg" wrap="nowrap">
 			{projects.length > 0 ? (
