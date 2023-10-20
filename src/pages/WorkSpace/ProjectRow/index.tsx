@@ -29,7 +29,7 @@ const ProjectRow = ({ workspaceId, color }: IProjectRowProps) => {
 					</ProjectLink>
 				))
 			) : (
-				<NewProjectModal color={color} />
+				<NewProjectModal color={color} workspaceId={workspaceId} />
 			)}
 		</Flex>
 	);
