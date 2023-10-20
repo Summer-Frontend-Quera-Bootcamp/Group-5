@@ -1,40 +1,35 @@
 import {
-	Heading,
-	Accordion,
-	AccordionItem,
-	AccordionButton,
-	AccordionPanel,
-	AccordionIcon,
-	Text,
-	Button,
-	Box,
-	Stack,
-	Avatar,
-	Spacer,
-	Flex,
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+  Avatar,
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Spacer,
+  Stack,
+  Text,
+  chakra,
 } from "@chakra-ui/react";
-import { headingStyle } from "../../layouts/Authentication/style";
-import { NewSpaceModal } from "..";
-import { ExitIcon } from "../../icons";
-import SearchIput from "./SearchInput";
 import { Link, useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import { NewSpaceModal } from "..";
 import { switchLoggedIn } from "../../features/userSlice";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { ExitIcon } from "../../icons";
+import { headingStyle } from "../../layouts/Authentication/style";
 import { AXIOS } from "../../utils/functions/AXIOS";
 import DarkModeSwitch from "../DarkModeSwitch";
-import { chakra } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { getAllWorkSpaces } from "../../services/api";
+import SearchIput from "./SearchInput";
 import WorkSpaceItem from "./WorkSpaceItem";
 
 const Sidebar = (): JSX.Element => {
-	const [workSpaces, setWorkSpaces] = useState<any[]>([]);
+	const workspaces = useAppSelector((state) => state.workspaces);
 	const { username, thumbnail } = useAppSelector((state) => state.user);
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
-	useEffect(() => {
-		getAllWorkSpaces().then((res) => setWorkSpaces(res.data));
-	}, [workSpaces]);
 	const handleExit = () => {
 		localStorage.removeItem("token");
 		localStorage.removeItem("refresh");
@@ -59,8 +54,8 @@ const Sidebar = (): JSX.Element => {
 						<AccordionPanel pb={4} px="0">
 							<SearchIput />
 							<NewSpaceModal />
-							{workSpaces &&
-								workSpaces?.map((ws) => (
+							{workspaces &&
+								workspaces?.map((ws) => (
 									<WorkSpaceItem
 										color={ws.color}
 										content={ws.name}

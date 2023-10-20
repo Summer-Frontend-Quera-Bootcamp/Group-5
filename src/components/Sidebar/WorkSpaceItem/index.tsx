@@ -36,7 +36,7 @@ const WorkSpaceItem = ({
 				setProjects(res.data);
 			})
 			.catch((err) => console.log(err.message));
-	}, [projects]);
+	}, []);
 
 	return (
 		<>

@@ -2,12 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import themeReducer from "./features/themeSlice";
 import filterReducer from "./features/filterSlice";
 import userReducer from "./features/userSlice";
+import workspaceReducer from "./features/workspaceSlice";
 
 const store = configureStore({
 	reducer: {
 		theme: themeReducer,
 		filters: filterReducer,
-		user:userReducer,
+		user: userReducer,
+		workspaces: workspaceReducer,
 	},
 });
 
