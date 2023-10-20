@@ -14,10 +14,6 @@ import NewWorkSpaceContent from "./NewSpaceForm";
 const NewSpaceModal: FC = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
-
-
-
-
 	return (
 		<>
 			<Button
