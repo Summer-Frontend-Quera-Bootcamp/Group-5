@@ -38,7 +38,11 @@ const ProjectItem = ({
 					</ChakraLink>
 					<Spacer />
 					<Box as="button" ml="10px" w="24px" h="24px">
-						<ColumnMore type="projectitem" projectKey={projectKey} />
+						<ColumnMore
+							type="projectitem"
+							workSpaseKey={workSpaceKey}
+							projectKey={projectKey}
+						/>
 					</Box>
 				</Flex>
 			</Box>
