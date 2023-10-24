@@ -25,6 +25,8 @@ import {
 	tabStyle,
 } from "./style";
 import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useParams } from "react-router-dom";
+import { getProject } from "../../services/api";
 
 const Divider = () => {
 	return <chakra.span w="1px" h="22px" bg="gray.400"></chakra.span>;
@@ -32,10 +34,15 @@ const Divider = () => {
 
 const ProjectPage = () => {
 	const [activePage, setActivePage] = useState<boolean[]>([true, false, false]);
+	const [activeProject, setActiveProject] = useState<any>();
 	const dispatch = useAppDispatch();
 	const { accent, highlight } = useAppSelector((state) => state.theme);
+	const { workspaceId, projectId } = useParams();
 
 	useEffect(() => {
+		getProject(workspaceId, projectId).then((res: any) => {
+			setActiveProject(res.data);
+		});
 		dispatch(clearFilters());
 		return () => {
 			dispatch(clearFilters());
@@ -47,7 +54,7 @@ const ProjectPage = () => {
 			<Tabs position="relative" variant="unstyled" isLazy>
 				<TabList sx={tabListStyle}>
 					<Heading as="h3" fontSize="heading-xs">
-						پروژه اول
+						{activeProject?.name}
 					</Heading>
 					<Divider />
 					<Tab
@@ -112,7 +119,7 @@ const ProjectPage = () => {
 					</TabPanel>
 				</TabPanels>
 			</Tabs>
-			<NewTaskModal place="projectPage" project="پروژه اول" />
+			<NewTaskModal place="projectPage" project={activeProject?.name} />
 		</>
 	);
 };

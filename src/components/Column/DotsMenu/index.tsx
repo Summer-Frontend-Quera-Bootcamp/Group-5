@@ -11,7 +11,7 @@ const DotsMenu = (): JSX.Element => {
 			<MenuList>
 				<MenuItem icon={<EditIcon />}>ویرایش نام ستون</MenuItem>
 				<MenuItem icon={<AddIcon />}>افزودن تسک</MenuItem>
-				<MenuItem icon={<DownloadIcon />}>آرشیو تمام تک ها</MenuItem>
+				<MenuItem icon={<DownloadIcon />}>آرشیو تمام تسک ها</MenuItem>
 				<MenuItem icon={<DeleteIcon />} color="#E53E3E">
 					حذف ستون
 				</MenuItem>

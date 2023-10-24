@@ -1,27 +1,31 @@
 import { Box, Text, Tooltip } from "@chakra-ui/react";
-import { AddIcon } from "../../icons";
 import { useState } from "react";
 import DotsMenu from "./DotsMenu";
 import { Task } from "..";
 import NewTaskModal from "../NewTaskModal";
+import { useParams } from "react-router-dom";
+import { getAllTasks, getProject } from "../../services/api";
+import { useEffect } from "react";
 
 interface IColumnProps {
 	text: string;
 	color: string;
+	boardId: number;
 }
 
-const Column = ({ text, color }: IColumnProps): JSX.Element => {
+const Column = ({ text, color, boardId }: IColumnProps): JSX.Element => {
 	const [display, setDisplay] = useState<boolean>(false);
-	const [flag, setFlag] = useState<boolean>(false);
-	const [array, setArray] = useState<JSX.Element[]>([]);
-
-	// const handleAddIcon = () => {
-	// 	setFlag(true);
-	// 	setArray((old) => [
-	// 		...old,
-	// 		<Task projectName="پروژه اول" userName="amir menshad" />,
-	// 	]);
-	// };
+	const [activeProject, setActiveProject] = useState<any>();
+	const [array, setArray] = useState<any[]>([]);
+	const { workspaceId, projectId } = useParams();
+	useEffect(() => {
+		getProject(workspaceId, projectId).then((res: any) => {
+			setActiveProject(res.data);
+		});
+		getAllTasks(workspaceId, projectId, boardId).then((res: any) =>
+			setArray(res.data)
+		);
+	}, [array]);
 
 	const handleMouseEnter = () => {
 		setDisplay(true);
@@ -72,11 +76,20 @@ const Column = ({ text, color }: IColumnProps): JSX.Element => {
 				<Box w="48px" h="24px" gap="4px" display={display ? "flex" : "none"}>
 					<DotsMenu />
 					<Tooltip hasArrow label="افزودن تسک" placement="top" ml={1}>
-						<NewTaskModal place="board" project="پروژه اول" />
+						<NewTaskModal place="board" project={activeProject?.name} />
 					</Tooltip>
 				</Box>
 			</Box>
-			{flag && array.map((x) => x)}
+			{array?.map((x) => (
+				<Task
+					projectName={activeProject.name}
+					userName={x.members}
+					userSrc={x.thumbnail}
+					img={x.attachment}
+					taskName={x.name}
+					deadline={x.deadline}
+				/>
+			))}
 		</Box>
 	);
 };

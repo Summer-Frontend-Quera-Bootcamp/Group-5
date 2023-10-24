@@ -12,3 +12,15 @@ export const loginAPI = ({ username, password }: ILoginProp) =>
 	});
 
 export const getAllWorkSpaces: any = () => AXIOS.get("/workspaces/");
+
+export const getProject: any = (workSpaceKey: number, projectKey: number) =>
+	AXIOS.get(`/workspaces/${workSpaceKey}/projects/${projectKey}/`);
+
+export const getAllTasks: any = (
+	workSpaceKey: number,
+	projectKey: number,
+	boardKey: number
+) =>
+	AXIOS.get(
+		`/workspaces/${workSpaceKey}/projects/${projectKey}/boards/${boardKey}/tasks/`
+	);
