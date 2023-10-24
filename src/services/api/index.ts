@@ -11,4 +11,4 @@ export const loginAPI = ({ username, password }: ILoginProp) =>
 		password,
 	});
 
-export const getAllWorkSpaces = () => AXIOS.get("/workspaces/");
+export const getAllWorkSpaces: any = () => AXIOS.get("/workspaces/");

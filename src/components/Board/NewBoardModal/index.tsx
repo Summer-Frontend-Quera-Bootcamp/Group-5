@@ -16,14 +16,15 @@ import {
 	chakra,
 	useDisclosure,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Column, ValidateInput } from "../..";
 import { useAppSelector } from "../../../hooks";
 import ColorInput from "../../ColorInput";
+import { AXIOS } from "../../../utils/functions/AXIOS";
+import { useParams } from "react-router-dom";
 
 const NewBoardModal = (): JSX.Element => {
-	const [flag, setFlag] = useState<boolean>(false);
 	const [array, setArray] = useState<JSX.Element[]>([]);
 	const [boardColor, setBoardColor] = useState<TColorSchemes>("red");
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -33,14 +34,26 @@ const NewBoardModal = (): JSX.Element => {
 		formState: { errors },
 		register,
 	} = useForm();
+
+	const { workspaceId, projectId } = useParams();
+	useEffect(() => {
+		AXIOS.get(`/workspaces/${workspaceId}/projects/${projectId}/boards/`).then(
+			(res) => setArray(res.data)
+		);
+	}, [array]);
+
 	const submit = (data: any) => {
-		setFlag(true);
-		console.log(boardColor);
-		console.log(data);
-		setArray((old) => [
-			...old,
-			<Column text={data.taskBoardName} color={boardColor} />,
-		]);
+		const postData = {
+			name: data.taskBoardName,
+			order: 5,
+			is_archive: true,
+			color: boardColor,
+		};
+
+		AXIOS.post(
+			`/workspaces/${workspaceId}/projects/${projectId}/boards/`,
+			postData
+		);
 	};
 	const colors: TColorSchemes[] = [
 		"red",
@@ -56,7 +69,10 @@ const NewBoardModal = (): JSX.Element => {
 	return (
 		<>
 			<Box display="Flex" flexDir="row" gap="20px">
-				{flag && array.map((x) => x)}
+				{array &&
+					array.map((x: any) => (
+						<Column color={x.color} text={x.name} key={x.id} />
+					))}
 				<Text
 					as="button"
 					onClick={onOpen}
