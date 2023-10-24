@@ -51,7 +51,7 @@ const ColumnMore = ({
 	};
 	const handleDeletePoroject = () => {
 		AXIOS.delete(`/workspaces/${workSpaseKey}/projects/${projectKey}/`)
-			.then((res) => console.log(res))
+			.then(() => dispatch(setWorkspaceItems()))
 			.catch((err) => console.log(err.response.status));
 	};
 	return (
