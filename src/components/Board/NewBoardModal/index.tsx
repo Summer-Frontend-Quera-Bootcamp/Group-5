@@ -25,7 +25,7 @@ import { AXIOS } from "../../../utils/functions/AXIOS";
 import { useParams } from "react-router-dom";
 
 const NewBoardModal = (): JSX.Element => {
-	const [array, setArray] = useState<JSX.Element[]>([]);
+	const [array, setArray] = useState<any[]>([]);
 	const [boardColor, setBoardColor] = useState<TColorSchemes>("red");
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const { accent } = useAppSelector((state) => state.theme);
@@ -69,10 +69,9 @@ const NewBoardModal = (): JSX.Element => {
 	return (
 		<>
 			<Box display="Flex" flexDir="row" gap="20px">
-				{array &&
-					array.map((x: any) => (
-						<Column color={x.color} text={x.name} key={x.id} />
-					))}
+				{array?.map((x: any) => (
+					<Column color={x.color} text={x.name} key={x.id} boardId={x.id} />
+				))}
 				<Text
 					as="button"
 					onClick={onOpen}

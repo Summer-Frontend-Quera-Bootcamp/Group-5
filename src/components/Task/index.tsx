@@ -10,14 +10,16 @@ import {
 	Text,
 } from "@chakra-ui/react";
 import { CheckmarkCircleIcon, DotsIcon, FlagIcon } from "../../icons";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import moment from "jalali-moment";
 
 interface ITaskProps {
-	img?: string;
+	img: string;
 	projectName: string;
 	userName: string;
-	userSrc?: string;
+	userSrc: string;
+	taskName: string;
+	deadline: string;
 }
 
 const Task = ({
@@ -25,13 +27,10 @@ const Task = ({
 	projectName,
 	userName,
 	userSrc,
+	taskName,
+	deadline,
 }: ITaskProps): JSX.Element => {
 	const [display, setDisplay] = useState<boolean>(false);
-	const [itemShow, setItemShow] = useState<boolean>(false);
-	const ref: any = useRef();
-	const handleBlur = () => {
-		ref.current.value.trim() !== "" && setItemShow(true);
-	};
 	const handleMouseMove = () => {
 		setDisplay(!display);
 	};
@@ -53,57 +52,46 @@ const Task = ({
 				<Stack spacing="5">
 					<Box h="51px" display="flex" flexDir="row">
 						<Flex flexDir="column">
-							{itemShow && (
-								<Text fontSize="14px" color="gray.500" align="right">
-									{projectName}
-								</Text>
-							)}
-							<Box
-								as="input"
-								ref={ref}
-								onBlur={handleBlur}
+							<Text fontSize="14px" color="gray.500" align="right">
+								{projectName}
+							</Text>
+
+							<Text
 								fontSize="16px"
 								fontWeight="800"
 								mt="auto"
 								border="1px"
 								borderColor="gray.200"
-								disabled={itemShow}
-							></Box>
+							>
+								{taskName}
+							</Text>
 						</Flex>
-						{itemShow && (
-							<Avatar
-								size="sm"
-								name={userName}
-								src={userSrc}
-							/>
-						)}
+						<Avatar size="sm" name={userName} src={userSrc} />
 					</Box>
-					{itemShow && (
-						<Text display="flex" flexDir="row" gap="1">
-							<FlagIcon color="red" w="20px" h="20px" />
-							{moment().locale("fa").format("DD")}
-							{moment().locale("fa").format("MMMM")} - فردا
-						</Text>
-					)}
-					{itemShow && (
-						<Flex dir="row" gap="1">
-							<Tag colorScheme="telegram" borderRadius="full">
-								درس
-							</Tag>
-							<Tag colorScheme="purple" borderRadius="full">
-								پروژه
-							</Tag>
-						</Flex>
-					)}
+
+					<Text display="flex" flexDir="row" gap="1">
+						<FlagIcon color="red" w="20px" h="20px" />
+						{moment().locale("fa").format("DD")}
+						{moment().locale("fa").format("MMMM")} - فردا
+					</Text>
+
+					<Flex dir="row" gap="1">
+						<Tag colorScheme="telegram" borderRadius="full">
+							درس
+						</Tag>
+						<Tag colorScheme="purple" borderRadius="full">
+							پروژه
+						</Tag>
+					</Flex>
 				</Stack>
 			</CardBody>
-			{display && itemShow && (
+			{display && (
 				<>
 					<Divider />
 					<CardFooter h="50px" mt="-10px">
 						<Flex dir="row" justifyContent="space-between" w="full">
 							<Box>
-								<CheckmarkCircleIcon w='20px' h='20px' />
+								<CheckmarkCircleIcon w="20px" h="20px" />
 							</Box>
 							<Box w="24px" h="24px">
 								<DotsIcon w="20px" h="20px" />
