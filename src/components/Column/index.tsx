@@ -18,6 +18,17 @@ const Column = ({ text, color, boardId }: IColumnProps): JSX.Element => {
 	const [activeProject, setActiveProject] = useState<any>();
 	const [array, setArray] = useState<any[]>([]);
 	const { workspaceId, projectId } = useParams();
+	const colors: TColorSchemes[] = [
+		"red",
+		"orange",
+		"yellow",
+		"green",
+		"teal",
+		"blue",
+		"cyan",
+		"purple",
+		"pink",
+	];
 	useEffect(() => {
 		getProject(workspaceId, projectId).then((res: any) => {
 			setActiveProject(res.data);
@@ -74,7 +85,7 @@ const Column = ({ text, color, boardId }: IColumnProps): JSX.Element => {
 					</Box>
 				</Text>
 				<Box w="48px" h="24px" gap="4px" display={display ? "flex" : "none"}>
-					<DotsMenu />
+					<DotsMenu boardId={boardId} />
 					<Tooltip hasArrow label="افزودن تسک" placement="top" ml={1}>
 						<NewTaskModal place="board" project={activeProject?.name} />
 					</Tooltip>
