@@ -50,7 +50,7 @@ const Task = ({
 					<Image src={img} borderRadius="4px" h="134px" alt="تصویر تسک" />
 				)}
 				<Stack spacing="5">
-					<Box h="51px" display="flex" flexDir="row">
+					<Box h="51px" display="flex" justifyContent="space-between">
 						<Flex flexDir="column">
 							<Text fontSize="14px" color="gray.500" align="right">
 								{projectName}
@@ -60,13 +60,11 @@ const Task = ({
 								fontSize="16px"
 								fontWeight="800"
 								mt="auto"
-								border="1px"
-								borderColor="gray.200"
 							>
 								{taskName}
 							</Text>
 						</Flex>
-						<Avatar size="sm" name={userName} src={userSrc} />
+						<Avatar size="sm" name={`userName`} src={userSrc} />
 					</Box>
 
 					<Text display="flex" flexDir="row" gap="1">
