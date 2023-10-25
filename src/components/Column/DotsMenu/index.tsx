@@ -7,9 +7,10 @@ import NewTaskModal from "../../NewTaskModal";
 import EditColumnModal from "./editColumnModal";
 
 interface IDotsMenuProp {
+	project: string;
 	boardId: number;
 }
-const DotsMenu = ({ boardId }: IDotsMenuProp): JSX.Element => {
+const DotsMenu = ({ project, boardId }: IDotsMenuProp): JSX.Element => {
 	const { workspaceId, projectId } = useParams();
 	const handleDelete = () => {
 		AXIOS.delete(
@@ -23,7 +24,7 @@ const DotsMenu = ({ boardId }: IDotsMenuProp): JSX.Element => {
 			</MenuButton>
 			<MenuList>
 				<EditColumnModal boardId={boardId} />
-				<NewTaskModal place="columnDots" project="amin" />
+				<NewTaskModal place="columnDots" project={project} boardId={boardId} />
 				<MenuItem icon={<DownloadIcon />}>آرشیو تمام تسک ها</MenuItem>
 				<MenuItem icon={<DeleteIcon />} color="#E53E3E" onClick={handleDelete}>
 					حذف ستون
