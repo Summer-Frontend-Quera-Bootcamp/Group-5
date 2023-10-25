@@ -1,69 +1,32 @@
-import { FC, useMemo } from "react";
 import {
-	Modal,
-	ModalOverlay,
-	ModalContent,
-	ModalBody,
-	ModalCloseButton,
+	Avatar,
 	Button,
-	useDisclosure,
-	Heading,
-	ModalHeader,
-	InputGroup,
-	Input,
-	InputRightAddon,
 	Flex,
 	HStack,
+	Heading,
+	Input,
+	InputGroup,
+	InputRightAddon,
+	Modal,
+	ModalBody,
+	ModalCloseButton,
+	ModalContent,
+	ModalHeader,
+	ModalOverlay,
 	Text,
-	Avatar,
+	useDisclosure,
 } from "@chakra-ui/react";
-import { LinkIcon, ShareIcon } from "../../icons";
-import WorkSpaceOwner from "./WorkSpaceOwner";
+import { FC, useEffect, useMemo, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { useAppSelector } from "../../hooks";
+import { LinkIcon } from "../../icons";
+import { AXIOS } from "../../utils/functions/AXIOS";
 import AccessMenu from "./AccessMenu";
 import ProjectMenu from "./ProjectMenu";
-import { useAppSelector } from "../../hooks";
+import ShareButton from "./ShareButton";
+import WorkSpaceOwner from "./WorkSpaceOwner";
+import { sendInvitation } from "../../services/api/Invitation/sendInvitation";
 
-interface IShareProps {
-	type: "project" | "space" | "task";
-}
-
-// todo: create component
-const ShareButton: FC<{
-	type: "project" | "task" | "space";
-	onClick: () => void;
-}> = ({ type, onClick }) => {
-	const { accent } = useAppSelector((state) => state.theme);
-	switch (type) {
-		case "project":
-		case "task":
-			return (
-				<Button
-					variant="ghost"
-					fontSize="body-md"
-					fontWeight="normal"
-					ms="auto"
-					leftIcon={<ShareIcon w="24px" h="24px" />}
-					onClick={onClick}
-				>
-					اشتراک گذاری
-				</Button>
-			);
-		case "space":
-			return (
-				<Button
-					colorScheme={accent}
-					variant="solid"
-					fontSize="body-md"
-					fontWeight="normal"
-					ms="auto"
-					leftIcon={<ShareIcon w="24px" h="24px" />}
-					onClick={onClick}
-				>
-					اشتراک گذاری
-				</Button>
-			);
-	}
-};
 function getHeading(type: "project" | "task" | "space") {
 	switch (type) {
 		case "project":
@@ -87,38 +50,29 @@ function getHeading(type: "project" | "task" | "space") {
 	}
 }
 
-const Share: FC<IShareProps> = ({ type }) => {
+const Share: FC<IShareProps> = ({ type, workspaceId, projectId }) => {
+	const [email, setEmail] = useState("");
 	const { accent } = useAppSelector((state) => state.theme);
 	const { isOpen, onOpen, onClose } = useDisclosure();
+	const [users, setUsers] = useState<IUsersResponse[]>();
+	const loc = useLocation();
+	const link = `http://localhost:3000` + loc.pathname;
 
-	const btn = useMemo(() => {
-		return <ShareButton type={type} onClick={onOpen} />;
-	}, [type]);
 	const heading = useMemo(() => {
 		return getHeading(type);
 	}, [type]);
 
-	const users = [
-		{
-			name: "sara ahimi",
-			email: "saraahimi@gmail.com",
-			accessType: "full",
-		},
-		{
-			name: "sara ahimi",
-			email: "saraahimi@gmail.com",
-			accessType: "full",
-		},
-		{
-			name: "sara ahimi",
-			email: "saraahimi@gmail.com",
-			accessType: "full",
-		},
-	];
+	useEffect(() => {
+		AXIOS.get(`/workspaces/${workspaceId}/projects/${projectId}/members/`).then(
+			(res) => {
+				setUsers(res.data);
+			}
+		);
+	}, []);
 
 	return (
 		<>
-			{btn}
+			<ShareButton type={type} onClick={onOpen} />
 			<Modal
 				onClose={onClose}
 				isOpen={isOpen}
@@ -133,13 +87,19 @@ const Share: FC<IShareProps> = ({ type }) => {
 					<ModalBody>
 						<Flex flexDir="column" gap="24px">
 							<InputGroup size="md" borderRadius="8px">
-								<Input type="email" placeholder="دعوت با ایمیل" />
+								<Input
+									type="email"
+									placeholder="دعوت با ایمیل"
+									value={email}
+									onChange={(e) => setEmail(e.target.value)}
+								/>
 								<InputRightAddon p="0">
 									<Button
 										colorScheme={accent}
 										fontWeight="normal"
 										borderStartRadius="0"
 										p="1rem 2rem"
+										onClick={() => sendInvitation(email, link)}
 									>
 										ارسال
 									</Button>
@@ -155,6 +115,11 @@ const Share: FC<IShareProps> = ({ type }) => {
 									fontWeight="500"
 									fontSize="12px"
 									p="0 1rem"
+									onClick={() =>
+										navigator.clipboard
+											.writeText(link)
+											.then(() => alert("لینک پروژه کپی شد"))
+									}
 								>
 									کپی لینک
 								</Button>
@@ -162,18 +127,19 @@ const Share: FC<IShareProps> = ({ type }) => {
 							<Flex flexDir="column" gap="sm">
 								<Text color="gray.500">اشتراک‌گذاشته شده با</Text>
 								<WorkSpaceOwner />
-								{users.map((user) => (
-									<HStack>
-										<Avatar
-											size="md"
-											name={user.name}
-											src="https://bit.ly/tioluwani-kolawole"
-										/>
-										<Text>{user.email}</Text>
-										<AccessMenu />
-										{type === "space" ? <ProjectMenu /> : null}
-									</HStack>
-								))}
+								{users &&
+									users.map(({ user }) => (
+										<HStack>
+											<Avatar
+												size="md"
+												name={user.username}
+												src="https://bit.ly/tioluwani-kolawole"
+											/>
+											<Text>{user.email}</Text>
+											<AccessMenu />
+											{type === "space" ? <ProjectMenu /> : null}
+										</HStack>
+									))}
 							</Flex>
 						</Flex>
 					</ModalBody>
