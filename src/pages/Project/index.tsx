@@ -111,11 +111,11 @@ const ProjectPage = () => {
 					<TabPanel>
 						<p>one!</p>
 					</TabPanel>
-					<TabPanel>
+					<TabPanel w="full" overflowX="auto">
 						<Board />
 					</TabPanel>
 					<TabPanel p="0" h="80dvh">
-						<Calendar />
+						<Calendar workspaceId={+workspaceId!} projectId={+projectId!} />
 					</TabPanel>
 				</TabPanels>
 			</Tabs>
