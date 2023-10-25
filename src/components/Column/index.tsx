@@ -18,17 +18,6 @@ const Column = ({ text, color, boardId }: IColumnProps): JSX.Element => {
 	const [activeProject, setActiveProject] = useState<any>();
 	const [array, setArray] = useState<any[]>([]);
 	const { workspaceId, projectId } = useParams();
-	const colors: TColorSchemes[] = [
-		"red",
-		"orange",
-		"yellow",
-		"green",
-		"teal",
-		"blue",
-		"cyan",
-		"purple",
-		"pink",
-	];
 	useEffect(() => {
 		getProject(workspaceId, projectId).then((res: any) => {
 			setActiveProject(res.data);

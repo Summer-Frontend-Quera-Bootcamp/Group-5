@@ -1,5 +1,6 @@
 import {
 	Button,
+	MenuItem,
 	Modal,
 	ModalBody,
 	ModalCloseButton,
@@ -12,14 +13,14 @@ import { useAppSelector } from "../../hooks";
 import { AddIcon, AddSquareIcon } from "../../icons";
 import NewTaskForm from "./NewTaskForm";
 
-const NewTaskModal: FC<{ place: "board" | "projectPage"; project: string }> = ({
-	place,
-	project,
-}) => {
+const NewTaskModal: FC<{
+	place: "board" | "projectPage" | "columnDots";
+	project: string;
+}> = ({ place, project }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const { accent } = useAppSelector((state) => state.theme);
 
-	const getBtn = (place: "board" | "projectPage") => {
+	const getBtn = (place: "board" | "projectPage" | "columnDots") => {
 		switch (place) {
 			case "board":
 				return (
@@ -46,6 +47,15 @@ const NewTaskModal: FC<{ place: "board" | "projectPage"; project: string }> = ({
 					>
 						تسک جدید
 					</Button>
+				);
+			case "columnDots":
+				return (
+					<MenuItem
+						icon={<AddIcon w="25px" h="25px" mr="-5px" />}
+						onClick={onOpen}
+					>
+						افزودن تسک
+					</MenuItem>
 				);
 		}
 	};
