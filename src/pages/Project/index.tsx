@@ -47,7 +47,7 @@ const ProjectPage = () => {
 		return () => {
 			dispatch(clearFilters());
 		};
-	}, []);
+	}, [projectId]);
 
 	return (
 		<>
