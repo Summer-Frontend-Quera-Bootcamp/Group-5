@@ -1,40 +1,46 @@
-import { Button, chakra } from "@chakra-ui/react";
-import { ChangeEvent, FC, useCallback, useRef } from "react";
+import {
+	Button,
+	Modal,
+	ModalBody,
+	ModalCloseButton,
+	ModalContent,
+	ModalHeader,
+	ModalOverlay,
+	useDisclosure,
+} from "@chakra-ui/react";
+import { Dispatch, FC, SetStateAction, useCallback } from "react";
+import { Calendar } from "../../..";
 import { taskDetailButtonStyle } from "../style";
 import { CalendarIcon } from "../../../../icons";
 
-const CustomDateInput: FC<{ onChange: (file: any) => void }> = ({
-	onChange,
-}) => {
-	const handleClick = useCallback(() => {
-		if (hiddenFileInput.current) {
-			hiddenFileInput.current.click();
-			hiddenFileInput.current.focus();
-		}
-	}, []);
+interface ICustomDateInputProps {
+	handleClick: Dispatch<SetStateAction<string>>;
+}
 
-	const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-		if (e.target.files) {
-			onChange(e.target.files[0]);
-		}
-	}, []);
-
-	const hiddenFileInput = useRef<HTMLInputElement>(null);
+const CustomDateInput: FC<ICustomDateInputProps> = ({ handleClick }) => {
+	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	return (
 		<>
-			<chakra.input
-				ref={hiddenFileInput}
-				type="date"
-				onChange={handleChange}
-				hidden
-			/>
-			<Button sx={taskDetailButtonStyle} onClick={handleClick}>
+			<Button sx={taskDetailButtonStyle} onClick={onOpen}>
 				<CalendarIcon w="30px" h="30px" />
 			</Button>
+			<Modal isOpen={isOpen} onClose={onClose} size="4xl" isCentered>
+				<ModalOverlay />
+				<ModalContent>
+					<ModalBody>
+						<Calendar
+							workspaceId={12}
+							projectId={13}
+							type="modal"
+							handleDateClick={handleClick}
+							onParentClose={onClose}
+						/>
+					</ModalBody>
+				</ModalContent>
+			</Modal>
 		</>
 	);
 };
 
 export default CustomDateInput;
-

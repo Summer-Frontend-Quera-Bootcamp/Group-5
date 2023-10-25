@@ -21,6 +21,7 @@ const NewTaskForm: FC<INewTaskFormProps> = ({ project }) => {
 	const [attachment, setAttachment] = useState();
 	const [cover, setCover] = useState();
 	const [priority, setPriority] = useState<TPriority>("پایین");
+	const [dateInfo, setDateInfo] = useState<string>("");
 	const { register, handleSubmit } = useForm();
 
 	const handleFileChange = (file: any) => {
@@ -51,6 +52,7 @@ const NewTaskForm: FC<INewTaskFormProps> = ({ project }) => {
 			attachment: JSON.stringify(attachment),
 			thumbnail: JSON.stringify(cover),
 			order: Math.floor(Math.random() * 10),
+			deadline: dateInfo,
 		};
 
 		console.log(JSON.stringify(reqBody));
@@ -114,7 +116,7 @@ const NewTaskForm: FC<INewTaskFormProps> = ({ project }) => {
 			<HStack w="full">
 				<HStack gap="md">
 					<PriorityList priority={priority} onChange={setPriority} />
-					<CustomDateInput onChange={handleCoverChange} />
+					<CustomDateInput handleClick={setDateInfo} />
 					<BookmarkInput />
 				</HStack>
 				<Button
