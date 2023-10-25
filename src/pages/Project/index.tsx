@@ -87,7 +87,11 @@ const ProjectPage = () => {
 						تقویم
 					</Tab>
 					<Divider />
-					<Share type="project" />
+					<Share
+						type="project"
+						workspaceId={+workspaceId!}
+						projectId={+projectId!}
+					/>
 				</TabList>
 				<TabIndicator sx={tabIndicatorStyle} bg={highlight} />
 				{/* todo: create filters option */}
