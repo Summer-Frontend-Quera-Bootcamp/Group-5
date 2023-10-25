@@ -59,7 +59,6 @@ const PriorityList: React.FC<IPriorityListProps> = ({ priority, onChange }) => {
 				style={{
 					maxHeight: "240px",
 					overflowY: "auto",
-					backgroundColor: "white",
 					borderRadius: "8px",
 					boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.16)",
 				}}

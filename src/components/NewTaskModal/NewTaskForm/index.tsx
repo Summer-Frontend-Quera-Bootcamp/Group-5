@@ -131,4 +131,3 @@ const NewTaskForm: FC<INewTaskFormProps> = ({ project }) => {
 };
 
 export default NewTaskForm;
-

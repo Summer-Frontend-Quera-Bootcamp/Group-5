@@ -1,12 +1,12 @@
 import {
-  Button,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Menu,
-  MenuButton,
-  MenuList,
-  chakra,
+	Button,
+	Input,
+	InputGroup,
+	InputLeftElement,
+	Menu,
+	MenuButton,
+	MenuList,
+	chakra,
 } from "@chakra-ui/react";
 import { FC, FormEventHandler, useState } from "react";
 import { BookmarkIcon, SearchIcon } from "../../../../icons";
@@ -58,4 +58,3 @@ const BookmarkInput: FC<IBookmarkInputProps> = ({}) => {
 };
 
 export default BookmarkInput;
-

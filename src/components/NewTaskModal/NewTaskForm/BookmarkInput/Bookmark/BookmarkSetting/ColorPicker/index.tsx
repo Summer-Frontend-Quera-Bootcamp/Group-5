@@ -1,4 +1,5 @@
 import {
+	Button,
 	HStack,
 	Popover,
 	PopoverArrow,
@@ -29,10 +30,18 @@ const ColorPicker: FC<{}> = () => {
 	return (
 		<Popover placement="left">
 			<PopoverTrigger>
-				<HStack cursor="pointer" p="0.5rem 0.75rem" _hover={{ bg: "gray.100" }}>
+				<Button
+					variant="ghost"
+					justifyContent="start"
+					fontWeight="normal"
+					w="full"
+					borderRadius="0"
+					gap="xs"
+					p="0.25rem 0.75rem"
+				>
 					<ColorPaletteIcon w="14px" h="14px" />
 					<Text>ویرایش رنگ</Text>
-				</HStack>
+				</Button>
 			</PopoverTrigger>
 			<PopoverContent py="md" w="200px">
 				<PopoverArrow />
@@ -57,4 +66,3 @@ const ColorPicker: FC<{}> = () => {
 };
 
 export default ColorPicker;
-

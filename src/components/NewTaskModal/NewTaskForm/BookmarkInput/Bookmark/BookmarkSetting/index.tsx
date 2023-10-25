@@ -15,7 +15,7 @@ const BookmarkSetting: FC = () => {
 	return (
 		<Menu>
 			<MenuButton as={Button} variant="unstyled">
-				<DotsIcon w="20px" h="20px" color="black" />
+				<DotsIcon w="20px" h="20px" />
 			</MenuButton>
 			<MenuList>
 				<MenuItem>
@@ -35,4 +35,3 @@ const BookmarkSetting: FC = () => {
 };
 
 export default BookmarkSetting;
-
