@@ -119,7 +119,11 @@ const ProjectPage = () => {
 						<Board />
 					</TabPanel>
 					<TabPanel p="0" h="80dvh">
-						<Calendar workspaceId={+workspaceId!} projectId={+projectId!} />
+						<Calendar
+							workspaceId={+workspaceId!}
+							projectId={+projectId!}
+							type="page"
+						/>
 					</TabPanel>
 				</TabPanels>
 			</Tabs>
