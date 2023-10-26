@@ -37,7 +37,7 @@ const Divider = () => {
 };
 
 const ProjectPage = () => {
-	const [activePage, setActivePage] = useState<boolean[]>([true, false, false]);
+	const [activePage, setActivePage] = useState<boolean[]>([false, true, false]);
 	const [activeProject, setActiveProject] = useState<any>();
 	const dispatch = useAppDispatch();
 	const { highlight } = useAppSelector((state) => state.theme);
@@ -55,7 +55,7 @@ const ProjectPage = () => {
 
 	return (
 		<>
-			<Tabs position="relative" variant="unstyled" isLazy>
+			<Tabs position="relative" variant="unstyled" isLazy defaultIndex={1}>
 				<TabList sx={tabListStyle}>
 					<Heading as="h3" fontSize="heading-xs">
 						{activeProject?.name}
