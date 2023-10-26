@@ -135,6 +135,12 @@ const ProjectPage = () => {
 									priority: <FlagIcon />,
 									description: <JustifyRightIcon />,
 								},
+								{
+									avatar: "path/to/avatar2",
+									deadline: new Date("2023.05.02"),
+									priority: <FlagIcon />,
+									description: <JustifyRightIcon />,
+								},
 							]}
 							boxColor="#FF6735"
 							title="In Progress"

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import Box from "../BoxColor";
+import BoxColor from "../BoxColor";
 import Dropdownlist from "../../icons/DropDownlist";
 import moment from "moment-jalaali";
 import "moment/locale/fa";
+import { Box, Heading, Img, Text } from "@chakra-ui/react";
 
 interface ListItem {
 	avatar: string;
@@ -32,53 +33,54 @@ const List: React.FC<ListProps> = ({
 		setShowList(!showList);
 	};
 
-	const listItemContainerStyle: React.CSSProperties = {
+	const listItemContainerStyle = {
 		display: "flex",
-		marginBottom: "20px",
-		position: "sticky",
-		marginRight: "10px",
-		width: "100%",
+		alignItem: "center",
+		mb: "20px",
+		pos: "sticky",
+		ms: "10px",
+		w: "100%",
 	};
 
-	const listItemStyle: React.CSSProperties = {
-		marginLeft: "10px",
+	const listItemStyle = {
+		me: "10px",
 		whiteSpace: "nowrap",
-		flexGrow: 2, // Add this property to make all list items take up equal space
+		flexGrow: 2,
 		minWidth: "150px",
 	};
 
-	const listItemMarginTop: React.CSSProperties = {
-		marginBottom: "50px",
-		marginTop: "50px",
+	const listItemMarginTop = {
+		mb: "50px",
+		mt: "50px",
 	};
 
 	const persianNumber = new Intl.NumberFormat("fa-IR");
 
 	return (
-		<div>
-			<div style={listItemContainerStyle}>
-				<div style={{ marginLeft: "10px" }}></div>
-
-				<div style={listItemStyle}>
-					<div
-						style={{
+		<Box>
+			<Box sx={listItemContainerStyle}>
+				<Box sx={{ marginLeft: "10px" }}></Box>
+				<Box sx={listItemStyle}>
+					<Box
+						sx={{
 							display: "flex",
 							alignItems: "center",
-							marginLeft: "50px",
+							me: "50px",
 						}}
 					>
-						<Dropdownlist
-							w="40px"
-							h="40px"
-							mt="10px"
-							ml="8px"
-							onClick={toggleList}
-						/>
-						<Box width={width} height={height} color={boxColor} marginRight={0}>
-							{title}
+						<Box onClick={toggleList}>
+							<Dropdownlist w="40px" h="40px" mt="10px" ml="8px" />
 						</Box>
-						<p
-							style={{
+						<BoxColor
+							width={width}
+							height={height}
+							color={boxColor}
+							marginRight={0}
+						>
+							{title}
+						</BoxColor>
+						<Text
+							sx={{
 								marginRight: "10px",
 								marginLeft: "100px",
 								whiteSpace: "nowrap",
@@ -88,85 +90,82 @@ const List: React.FC<ListProps> = ({
 							}}
 						>
 							{persianNumber.format(listData.length)} تسک
-						</p>
-					</div>
+						</Text>
+					</Box>
 					{showList &&
 						listData.map((item, index) => (
-							<div key={index} style={listItemMarginTop}>
-								<div style={{ display: "flex", alignItems: "center" }}>
-									<Box
+							<Box key={index} sx={listItemMarginTop}>
+								<Box sx={{ display: "flex", alignItems: "center" }}>
+									<BoxColor
 										width={15}
 										height={15}
 										color={boxColor}
 										marginRight={55}
 									/>
-									<p
-										style={{
+									<Text
+										sx={{
 											whiteSpace: "nowrap",
 											marginLeft: "5px",
 											marginRight: "5px",
 										}}
 									>
 										این یک تیتر برای این تسک است.
-									</p>
-								</div>
-							</div>
+									</Text>
+								</Box>
+							</Box>
 						))}
-				</div>
-				<div style={listItemStyle}>
-					<h2>
-						<b>اعضا</b>
-					</h2>
+				</Box>
+				<Box sx={listItemStyle}>
+					<Heading as="h2">
+						<Text fontSize="16px">اعضا</Text>
+					</Heading>
 					{showList &&
 						listData.map((item, index) => (
-							<div key={index} style={listItemMarginTop}>
-								<img src={item.avatar} alt="Avatar" />
-							</div>
+							<Box key={index} sx={listItemMarginTop}>
+								<Img src={item.avatar} alt="Avatar" />
+							</Box>
 						))}
-				</div>
-
-				<div style={listItemStyle}>
-					<h2>
-						<b>ددلاین</b>
-					</h2>
+				</Box>
+				<Box sx={listItemStyle}>
+					<Heading as="h2">
+						<Text fontSize="16px">ددلاین</Text>
+					</Heading>
 					{showList &&
 						listData.map((item, index) => (
-							<div
+							<Box
 								key={index}
-								style={{ ...listItemMarginTop, marginBottom: "10px" }}
+								sx={{ ...listItemMarginTop, marginBottom: "10px" }}
 							>
-								<p style={{ whiteSpace: "nowrap" }}>
+								<Text sx={{ whiteSpace: "nowrap" }}>
 									{moment(item.deadline).locale("fa").format("jD jMMMM")}
-								</p>
-							</div>
+								</Text>
+							</Box>
 						))}
-				</div>
-
-				<div style={listItemStyle}>
-					<h2>
-						<b>اولویت</b>
-					</h2>
+				</Box>
+				<Box sx={listItemStyle}>
+					<Heading as="h2">
+						<Text fontSize="16px">اولویت</Text>
+					</Heading>
 					{showList &&
 						listData.map((item, index) => (
-							<div key={index} style={listItemMarginTop}>
-								<p>{item.priority}</p>
-							</div>
+							<Box key={index} sx={listItemMarginTop}>
+								<Text>{item.priority}</Text>
+							</Box>
 						))}
-				</div>
-
-				<div style={listItemStyle}>
-					<h2>
-						<b>توضیحات</b>
-					</h2>
+				</Box>
+				<Box sx={listItemStyle}>
+					<Heading as="h2">
+						<Text fontSize="16px">توضیحات</Text>
+					</Heading>
 					{showList &&
 						listData.map((item, index) => (
-							<div key={index} style={listItemMarginTop}>
-								<p>{item.description}</p>
-							</div>
+							<Box key={index} sx={listItemMarginTop}>
+								<Text>{item.description}</Text>
+							</Box>
 						))}
-				</div>
-			</div>
-		</div>
+				</Box>
+			</Box>
+		</Box>
 	);
 };
 
