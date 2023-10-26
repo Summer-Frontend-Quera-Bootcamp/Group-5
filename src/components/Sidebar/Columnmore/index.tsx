@@ -96,6 +96,7 @@ const ColumnMore = ({
 										<NewWorkSpaceContent
 											type="edit"
 											workSpaseKey={workSpaseKey}
+											onClose={onSecondModalClose}
 										/>
 									</ModalBody>
 								</ModalContent>
