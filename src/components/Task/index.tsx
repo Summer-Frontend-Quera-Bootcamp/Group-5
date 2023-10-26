@@ -86,7 +86,7 @@ const Task = ({
 					<Text display="flex" flexDir="row" gap="1">
 						<FlagIcon color={flagColor} w="20px" h="20px" />
 						{moment(deadline).locale("fa").format("DD")}
-						{moment(deadline).locale("fa").format("MMMM")} - فردا
+						{moment(deadline).locale("fa").format("MMMM")}
 					</Text>
 
 					<Flex dir="row" gap="1">
