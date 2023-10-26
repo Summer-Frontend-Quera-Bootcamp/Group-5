@@ -39,7 +39,7 @@ const Sidebar = (): JSX.Element => {
 		navigate("/");
 	};
 	return (
-		<Flex flexDir="column" h="full">
+		<Flex flexDir="column" h="full" zIndex="100">
 			<Heading sx={headingStyle}>کوئرا تسک منیجر</Heading>
 
 			<Box gap="50px" overflowY="auto" overflowX="hidden">

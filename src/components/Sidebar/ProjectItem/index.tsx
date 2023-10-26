@@ -3,6 +3,7 @@ import { NavLink as ReactRouterLink } from "react-router-dom";
 import { Link as ChakraLink } from "@chakra-ui/react";
 import ColumnMore from "../Columnmore";
 import { useState } from "react";
+import { useAppSelector } from "../../../hooks";
 
 interface IProjectItemProp {
 	content: string;
@@ -14,45 +15,28 @@ const ProjectItem = ({
 	projectKey,
 	workSpaceKey,
 }: IProjectItemProp): JSX.Element => {
-	const [focus, setFocus] = useState(false);
-	const handleFocus = () => {
-		setFocus(true);
-	};
-	const handleBlur = () => {
-		setFocus(false);
-	};
-
+	const { highlight } = useAppSelector((state) => state.theme);
 	return (
-		<>
-			<Box
-				bg={focus ? "teal.50" : "FAFAFA"}
-				borderRadius="4px"
-				w="246px"
-				p="4px 6px"
-				color={focus ? "black" : "white"}
-				onFocus={handleFocus}
-				onBlur={handleBlur}
+		<Flex borderRadius="4px" w="full">
+			<ChakraLink
+				as={ReactRouterLink}
+				to={`workspaces/${workSpaceKey}/projects/${projectKey}`}
+				lineHeight="27.64px"
+				ms="25px"
+				me="5px"
+				flexGrow="1"
+				_activeLink={{ color: highlight }}
 			>
-				<Flex>
-					<ChakraLink
-						as={ReactRouterLink}
-						to={`workspaces/${workSpaceKey}/projects/${projectKey}`}
-						lineHeight="27.64px"
-						mr="25px"
-					>
-						{content}
-					</ChakraLink>
-					<Spacer />
-					<Box as="button" ml="10px" w="24px" h="24px">
-						<ColumnMore
-							type="projectitem"
-							workSpaseKey={workSpaceKey}
-							projectKey={projectKey}
-						/>
-					</Box>
-				</Flex>
+				{content}
+			</ChakraLink>
+			<Box as="button" ml="10px" w="24px" h="24px">
+				<ColumnMore
+					type="projectitem"
+					workSpaseKey={workSpaceKey}
+					projectKey={projectKey}
+				/>
 			</Box>
-		</>
+		</Flex>
 	);
 };
 
