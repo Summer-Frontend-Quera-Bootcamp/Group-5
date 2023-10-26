@@ -27,3 +27,7 @@ export const getAllTasks = (
 	AXIOS.get(
 		`/workspaces/${workSpaceKey}/projects/${projectKey}/boards/${boardKey}/tasks/`
 	);
+
+export const sendInvitation = (email: string, url: string) => {
+	AXIOS.post("/workspaces/subscriptions", { email, url });
+};
