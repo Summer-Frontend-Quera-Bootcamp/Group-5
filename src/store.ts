@@ -3,6 +3,7 @@ import themeReducer from "./features/themeSlice";
 import filterReducer from "./features/filterSlice";
 import userReducer from "./features/userSlice";
 import workspaceReducer from "./features/workspaceSlice";
+import projestReducer from "./features/projectSlice";
 
 const store = configureStore({
 	reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
 		filters: filterReducer,
 		user: userReducer,
 		workspaces: workspaceReducer,
+		projects: projestReducer,
 	},
 });
 

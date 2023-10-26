@@ -21,6 +21,7 @@ const WorkSpaceDetails: FC<IWorkSpaceDetailsProps> = ({
 	setModalPage,
 	type,
 	workSpaseKey,
+	onClose,
 }) => {
 	const { accent } = useAppSelector((state) => state.theme);
 	const dispatch = useAppDispatch();
@@ -36,6 +37,7 @@ const WorkSpaceDetails: FC<IWorkSpaceDetailsProps> = ({
 				await AXIOS.patch(`/workspaces/${workSpaseKey}/`, data).then(() =>
 					dispatch(setWorkspaceItems())
 				);
+				onClose();
 			} catch (error) {
 				console.error(error);
 			}
@@ -44,6 +46,7 @@ const WorkSpaceDetails: FC<IWorkSpaceDetailsProps> = ({
 				await AXIOS.post("/workspaces/", data).then(() =>
 					dispatch(setWorkspaceItems())
 				);
+				onClose();
 			} catch (error) {
 				console.error(error);
 			}

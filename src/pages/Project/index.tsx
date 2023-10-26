@@ -47,7 +47,7 @@ const ProjectPage = () => {
 		return () => {
 			dispatch(clearFilters());
 		};
-	}, []);
+	}, [projectId]);
 
 	return (
 		<>
@@ -87,7 +87,11 @@ const ProjectPage = () => {
 						تقویم
 					</Tab>
 					<Divider />
-					<Share type="project" />
+					<Share
+						type="project"
+						workspaceId={+workspaceId!}
+						projectId={+projectId!}
+					/>
 				</TabList>
 				<TabIndicator sx={tabIndicatorStyle} bg={highlight} />
 				{/* todo: create filters option */}
@@ -152,11 +156,15 @@ const ProjectPage = () => {
 
 
 					</TabPanel>
-					<TabPanel>
+					<TabPanel w="full" overflowX="auto">
 						<Board />
 					</TabPanel>
 					<TabPanel p="0" h="80dvh">
-						<Calendar workspaceId={0} projectId={0} />
+						<Calendar
+							workspaceId={+workspaceId!}
+							projectId={+projectId!}
+							type="page"
+						/>
 					</TabPanel>
 				</TabPanels>
 			</Tabs>

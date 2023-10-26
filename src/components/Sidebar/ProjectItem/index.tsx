@@ -2,6 +2,7 @@ import { Box, Flex, Spacer } from "@chakra-ui/react";
 import { NavLink as ReactRouterLink } from "react-router-dom";
 import { Link as ChakraLink } from "@chakra-ui/react";
 import ColumnMore from "../Columnmore";
+import { useState } from "react";
 
 interface IProjectItemProp {
 	content: string;
@@ -13,19 +14,24 @@ const ProjectItem = ({
 	projectKey,
 	workSpaceKey,
 }: IProjectItemProp): JSX.Element => {
+	const [focus, setFocus] = useState(false);
+	const handleFocus = () => {
+		setFocus(true);
+	};
+	const handleBlur = () => {
+		setFocus(false);
+	};
+
 	return (
 		<>
 			<Box
-				bg="FAFAFA"
+				bg={focus ? "teal.50" : "FAFAFA"}
 				borderRadius="4px"
 				w="246px"
 				p="4px 6px"
-				_selected={{
-					backgroundColor: "#E9F9FF",
-					top: "124px",
-					left: "32px",
-					gap: "8px",
-				}}
+				color={focus ? "black" : "white"}
+				onFocus={handleFocus}
+				onBlur={handleBlur}
 			>
 				<Flex>
 					<ChakraLink

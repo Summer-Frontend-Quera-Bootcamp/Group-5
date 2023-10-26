@@ -1,28 +1,26 @@
 import { AXIOS } from "../../../utils/functions/AXIOS";
 
-interface IComment{
-           
-    id: number;
-    author: number;
-    attachment: string;
-    text: string;
-
-
+interface IComment {
+	id: number;
+	author: number;
+	attachment: string;
+	text: string;
 }
 
-export const commentAPI = ({
-         author,attachment,text
-}: IComment) =>
+export const commentAPI = ({ author, attachment, text }: IComment) =>
 	AXIOS.post(
 		`/workspaces/{workspace_id}/projects/{project_id}/boards/{board_id}/tasks/{task_id}/comments/`,
 		{
 			author,
 			attachment,
-			text
+			text,
 		}
 	);
 
-export const getAllWorkSpaces = () => AXIOS.get(`/workspaces/{workspace_id}/projects/{project_id}/boards/{board_id}/tasks/{task_id}/comments/`);
+export const getAllWorkSpaces = () =>
+	AXIOS.get(
+		`/workspaces/{workspace_id}/projects/{project_id}/boards/{board_id}/tasks/{task_id}/comments/`
+	);
 
 export const deletecomment = (
 	board_id: string,
@@ -31,5 +29,5 @@ export const deletecomment = (
 	task_id: string
 ) =>
 	AXIOS.delete(
-		`/workspaces/{workspace_id}/projects/{project_id}/boards/{board_id}/tasks/{task_id}/assignee/`
+		`/workspaces/${workspace_id}/projects/${project_id}/boards/${board_id}/tasks/${task_id}/assignee/`
 	);

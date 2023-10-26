@@ -57,9 +57,6 @@ const Settings: FC = () => {
 					</RadioGroup>
 				</FormControl>
 				<DarkModeSwitch />
-				<Button colorScheme={accent} w="350px" mt="lg">
-					ثبت تغییرات
-				</Button>
 			</chakra.form>
 		</VStack>
 	);

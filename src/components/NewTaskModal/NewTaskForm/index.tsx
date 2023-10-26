@@ -15,12 +15,21 @@ import BookmarkInput from "./BookmarkInput";
 import CustomDateInput from "./CustomDateInput";
 import CustomFileInput from "./CustomFileInput";
 import PriorityList from "./PriorityList";
+import { AXIOS } from "../../../utils/functions/AXIOS";
+import { useParams } from "react-router-dom";
 
-const NewTaskForm: FC<INewTaskFormProps> = ({ project }) => {
+const NewTaskForm: FC<INewTaskFormProps> = ({
+	project,
+	boardId,
+	handleChange,
+	onClose,
+}) => {
 	const { accent } = useAppSelector((state) => state.theme);
-	const [attachment, setAttachment] = useState();
-	const [cover, setCover] = useState();
+	const [attachment, setAttachment] = useState("");
+	const [cover, setCover] = useState("");
 	const [priority, setPriority] = useState<TPriority>("پایین");
+	const [dateInfo, setDateInfo] = useState<string>("");
+	const { workspaceId, projectId } = useParams();
 	const { register, handleSubmit } = useForm();
 
 	const handleFileChange = (file: any) => {
@@ -48,12 +57,32 @@ const NewTaskForm: FC<INewTaskFormProps> = ({ project }) => {
 			name: data.taskTitle,
 			description: data.taskDescription,
 			priority: getPriority(priority),
-			attachment: JSON.stringify(attachment),
-			thumbnail: JSON.stringify(cover),
-			order: Math.floor(Math.random() * 10),
+			attachment: attachment,
+			thumbnail: cover,
+			order: 5,
+			deadline: dateInfo,
 		};
 
-		console.log(JSON.stringify(reqBody));
+		let formData = new FormData();
+
+		for (const x in reqBody) {
+			formData.append(x, reqBody[x as keyof typeof reqBody]);
+		}
+
+		AXIOS.post(
+			`/workspaces/${workspaceId}/projects/${projectId}/boards/${boardId}/tasks/`,
+			formData
+		)
+			.then((res) => {
+				console.log(res.data);
+				handleChange((prev: any[]) => {
+					const copy = structuredClone(prev);
+					copy.push(res.data);
+					return copy;
+				});
+				onClose();
+			})
+			.catch((err) => console.error(err));
 	};
 
 	return (
@@ -63,6 +92,7 @@ const NewTaskForm: FC<INewTaskFormProps> = ({ project }) => {
 			alignItems="start"
 			gap="lg"
 			onSubmit={handleSubmit(onSubmit)}
+			encType="multipart/form-data"
 		>
 			<HStack gap="xs">
 				<Box w="16px" h="16px" borderRadius="2px" bg="gray-secondary"></Box>
@@ -114,7 +144,7 @@ const NewTaskForm: FC<INewTaskFormProps> = ({ project }) => {
 			<HStack w="full">
 				<HStack gap="md">
 					<PriorityList priority={priority} onChange={setPriority} />
-					<CustomDateInput onChange={handleCoverChange} />
+					<CustomDateInput handleClick={setDateInfo} />
 					<BookmarkInput />
 				</HStack>
 				<Button
@@ -131,4 +161,3 @@ const NewTaskForm: FC<INewTaskFormProps> = ({ project }) => {
 };
 
 export default NewTaskForm;
-

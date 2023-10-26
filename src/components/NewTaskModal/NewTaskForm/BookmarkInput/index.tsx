@@ -1,12 +1,13 @@
 import {
-  Button,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Menu,
-  MenuButton,
-  MenuList,
-  chakra,
+	Box,
+	Button,
+	Input,
+	InputGroup,
+	InputLeftElement,
+	Menu,
+	MenuButton,
+	MenuList,
+	chakra,
 } from "@chakra-ui/react";
 import { FC, FormEventHandler, useState } from "react";
 import { BookmarkIcon, SearchIcon } from "../../../../icons";
@@ -19,19 +20,13 @@ const BookmarkInput: FC<IBookmarkInputProps> = ({}) => {
 	const [searchValue, setSearchValue] = useState("");
 	const tags = ["درس", "کار", "پروژه"];
 
-	const handleTagSubmit: FormEventHandler<HTMLFormElement> = (e) => {
-		e.stopPropagation();
-		e.preventDefault();
-		console.log(e.currentTarget.tag);
-	};
-
 	return (
 		<Menu>
 			<MenuButton as={Button} sx={taskDetailButtonStyle}>
 				<BookmarkIcon w="32px" h="32px" />
 			</MenuButton>
 			<MenuList pt="0">
-				<chakra.form onSubmit={handleTagSubmit}>
+				<Box>
 					<InputGroup>
 						<InputLeftElement pointerEvents="none">
 							<SearchIcon w="24px" h="24px" />
@@ -45,12 +40,12 @@ const BookmarkInput: FC<IBookmarkInputProps> = ({}) => {
 							name="tag"
 						/>
 					</InputGroup>
-				</chakra.form>
+				</Box>
 				{tags &&
 					tags
 						.filter((item) => (searchValue ? item.includes(searchValue) : item))
 						.map((tag) => {
-							return <Bookmark option={tag} />;
+							return <Bookmark key={tag} option={tag} />;
 						})}
 			</MenuList>
 		</Menu>
@@ -58,4 +53,3 @@ const BookmarkInput: FC<IBookmarkInputProps> = ({}) => {
 };
 
 export default BookmarkInput;
-

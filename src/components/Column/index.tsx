@@ -18,25 +18,15 @@ const Column = ({ text, color, boardId }: IColumnProps): JSX.Element => {
 	const [activeProject, setActiveProject] = useState<any>();
 	const [array, setArray] = useState<any[]>([]);
 	const { workspaceId, projectId } = useParams();
-	const colors: TColorSchemes[] = [
-		"red",
-		"orange",
-		"yellow",
-		"green",
-		"teal",
-		"blue",
-		"cyan",
-		"purple",
-		"pink",
-	];
 	useEffect(() => {
-		getProject(workspaceId, projectId).then((res: any) => {
+		getProject(+workspaceId!, +projectId!).then((res: any) => {
 			setActiveProject(res.data);
 		});
-		getAllTasks(workspaceId, projectId, boardId).then((res: any) =>
-			setArray(res.data)
-		);
-	}, [array]);
+		getAllTasks(+workspaceId!, +projectId!, boardId).then((res: any) => {
+			setArray(res.data);
+		});
+		console.log(array);
+	}, []);
 
 	const handleMouseEnter = () => {
 		setDisplay(true);
@@ -85,20 +75,26 @@ const Column = ({ text, color, boardId }: IColumnProps): JSX.Element => {
 					</Box>
 				</Text>
 				<Box w="48px" h="24px" gap="4px" display={display ? "flex" : "none"}>
-					<DotsMenu boardId={boardId} />
+					<DotsMenu boardId={boardId} project={activeProject?.name} />
 					<Tooltip hasArrow label="افزودن تسک" placement="top" ml={1}>
-						<NewTaskModal place="board" project={activeProject?.name} />
+						<NewTaskModal
+							place="board"
+							project={activeProject?.name}
+							boardId={boardId}
+							handleChange={setArray}
+						/>
 					</Tooltip>
 				</Box>
 			</Box>
 			{array?.map((x) => (
 				<Task
-					projectName={activeProject.name}
+					projectName={activeProject?.name}
 					userName={x.members}
 					userSrc={x.thumbnail}
 					img={x.attachment}
 					taskName={x.name}
 					deadline={x.deadline}
+					priority={x.priority}
 				/>
 			))}
 		</Box>

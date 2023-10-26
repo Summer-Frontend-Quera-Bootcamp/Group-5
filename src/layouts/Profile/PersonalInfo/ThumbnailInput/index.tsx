@@ -45,4 +45,3 @@ const ThumbnailInput: FC<IThumbnailInputProps> = ({ onChange }) => {
 };
 
 export default ThumbnailInput;
-

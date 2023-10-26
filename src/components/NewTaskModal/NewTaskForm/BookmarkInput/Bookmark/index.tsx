@@ -12,4 +12,3 @@ const Bookmark: FC<{ option: string }> = ({ option }) => {
 };
 
 export default Bookmark;
-

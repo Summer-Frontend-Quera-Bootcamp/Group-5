@@ -20,6 +20,7 @@ interface ITaskProps {
 	userSrc: string;
 	taskName: string;
 	deadline: string;
+	priority: number;
 }
 
 const Task = ({
@@ -29,10 +30,27 @@ const Task = ({
 	userSrc,
 	taskName,
 	deadline,
+	priority,
 }: ITaskProps): JSX.Element => {
 	const [display, setDisplay] = useState<boolean>(false);
+	let flagColor = "";
+	switch (priority) {
+		case 1:
+			flagColor = "red.500";
+			break;
+		case 2:
+			flagColor = "yellow.400";
+			break;
+		case 3:
+			flagColor = "cyan.500";
+			break;
+		case 4:
+			flagColor = "gray.400";
+			break;
+	}
 	const handleMouseMove = () => {
 		setDisplay(!display);
+		console.log(deadline);
 	};
 	return (
 		<Card
@@ -50,29 +68,24 @@ const Task = ({
 					<Image src={img} borderRadius="4px" h="134px" alt="تصویر تسک" />
 				)}
 				<Stack spacing="5">
-					<Box h="51px" display="flex" flexDir="row">
+					<Box h="51px" display="flex" justifyContent="space-between">
 						<Flex flexDir="column">
 							<Text fontSize="14px" color="gray.500" align="right">
 								{projectName}
 							</Text>
 
-							<Text
-								fontSize="16px"
-								fontWeight="800"
-								mt="auto"
-								border="1px"
-								borderColor="gray.200"
-							>
+							<Text fontSize="16px" fontWeight="800" mt="auto">
 								{taskName}
 							</Text>
 						</Flex>
-						<Avatar size="sm" name={userName} src={userSrc} />
+						<Avatar size="sm" name={`amir menshad`} src={userSrc} />
 					</Box>
 
 					<Text display="flex" flexDir="row" gap="1">
-						<FlagIcon color="red" w="20px" h="20px" />
-						{moment().locale("fa").format("DD")}
-						{moment().locale("fa").format("MMMM")} - فردا
+						<FlagIcon color={flagColor} w="20px" h="20px" />
+						{moment(deadline).locale("fa").format("DD")}
+						{moment(deadline).locale("fa").format("MMMM")} - فردا
+						{/* {moment(deadline).locale("fa").format("YYYY/MM/DD")} */}
 					</Text>
 
 					<Flex dir="row" gap="1">

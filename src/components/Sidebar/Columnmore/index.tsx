@@ -11,7 +11,7 @@ import {
 	ModalCloseButton,
 	ModalBody,
 } from "@chakra-ui/react";
-import { ColorPaletteIcon, DotsIcon } from "../../../icons";
+import { DotsIcon } from "../../../icons";
 import { AddIcon, LinkIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import { Share } from "../..";
 import ModalItem from "../../NewProjectModal/modalItem";
@@ -109,11 +109,6 @@ const ColumnMore = ({
 							/>
 						)}
 					</Box>
-					{/* {type === "workspace" && (
-						<MenuItem icon={<ColorPaletteIcon w="20px" h="20px" />}>
-							ویرایش رنگ
-						</MenuItem>
-					)} */}
 					<MenuItem icon={<LinkIcon />}>کپی لینک</MenuItem>
 					{type === "workspace" ? (
 						<MenuItem
@@ -133,7 +128,7 @@ const ColumnMore = ({
 						</MenuItem>
 					)}
 				</Box>
-				<Share type="space" />
+				<Share type="space" projectId={projectKey} workspaceId={workSpaseKey} />
 			</MenuList>
 		</Menu>
 	);
