@@ -80,6 +80,7 @@ const NewTaskModal: FC<{
 							project={project}
 							boardId={boardId!}
 							handleChange={handleChange}
+							onClose={onClose}
 						/>
 					</ModalBody>
 				</ModalContent>

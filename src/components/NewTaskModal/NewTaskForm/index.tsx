@@ -22,6 +22,7 @@ const NewTaskForm: FC<INewTaskFormProps> = ({
 	project,
 	boardId,
 	handleChange,
+	onClose,
 }) => {
 	const { accent } = useAppSelector((state) => state.theme);
 	const [attachment, setAttachment] = useState("");
@@ -79,6 +80,7 @@ const NewTaskForm: FC<INewTaskFormProps> = ({
 					copy.push(res.data);
 					return copy;
 				});
+				onClose();
 			})
 			.catch((err) => console.error(err));
 	};
