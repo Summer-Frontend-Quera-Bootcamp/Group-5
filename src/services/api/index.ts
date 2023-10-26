@@ -11,14 +11,14 @@ export const loginAPI = ({ username, password }: ILoginProp) =>
 		password,
 	});
 
-export const getAllWorkSpaces: any = () => AXIOS.get("/workspaces/");
-export const getAllprojects: any = (workspaceId: number) =>
+export const getAllWorkSpaces = () => AXIOS.get("/workspaces/");
+export const getAllprojects = (workspaceId: number) =>
 	AXIOS.get(`/workspaces/${workspaceId}/projects/`);
 
-export const getProject: any = (workSpaceKey: number, projectKey: number) =>
+export const getProject = (workSpaceKey: number, projectKey: number) =>
 	AXIOS.get(`/workspaces/${workSpaceKey}/projects/${projectKey}/`);
 
-export const getAllTasks: any = (
+export const getAllTasks = (
 	workSpaceKey: number,
 	projectKey: number,
 	boardKey: number
