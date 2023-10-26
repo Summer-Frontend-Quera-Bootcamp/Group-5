@@ -57,12 +57,9 @@ const List: React.FC<ListProps> = ({
 	return (
 		<div>
 			<div style={listItemContainerStyle}>
-				<div style={{ marginLeft: "10px" }}>
-					{/* Render the Dropdownlist component as a button */}
-				</div>
+				<div style={{ marginLeft: "10px" }}></div>
 
 				<div style={listItemStyle}>
-					{/* Render the colored rectangle box */}
 					<div
 						style={{
 							display: "flex",
@@ -77,7 +74,7 @@ const List: React.FC<ListProps> = ({
 							ml="8px"
 							onClick={toggleList}
 						/>
-						<Box width={width} height={height} color={boxColor}>
+						<Box width={width} height={height} color={boxColor} marginRight={0}>
 							{title}
 						</Box>
 						<p
@@ -93,8 +90,6 @@ const List: React.FC<ListProps> = ({
 							{persianNumber.format(listData.length)} تسک
 						</p>
 					</div>
-
-					{/* Render the listData items if showList is true */}
 					{showList &&
 						listData.map((item, index) => (
 							<div key={index} style={listItemMarginTop}>
@@ -118,13 +113,10 @@ const List: React.FC<ListProps> = ({
 							</div>
 						))}
 				</div>
-
 				<div style={listItemStyle}>
 					<h2>
 						<b>اعضا</b>
 					</h2>
-
-					{/* Render the listData items */}
 					{showList &&
 						listData.map((item, index) => (
 							<div key={index} style={listItemMarginTop}>
@@ -137,8 +129,6 @@ const List: React.FC<ListProps> = ({
 					<h2>
 						<b>ددلاین</b>
 					</h2>
-
-					{/* Render the listData items */}
 					{showList &&
 						listData.map((item, index) => (
 							<div
@@ -156,8 +146,6 @@ const List: React.FC<ListProps> = ({
 					<h2>
 						<b>اولویت</b>
 					</h2>
-
-					{/* Render the listData items */}
 					{showList &&
 						listData.map((item, index) => (
 							<div key={index} style={listItemMarginTop}>
@@ -170,8 +158,6 @@ const List: React.FC<ListProps> = ({
 					<h2>
 						<b>توضیحات</b>
 					</h2>
-
-					{/* Render the listData items */}
 					{showList &&
 						listData.map((item, index) => (
 							<div key={index} style={listItemMarginTop}>

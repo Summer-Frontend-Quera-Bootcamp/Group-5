@@ -1,1 +1,1 @@
-type Props = Record<string, string | Record<string, string>>;
+type Props = any;

@@ -6,7 +6,7 @@ interface BoxProps {
 	color: string;
 	borderRadius?: number;
 	fontSize?: number;
-	children: ReactNode;
+	children?: ReactNode;
 	marginRight: number;
 }
 
