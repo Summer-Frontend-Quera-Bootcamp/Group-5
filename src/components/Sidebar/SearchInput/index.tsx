@@ -1,7 +1,13 @@
 import { SearchIcon } from "@chakra-ui/icons";
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import { Dispatch, FC, SetStateAction } from "react";
 
-const SearchIput = (): JSX.Element => {
+interface ISearchIput {
+	value: string;
+	onChange: Dispatch<SetStateAction<string>>;
+}
+
+const SearchIput: FC<ISearchIput> = ({ onChange, value }): JSX.Element => {
 	return (
 		<>
 			<InputGroup my="10px" px={1} borderRadius="4px">
@@ -13,6 +19,8 @@ const SearchIput = (): JSX.Element => {
 					border="none"
 					type="search"
 					placeholder="جستجو کنید"
+					value={value}
+					onChange={(e) => onChange(e.target.value)}
 				/>
 			</InputGroup>
 		</>

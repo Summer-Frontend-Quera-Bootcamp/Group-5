@@ -24,8 +24,10 @@ import { AXIOS } from "../../utils/functions/AXIOS";
 import DarkModeSwitch from "../DarkModeSwitch";
 import SearchIput from "./SearchInput";
 import WorkSpaceItem from "./WorkSpaceItem";
+import { useState } from "react";
 
 const Sidebar = (): JSX.Element => {
+	const [searchValue, setSearchValue] = useState<string>("");
 	const workspaces = useAppSelector((state) => state.workspaces);
 	const { username, thumbnail } = useAppSelector((state) => state.user);
 	const dispatch = useAppDispatch();
@@ -52,16 +54,18 @@ const Sidebar = (): JSX.Element => {
 							<AccordionIcon />
 						</AccordionButton>
 						<AccordionPanel pb={4} px="0">
-							<SearchIput />
+							<SearchIput value={searchValue} onChange={setSearchValue} />
 							<NewSpaceModal />
 							{workspaces &&
-								workspaces?.map((ws) => (
-									<WorkSpaceItem
-										color={ws.color}
-										content={ws.name}
-										workSpaceKey={ws.id}
-									/>
-								))}
+								workspaces
+									.filter((ws) => ws.name.includes(searchValue))
+									.map((ws) => (
+										<WorkSpaceItem
+											color={ws.color}
+											content={ws.name}
+											workSpaceKey={ws.id}
+										/>
+									))}
 						</AccordionPanel>
 					</AccordionItem>
 				</Accordion>
