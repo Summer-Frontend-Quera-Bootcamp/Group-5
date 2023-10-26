@@ -1,6 +1,15 @@
 import { AXIOS } from "../../../utils/functions/AXIOS";
 
-export const deleteAccount = async (req: { params: { id: any; }; }, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { message?: string; error?: string; }): void; new(): any; }; }; }) => {
+export const deleteAccount = async (
+	req: { params: { id: any } },
+	res: {
+		status: (arg0: number) => {
+			(): any;
+			new (): any;
+			json: { (arg0: { message?: string; error?: string }): void; new (): any };
+		};
+	}
+) => {
 	const accountId = req.params.id;
 
 	try {

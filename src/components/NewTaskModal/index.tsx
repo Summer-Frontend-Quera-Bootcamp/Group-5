@@ -16,8 +16,8 @@ import NewTaskForm from "./NewTaskForm";
 const NewTaskModal: FC<{
 	place: "board" | "projectPage" | "columnDots";
 	project: string;
-  boardId?: number;
-  handleChange?: Dispatch<SetStateAction<any[]>>
+	boardId?: number;
+	handleChange?: Dispatch<SetStateAction<any[]>>;
 }> = ({ place, project, boardId, handleChange }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const { accent } = useAppSelector((state) => state.theme);
@@ -76,7 +76,11 @@ const NewTaskModal: FC<{
 				<ModalContent borderRadius="8px" p="24px">
 					<ModalCloseButton left="sm" top="sm" />
 					<ModalBody p="0">
-						<NewTaskForm project={project} boardId={boardId!} handleChange={handleChange} />
+						<NewTaskForm
+							project={project}
+							boardId={boardId!}
+							handleChange={handleChange}
+						/>
 					</ModalBody>
 				</ModalContent>
 			</Modal>

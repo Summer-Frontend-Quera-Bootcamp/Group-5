@@ -8,4 +8,3 @@ export const RestPassword = ({ email }: IRegister) =>
 	AXIOS.post("/accounts/", {
 		email,
 	});
-

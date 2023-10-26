@@ -15,7 +15,7 @@ import {
 import { FC, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { ValidateInput } from "../../../components";
-import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { useAppSelector } from "../../../hooks";
 import { AXIOS } from "../../../utils/functions/AXIOS";
 import ThumbnailInput from "./ThumbnailInput";
 

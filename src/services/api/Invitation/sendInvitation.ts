@@ -9,4 +9,3 @@ export const sendInvitation = (email: string, link: string) => {
 		alert(res.data.detail)
 	);
 };
-
