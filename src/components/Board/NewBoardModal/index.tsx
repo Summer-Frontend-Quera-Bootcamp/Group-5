@@ -40,7 +40,7 @@ const NewBoardModal = (): JSX.Element => {
 		AXIOS.get(`/workspaces/${workspaceId}/projects/${projectId}/boards/`).then(
 			(res) => setArray(res.data)
 		);
-	}, [array]);
+	}, []);
 
 	const submit = (data: any) => {
 		const postData = {
@@ -53,7 +53,13 @@ const NewBoardModal = (): JSX.Element => {
 		AXIOS.post(
 			`/workspaces/${workspaceId}/projects/${projectId}/boards/`,
 			postData
-		);
+		).then((res) => {
+			setArray((prev) => {
+				const copy = structuredClone(prev);
+				copy.push(res.data);
+				return copy;
+			});
+		});
 	};
 	const colors: TColorSchemes[] = [
 		"red",
@@ -70,7 +76,7 @@ const NewBoardModal = (): JSX.Element => {
 		<>
 			<Box display="Flex" flexDir="row" gap="20px">
 				{array?.map((x: any) => (
-					<Column color={x.color} text={x.name} key={x.id} boardId={x.id} />
+					<Column color={x.color} text={x.name} key={x.id} boardId={x.id} onDelete={setArray} />
 				))}
 				<Text
 					as="button"

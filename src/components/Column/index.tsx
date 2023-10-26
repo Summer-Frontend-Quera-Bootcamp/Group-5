@@ -1,5 +1,5 @@
 import { Box, Text, Tooltip } from "@chakra-ui/react";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import DotsMenu from "./DotsMenu";
 import { Task } from "..";
 import NewTaskModal from "../NewTaskModal";
@@ -11,9 +11,10 @@ interface IColumnProps {
 	text: string;
 	color: string;
 	boardId: number;
+  onDelete: Dispatch<SetStateAction<any[]>>
 }
 
-const Column = ({ text, color, boardId }: IColumnProps): JSX.Element => {
+const Column = ({ text, color, boardId, onDelete }: IColumnProps): JSX.Element => {
 	const [display, setDisplay] = useState<boolean>(false);
 	const [activeProject, setActiveProject] = useState<any>();
 	const [array, setArray] = useState<any[]>([]);
@@ -75,7 +76,7 @@ const Column = ({ text, color, boardId }: IColumnProps): JSX.Element => {
 					</Box>
 				</Text>
 				<Box w="48px" h="24px" gap="4px" display={display ? "flex" : "none"}>
-					<DotsMenu boardId={boardId} project={activeProject?.name} />
+					<DotsMenu boardId={boardId} project={activeProject?.name} onDelete={onDelete} />
 					<Tooltip hasArrow label="افزودن تسک" placement="top" ml={1}>
 						<NewTaskModal
 							place="board"

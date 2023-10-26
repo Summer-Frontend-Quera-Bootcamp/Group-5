@@ -5,17 +5,27 @@ import { AXIOS } from "../../../utils/functions/AXIOS";
 import { useParams } from "react-router-dom";
 import NewTaskModal from "../../NewTaskModal";
 import EditColumnModal from "./editColumnModal";
+import { Dispatch, SetStateAction } from "react";
 
 interface IDotsMenuProp {
 	project: string;
 	boardId: number;
+	onDelete: Dispatch<SetStateAction<any[]>>;
 }
-const DotsMenu = ({ project, boardId }: IDotsMenuProp): JSX.Element => {
+const DotsMenu = ({
+	project,
+	boardId,
+	onDelete,
+}: IDotsMenuProp): JSX.Element => {
 	const { workspaceId, projectId } = useParams();
 	const handleDelete = () => {
 		AXIOS.delete(
 			`/workspaces/${workspaceId}/projects/${projectId}/boards/${boardId}/`
-		);
+		).then(() => {
+			onDelete((prev) => {
+				return prev.filter((item) => item.id !== boardId);
+			});
+		});
 	};
 	return (
 		<Menu>
