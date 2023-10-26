@@ -13,10 +13,10 @@ import {
 	chakra,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { Board, Calendar, FilterModal, Share } from "../../components";
+import { Board, Calendar, FilterModal, List, Share } from "../../components";
 import NewTaskModal from "../../components/NewTaskModal";
 import { clearFilters } from "../../features/filterSlice";
-import { ArtBoardIcon, CalendarIcon, ListIcon, SearchIcon } from "../../icons";
+import { ArtBoardIcon, CalendarIcon, ListIcon, SearchIcon,FlagIcon, JustifyRightIcon } from "../../icons";
 import {
 	searchFilterWrapperStyle,
 	searchInputStyle,
@@ -109,13 +109,54 @@ const ProjectPage = () => {
 				{/* todo: create tap panels */}
 				<TabPanels>
 					<TabPanel>
-						<p>one!</p>
+
+						<List 
+						listData={[  {
+							avatar: "path/to/avatar2",
+							deadline: new Date("2023.05.02"),
+							priority: <FlagIcon />,
+							description: <JustifyRightIcon />,
+						       }]}
+						boxColor="#ff1493"
+						title="Pending"
+						width={85}
+						height={45}
+						/>
+
+
+
+
+						<List
+						listData={[  {
+							avatar: "path/to/avatar2",
+							deadline: new Date("2023.05.02"),
+							priority: <FlagIcon />,
+							description: <JustifyRightIcon />,
+						       }]}
+						boxColor="#FF6735"
+						title="In Progress"
+						width={105}
+						height={45}
+						/>
+
+
+						<List
+						listData={[]}
+						boxColor="#2ECC71"
+						title="Done"
+						width={60}
+						height={55}
+						/>
+
+
+
+
 					</TabPanel>
 					<TabPanel>
 						<Board />
 					</TabPanel>
 					<TabPanel p="0" h="80dvh">
-						<Calendar />
+						<Calendar workspaceId={0} projectId={0} />
 					</TabPanel>
 				</TabPanels>
 			</Tabs>
