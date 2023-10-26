@@ -12,11 +12,12 @@ import {
 import { CheckmarkCircleIcon, DotsIcon, FlagIcon } from "../../icons";
 import { useState } from "react";
 import moment from "jalali-moment";
+import { useAppSelector } from "../../hooks";
 
 interface ITaskProps {
 	img: string;
 	projectName: string;
-	userName: string;
+	members: string;
 	userSrc: string;
 	taskName: string;
 	deadline: string;
@@ -26,13 +27,14 @@ interface ITaskProps {
 const Task = ({
 	img,
 	projectName,
-	userName,
+	members,
 	userSrc,
 	taskName,
 	deadline,
 	priority,
 }: ITaskProps): JSX.Element => {
 	const [display, setDisplay] = useState<boolean>(false);
+	const { username } = useAppSelector((state) => state.user);
 	let flagColor = "";
 	switch (priority) {
 		case 1:
@@ -78,14 +80,13 @@ const Task = ({
 								{taskName}
 							</Text>
 						</Flex>
-						<Avatar size="sm" name={`amir menshad`} src={userSrc} />
+						<Avatar size="sm" name={username} src={userSrc} />
 					</Box>
 
 					<Text display="flex" flexDir="row" gap="1">
 						<FlagIcon color={flagColor} w="20px" h="20px" />
 						{moment(deadline).locale("fa").format("DD")}
-						{moment(deadline).locale("fa").format("MMMM")} - فردا
-						{/* {moment(deadline).locale("fa").format("YYYY/MM/DD")} */}
+						{moment(deadline).locale("fa").format("MMMM")}
 					</Text>
 
 					<Flex dir="row" gap="1">

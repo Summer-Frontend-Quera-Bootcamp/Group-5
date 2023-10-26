@@ -89,7 +89,7 @@ const Column = ({ text, color, boardId }: IColumnProps): JSX.Element => {
 			{array?.map((x) => (
 				<Task
 					projectName={activeProject?.name}
-					userName={x.members}
+					members={x.members}
 					userSrc={x.thumbnail}
 					img={x.attachment}
 					taskName={x.name}

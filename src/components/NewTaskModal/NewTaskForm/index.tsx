@@ -1,4 +1,5 @@
 import {
+	Avatar,
 	Box,
 	Button,
 	HStack,
@@ -10,7 +11,6 @@ import {
 import { FC, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useAppSelector } from "../../../hooks";
-import { UserProfileCheckmarkIcon } from "../../../icons";
 import BookmarkInput from "./BookmarkInput";
 import CustomDateInput from "./CustomDateInput";
 import CustomFileInput from "./CustomFileInput";
@@ -25,6 +25,7 @@ const NewTaskForm: FC<INewTaskFormProps> = ({
 	onClose,
 }) => {
 	const { accent } = useAppSelector((state) => state.theme);
+	const { username, thumbnail } = useAppSelector((state) => state.user);
 	const [attachment, setAttachment] = useState("");
 	const [cover, setCover] = useState("");
 	const [priority, setPriority] = useState<TPriority>("پایین");
@@ -117,7 +118,7 @@ const NewTaskForm: FC<INewTaskFormProps> = ({
 					borderRadius="full"
 					p="4.25px"
 				>
-					<UserProfileCheckmarkIcon w="20px" h="20px" />
+					<Avatar size="sm" name={username} src={thumbnail} />
 				</Box>
 			</HStack>
 			<HStack w="full" h="200px">
