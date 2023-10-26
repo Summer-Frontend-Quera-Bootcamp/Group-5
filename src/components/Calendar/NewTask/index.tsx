@@ -83,4 +83,3 @@ const NewTask: FC<INewTask> = ({ isOpen, onClose, dateInfo }) => {
 };
 
 export default NewTask;
-
