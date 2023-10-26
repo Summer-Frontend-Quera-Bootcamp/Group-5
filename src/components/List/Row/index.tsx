@@ -35,6 +35,7 @@ const Row: FC<IRowProps> = ({ id, name, color }) => {
 								{name}
 							</Text>
 						</Box>
+						<Text>{tasks.length} تسک</Text>
 					</HStack>
 					<Flex gap="130px" ms="auto">
 						{columns.map((item, idx) => (
@@ -53,4 +54,3 @@ const Row: FC<IRowProps> = ({ id, name, color }) => {
 };
 
 export default Row;
-

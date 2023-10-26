@@ -1,18 +1,20 @@
-import { Divider, Flex, Tag } from "@chakra-ui/react";
 import {
 	Avatar,
 	Box,
 	Card,
 	CardBody,
 	CardFooter,
+	Divider,
+	Flex,
 	Image,
 	Stack,
+	Tag,
 	Text,
 } from "@chakra-ui/react";
-import { CheckmarkCircleIcon, DotsIcon, FlagIcon } from "../../icons";
-import { useState } from "react";
 import moment from "jalali-moment";
-import { useAppSelector } from "../../hooks";
+import { useState } from "react";
+import { useAppSelector } from "../../../../../hooks";
+import { CheckmarkCircleIcon, DotsIcon, FlagIcon } from "../../../../../icons";
 
 interface ITaskProps {
 	img: string;

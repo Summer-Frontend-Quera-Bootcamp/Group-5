@@ -12,4 +12,3 @@ export const taskRowBoxStyle = {
 	borderRadius: "3px",
 	me: "7px",
 };
-

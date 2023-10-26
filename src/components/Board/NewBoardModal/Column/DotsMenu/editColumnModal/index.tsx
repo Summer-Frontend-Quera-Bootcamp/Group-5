@@ -16,11 +16,11 @@ import {
 	chakra,
 	useDisclosure,
 } from "@chakra-ui/react";
-import { ValidateInput } from "../../..";
-import ColorInput from "../../../ColorInput";
+import { ValidateInput } from "../../../../..";
+import ColorInput from "../../../../../ColorInput";
 import { useForm } from "react-hook-form";
-import { AXIOS } from "../../../../utils/functions/AXIOS";
-import { useAppSelector } from "../../../../hooks";
+import { AXIOS } from "../../../../../../utils/functions/AXIOS";
+import { useAppSelector } from "../../../../../../hooks";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 

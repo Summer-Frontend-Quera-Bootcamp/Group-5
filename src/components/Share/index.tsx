@@ -99,7 +99,10 @@ const Share: FC<IShareProps> = ({ type, workspaceId, projectId }) => {
 										fontWeight="normal"
 										borderStartRadius="0"
 										p="1rem 2rem"
-										onClick={() => sendInvitation(email, link)}
+										onClick={() => {
+											sendInvitation(email, link);
+											alert("دعوت فرستاده شد");
+										}}
 									>
 										ارسال
 									</Button>

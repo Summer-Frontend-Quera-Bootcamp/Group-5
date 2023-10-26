@@ -1,9 +1,9 @@
 import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
-import { DotsIcon } from "../../../icons";
+import { DotsIcon } from "../../../../../icons";
 import { DownloadIcon, DeleteIcon } from "@chakra-ui/icons";
-import { AXIOS } from "../../../utils/functions/AXIOS";
+import { AXIOS } from "../../../../../utils/functions/AXIOS";
 import { useParams } from "react-router-dom";
-import NewTaskModal from "../../NewTaskModal";
+import NewTaskModal from "../../../../NewTaskModal";
 import EditColumnModal from "./editColumnModal";
 import { Dispatch, SetStateAction } from "react";
 

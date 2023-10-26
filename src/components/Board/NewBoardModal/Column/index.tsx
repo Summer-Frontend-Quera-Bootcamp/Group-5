@@ -1,10 +1,10 @@
 import { Box, Text, Tooltip } from "@chakra-ui/react";
 import { Dispatch, SetStateAction, useState } from "react";
 import DotsMenu from "./DotsMenu";
-import { Task } from "..";
-import NewTaskModal from "../NewTaskModal";
+import { Task } from "../../..";
+import NewTaskModal from "../../../NewTaskModal";
 import { useParams } from "react-router-dom";
-import { getAllTasks, getProject } from "../../services/api";
+import { getAllTasks, getProject } from "../../../../services/api";
 import { useEffect } from "react";
 
 interface IColumnProps {

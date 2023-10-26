@@ -42,4 +42,3 @@ const TaskRow: FC<ITaskRowProps> = ({ name, deadline, priority, color }) => {
 };
 
 export default TaskRow;
-

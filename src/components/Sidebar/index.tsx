@@ -15,13 +15,12 @@ import {
 	chakra,
 } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
-import { NewSpaceModal } from "..";
+import { DarkModeSwitch, NewSpaceModal } from "..";
 import { switchLoggedIn } from "../../features/userSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { ExitIcon } from "../../icons";
 import { headingStyle } from "../../layouts/Authentication/style";
 import { AXIOS } from "../../utils/functions/AXIOS";
-import DarkModeSwitch from "../DarkModeSwitch";
 import SearchIput from "./SearchInput";
 import WorkSpaceItem from "./WorkSpaceItem";
 import { useState } from "react";
