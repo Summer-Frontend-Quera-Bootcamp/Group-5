@@ -5,7 +5,6 @@ import {
   InputGroup,
   InputLeftElement,
   Tab,
-  TabIndicator,
   TabList,
   TabPanel,
   TabPanels,
@@ -29,10 +28,8 @@ import {
 import { getProject } from "../../services/api";
 import {
   searchFilterWrapperStyle,
-  searchInputStyle,
-  tabIndicatorStyle,
-  tabListStyle,
-  tabStyle,
+  searchInputStyle, tabListStyle,
+  tabStyle
 } from "./style";
 
 const Divider = () => {
@@ -100,7 +97,6 @@ const ProjectPage = () => {
 						projectId={+projectId!}
 					/>
 				</TabList>
-				<TabIndicator sx={tabIndicatorStyle} bg={highlight} />
 				<Flex sx={searchFilterWrapperStyle}>
 					<InputGroup w="200px">
 						<InputLeftElement pointerEvents="none">
