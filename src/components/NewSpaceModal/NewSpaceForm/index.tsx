@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import WorkSpaceNameForm from "./WorkSpaceName";
 import WorkSpaceColor from "./WorkSpaceColor";
 import WorkSpaceDetails from "./WorkSpaceDetails";
+import { useAppSelector } from "../../../hooks";
 
 const NewWorkSpaceContent: FC<INewWorkSpaceProp> = ({
 	type,
@@ -11,8 +12,7 @@ const NewWorkSpaceContent: FC<INewWorkSpaceProp> = ({
 	const [modalPage, setModalPage] = useState<TPage>("workspaceName");
 	const [workspaceName, setWorkspaceName] = useState<string>("");
 	const [workspaceColor, setWorkspaceColor] = useState<TColorSchemes>("gray");
-	// const initialColor = "red-primary";
-
+	const { username, thumbnail } = useAppSelector((state) => state.user);
 	let page;
 	switch (modalPage) {
 		case "workspaceName":
@@ -42,7 +42,7 @@ const NewWorkSpaceContent: FC<INewWorkSpaceProp> = ({
 					setModalPage={setModalPage}
 					workspaceColor={workspaceColor}
 					workspaceName={workspaceName}
-					workspaceOwner={{ img: "slkdjfoi", name: "sara ahimi" }}
+					workspaceOwner={{ img: thumbnail, name: username }}
 					type={type}
 					workSpaseKey={workSpaseKey}
 					onClose={onClose}
