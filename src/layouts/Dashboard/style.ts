@@ -8,6 +8,7 @@ export const sidebarStyle = {
 	h: "100dvh",
 	pos: "sticky",
 	top: "0",
+	zIndex: "10",
 };
 
 export const mainPageStyle = {
