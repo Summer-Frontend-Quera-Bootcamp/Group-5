@@ -1,16 +1,16 @@
 import {
-  Avatar,
-  Box,
-  Button,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  HStack,
-  Heading,
-  Input,
-  Text,
-  VStack,
-  chakra,
+	Avatar,
+	Box,
+	Button,
+	FormControl,
+	FormErrorMessage,
+	FormLabel,
+	HStack,
+	Heading,
+	Input,
+	Text,
+	VStack,
+	chakra,
 } from "@chakra-ui/react";
 import { FC, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
@@ -38,7 +38,11 @@ const PersonalInfo: FC = () => {
 			phone_number: data.phone_number || user.phone_number,
 			thumbnail: thumbnail || user.thumbnail,
 		};
-		AXIOS.patch(`/accounts/${user.user_id}/`, reqBody)
+		let formData = new FormData();
+		for (const x in reqBody) {
+			formData.append(x, reqBody[x as keyof typeof reqBody]);
+		}
+		AXIOS.patch(`/accounts/${user.user_id}/`, formData)
 			.then((res) => console.log(res))
 			.catch((err) => console.error(err));
 	};
@@ -61,7 +65,7 @@ const PersonalInfo: FC = () => {
 			>
 				<Box>
 					<HStack gap="sm">
-						<Avatar name="nima youshij" size="xl" src={user.thumbnail} />
+						<Avatar name={user.username} size="xl" src={user.thumbnail} />
 						<Box>
 							<ThumbnailInput onChange={handleFileChange} />
 							<Text fontSize="xs" color="#8A8989" mt="sm">
