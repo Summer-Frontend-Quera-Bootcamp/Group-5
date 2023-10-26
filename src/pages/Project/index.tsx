@@ -17,14 +17,7 @@ import { Board, Calendar, FilterModal, List, Share } from "../../components";
 import NewTaskModal from "../../components/NewTaskModal";
 import { clearFilters } from "../../features/filterSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import {
-	ArtBoardIcon,
-	CalendarIcon,
-	FlagIcon,
-	JustifyRightIcon,
-	ListIcon,
-	SearchIcon,
-} from "../../icons";
+import { ArtBoardIcon, CalendarIcon, ListIcon, SearchIcon } from "../../icons";
 import { getProject } from "../../services/api";
 import {
 	searchFilterWrapperStyle,
@@ -32,7 +25,6 @@ import {
 	tabListStyle,
 	tabStyle,
 } from "./style";
-import { setProjectItems } from "../../features/projectSlice";
 
 const Divider = () => {
 	return <chakra.span w="1px" h="22px" bg="gray.400"></chakra.span>;
@@ -114,47 +106,7 @@ const ProjectPage = () => {
 				</Flex>
 				<TabPanels>
 					<TabPanel>
-						<List
-							listData={[
-								{
-									avatar: "path/to/avatar2",
-									deadline: new Date("2023.05.02"),
-									priority: <FlagIcon />,
-									description: <JustifyRightIcon />,
-								},
-							]}
-							boxColor="#ff1493"
-							title="Pending"
-							width={85}
-							height={45}
-						/>
-						<List
-							listData={[
-								{
-									avatar: "path/to/avatar2",
-									deadline: new Date("2023.05.02"),
-									priority: <FlagIcon />,
-									description: <JustifyRightIcon />,
-								},
-								{
-									avatar: "path/to/avatar2",
-									deadline: new Date("2023.05.02"),
-									priority: <FlagIcon />,
-									description: <JustifyRightIcon />,
-								},
-							]}
-							boxColor="#FF6735"
-							title="In Progress"
-							width={105}
-							height={45}
-						/>
-						<List
-							listData={[]}
-							boxColor="#2ECC71"
-							title="Done"
-							width={60}
-							height={55}
-						/>
+						<List />
 					</TabPanel>
 					<TabPanel w="full" overflowX="auto">
 						<Board />
