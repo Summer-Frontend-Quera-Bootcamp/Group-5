@@ -25,6 +25,7 @@ const Column = ({ text, color, boardId }: IColumnProps): JSX.Element => {
 		getAllTasks(workspaceId, projectId, boardId).then((res: any) => {
 			setArray(res.data);
 		});
+		console.log(array);
 	}, []);
 
 	const handleMouseEnter = () => {
@@ -80,7 +81,7 @@ const Column = ({ text, color, boardId }: IColumnProps): JSX.Element => {
 							place="board"
 							project={activeProject?.name}
 							boardId={boardId}
-              handleChange={setArray}
+							handleChange={setArray}
 						/>
 					</Tooltip>
 				</Box>
@@ -93,6 +94,7 @@ const Column = ({ text, color, boardId }: IColumnProps): JSX.Element => {
 					img={x.attachment}
 					taskName={x.name}
 					deadline={x.deadline}
+					priority={x.priority}
 				/>
 			))}
 		</Box>
