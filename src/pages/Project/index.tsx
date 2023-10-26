@@ -1,32 +1,39 @@
 import {
-	Flex,
-	Heading,
-	Input,
-	InputGroup,
-	InputLeftElement,
-	Tab,
-	TabIndicator,
-	TabList,
-	TabPanel,
-	TabPanels,
-	Tabs,
-	chakra,
+  Flex,
+  Heading,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Tab,
+  TabIndicator,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  chakra,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Board, Calendar, FilterModal, List, Share } from "../../components";
 import NewTaskModal from "../../components/NewTaskModal";
 import { clearFilters } from "../../features/filterSlice";
-import { ArtBoardIcon, CalendarIcon, ListIcon, SearchIcon,FlagIcon, JustifyRightIcon } from "../../icons";
-import {
-	searchFilterWrapperStyle,
-	searchInputStyle,
-	tabIndicatorStyle,
-	tabListStyle,
-	tabStyle,
-} from "./style";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { useParams } from "react-router-dom";
+import {
+  ArtBoardIcon,
+  CalendarIcon,
+  FlagIcon,
+  JustifyRightIcon,
+  ListIcon,
+  SearchIcon,
+} from "../../icons";
 import { getProject } from "../../services/api";
+import {
+  searchFilterWrapperStyle,
+  searchInputStyle,
+  tabIndicatorStyle,
+  tabListStyle,
+  tabStyle,
+} from "./style";
 
 const Divider = () => {
 	return <chakra.span w="1px" h="22px" bg="gray.400"></chakra.span>;
@@ -36,11 +43,11 @@ const ProjectPage = () => {
 	const [activePage, setActivePage] = useState<boolean[]>([true, false, false]);
 	const [activeProject, setActiveProject] = useState<any>();
 	const dispatch = useAppDispatch();
-	const { accent, highlight } = useAppSelector((state) => state.theme);
+	const { highlight } = useAppSelector((state) => state.theme);
 	const { workspaceId, projectId } = useParams();
 
 	useEffect(() => {
-		getProject(workspaceId, projectId).then((res: any) => {
+		getProject(+workspaceId!, +projectId!).then((res: any) => {
 			setActiveProject(res.data);
 		});
 		dispatch(clearFilters());
@@ -94,7 +101,6 @@ const ProjectPage = () => {
 					/>
 				</TabList>
 				<TabIndicator sx={tabIndicatorStyle} bg={highlight} />
-				{/* todo: create filters option */}
 				<Flex sx={searchFilterWrapperStyle}>
 					<InputGroup w="200px">
 						<InputLeftElement pointerEvents="none">
@@ -107,54 +113,45 @@ const ProjectPage = () => {
 						/>
 					</InputGroup>
 					<Divider />
-					{/* todo: implement filters data */}
 					<FilterModal />
 				</Flex>
-				{/* todo: create tap panels */}
 				<TabPanels>
 					<TabPanel>
-
-						<List 
-						listData={[  {
-							avatar: "path/to/avatar2",
-							deadline: new Date("2023.05.02"),
-							priority: <FlagIcon />,
-							description: <JustifyRightIcon />,
-						       }]}
-						boxColor="#ff1493"
-						title="Pending"
-						width={85}
-						height={45}
-						/>
-
-
-
-
 						<List
-						listData={[  {
-							avatar: "path/to/avatar2",
-							deadline: new Date("2023.05.02"),
-							priority: <FlagIcon />,
-							description: <JustifyRightIcon />,
-						       }]}
-						boxColor="#FF6735"
-						title="In Progress"
-						width={105}
-						height={45}
+							listData={[
+								{
+									avatar: "path/to/avatar2",
+									deadline: new Date("2023.05.02"),
+									priority: <FlagIcon />,
+									description: <JustifyRightIcon />,
+								},
+							]}
+							boxColor="#ff1493"
+							title="Pending"
+							width={85}
+							height={45}
 						/>
-
-
 						<List
-						listData={[]}
-						boxColor="#2ECC71"
-						title="Done"
-						width={60}
-						height={55}
+							listData={[
+								{
+									avatar: "path/to/avatar2",
+									deadline: new Date("2023.05.02"),
+									priority: <FlagIcon />,
+									description: <JustifyRightIcon />,
+								},
+							]}
+							boxColor="#FF6735"
+							title="In Progress"
+							width={105}
+							height={45}
 						/>
-
-
-
-
+						<List
+							listData={[]}
+							boxColor="#2ECC71"
+							title="Done"
+							width={60}
+							height={55}
+						/>
 					</TabPanel>
 					<TabPanel w="full" overflowX="auto">
 						<Board />
