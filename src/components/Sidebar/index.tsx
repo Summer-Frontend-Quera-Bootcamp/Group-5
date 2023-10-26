@@ -71,7 +71,7 @@ const Sidebar = (): JSX.Element => {
 				</Accordion>
 			</Box>
 
-			<Box w="full" h="50px" gap="4px" mt="auto">
+			<Box w="full" gap="4px" mt="auto">
 				<chakra.a as={Link} to="/profile">
 					<Stack direction="row" w="144px" spacing="4px">
 						<Avatar size="sm" name={username} src={thumbnail} mb={2} />
