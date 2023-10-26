@@ -77,12 +77,12 @@ const NewBoardModal = (): JSX.Element => {
 					onClick={onOpen}
 					align="right"
 					color="gray.400"
-					fontWeight="500"
+					fontWeight={500}
 					w="250px"
 					h="44px"
 					borderRadius="16px"
 					p="8px 12px"
-					bg="#FFFFFF"
+					bg="whiteAlpha.100"
 					boxShadow="lg"
 				>
 					<SmallAddIcon m="1px" />
