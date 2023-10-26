@@ -25,7 +25,7 @@ import AccessMenu from "./AccessMenu";
 import ProjectMenu from "./ProjectMenu";
 import ShareButton from "./ShareButton";
 import WorkSpaceOwner from "./WorkSpaceOwner";
-import { sendInvitation } from "../../services/api/Invitation/sendInvitation";
+import { sendInvitation } from "../../services/api";
 
 function getHeading(type: "project" | "task" | "space") {
 	switch (type) {
