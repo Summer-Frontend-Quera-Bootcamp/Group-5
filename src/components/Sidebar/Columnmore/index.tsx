@@ -19,6 +19,7 @@ import NewWorkSpaceContent from "../../NewSpaceModal/NewSpaceForm";
 import { AXIOS } from "../../../utils/functions/AXIOS";
 import { useAppDispatch } from "../../../hooks";
 import { setWorkspaceItems } from "../../../features/workspaceSlice";
+import { setProjectItems } from "../../../features/projectSlice";
 
 type TType = "workspace" | "projectitem";
 interface IColumnMoreProp {
@@ -51,8 +52,8 @@ const ColumnMore = ({
 	};
 	const handleDeletePoroject = () => {
 		AXIOS.delete(`/workspaces/${workSpaseKey}/projects/${projectKey}/`)
-			.then(() => dispatch(setWorkspaceItems()))
-			.catch((err) => console.log(err.response.status));
+			.then(() => dispatch(setProjectItems()))
+			.catch((err) => console.error(err));
 	};
 	return (
 		<Menu>

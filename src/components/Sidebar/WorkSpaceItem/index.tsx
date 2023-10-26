@@ -12,8 +12,6 @@ import {
 import ColumnMore from "../Columnmore";
 import { useAppSelector } from "../../../hooks";
 import ModalItem from "../../NewProjectModal/modalItem";
-import { useEffect, useState } from "react";
-import { AXIOS } from "../../../utils/functions/AXIOS";
 import ProjectItem from "../ProjectItem";
 
 interface IWorkSpaceItemProps {
@@ -29,14 +27,10 @@ const WorkSpaceItem = ({
 }: IWorkSpaceItemProps): JSX.Element => {
 	const { accent } = useAppSelector((state) => state.theme);
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const [projects, setProjects] = useState<any[]>([]);
-	useEffect(() => {
-		AXIOS.get(`/workspaces/${workSpaceKey}/projects/`)
-			.then((res) => {
-				setProjects(res.data);
-			})
-			.catch((err) => console.log(err.message));
-	}, []);
+	const allProjects = useAppSelector((state) => state.projects);
+	const projects = allProjects.find(
+		(item) => item.workspaceId === workSpaceKey
+	)!;
 
 	return (
 		<>
@@ -54,7 +48,7 @@ const WorkSpaceItem = ({
 						</Box>
 					</AccordionButton>
 					<AccordionPanel p="4px 24px 8px 6px" textAlign={"right"}>
-						{!projects?.length ? (
+						{projects?.projectsList?.length === 0 ? (
 							<>
 								<Button
 									colorScheme={accent}
@@ -75,7 +69,7 @@ const WorkSpaceItem = ({
 								/>
 							</>
 						) : (
-							projects.map((x) => (
+							projects?.projectsList.map((x) => (
 								<ProjectItem
 									content={x.name}
 									projectKey={x.id}

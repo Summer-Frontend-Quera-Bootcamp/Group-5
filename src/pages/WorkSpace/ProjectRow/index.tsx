@@ -1,22 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AXIOS } from "../../../utils/functions/AXIOS";
 import { Flex } from "@chakra-ui/react";
 import { NewProjectModal } from "../../../components";
 import ProjectLink from "../ProjectLink";
+import { useAppSelector } from "../../../hooks";
 
 const ProjectRow = ({ workspaceId, color }: IProjectRowProps) => {
-	const [projects, setProjects] = useState<IProject[]>([]);
-	useEffect(() => {
-		const getProjects = async (): Promise<IProject[]> => {
-			const res = await AXIOS.get(`/workspaces/${workspaceId}/projects/`);
-			return res.data;
-		};
-		getProjects().then((res) => setProjects(res));
-	}, []);
+	const allProjects = useAppSelector((state) => state.projects);
+	const projects = allProjects.find(
+		(item) => item.workspaceId === workspaceId
+	)!;
 	return (
 		<Flex gap="lg" wrap="nowrap">
-			{projects.length > 0 ? (
-				projects.map((p) => (
+			{projects?.projectsList.length > 0 ? (
+				projects?.projectsList.map((p) => (
 					<ProjectLink
 						key={p.id}
 						color={color}

@@ -32,6 +32,7 @@ import {
 	tabListStyle,
 	tabStyle,
 } from "./style";
+import { setProjectItems } from "../../features/projectSlice";
 
 const Divider = () => {
 	return <chakra.span w="1px" h="22px" bg="gray.400"></chakra.span>;
@@ -43,7 +44,6 @@ const ProjectPage = () => {
 	const dispatch = useAppDispatch();
 	const { highlight } = useAppSelector((state) => state.theme);
 	const { workspaceId, projectId } = useParams();
-
 	useEffect(() => {
 		getProject(+workspaceId!, +projectId!).then((res: any) => {
 			setActiveProject(res.data);

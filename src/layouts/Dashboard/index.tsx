@@ -5,11 +5,13 @@ import { Sidebar } from "../../components";
 import { setWorkspaceItems } from "../../features/workspaceSlice";
 import { useAppDispatch } from "../../hooks";
 import { mainPageStyle, sidebarStyle } from "./style";
+import { setProjectItems } from "../../features/projectSlice";
 
 const DashboardLayout = () => {
 	const dispatch = useAppDispatch();
 	useEffect(() => {
 		dispatch(setWorkspaceItems());
+		dispatch(setProjectItems());
 	}, []);
 	return (
 		<Flex wrap="nowrap">

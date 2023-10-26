@@ -11,6 +11,8 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { chakra } from "@chakra-ui/react";
 import { ValidateInput, Button } from "../..";
 import { AXIOS } from "../../../utils/functions/AXIOS";
+import { useAppDispatch } from "../../../hooks";
+import { setProjectItems } from "../../../features/projectSlice";
 
 interface IModalItemProps {
 	isOpen: any;
@@ -27,6 +29,7 @@ const ModalItem: React.FC<IModalItemProps> = ({
 	porojectItemkey,
 	type,
 }) => {
+	const dispatch = useAppDispatch();
 	const {
 		handleSubmit,
 		watch,
@@ -45,9 +48,12 @@ const ModalItem: React.FC<IModalItemProps> = ({
 				dataObj
 			)
 				.then((res) => console.log(res))
+				.then(() => dispatch(setProjectItems()))
 				.catch((err) => console.log(err.response.status));
 		} else {
-			AXIOS.post(`/workspaces/${workSpacekey}/projects/`, dataObj);
+			AXIOS.post(`/workspaces/${workSpacekey}/projects/`, dataObj).then(() =>
+				dispatch(setProjectItems())
+			);
 		}
 	};
 

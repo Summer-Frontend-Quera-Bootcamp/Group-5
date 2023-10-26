@@ -1,14 +1,28 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getAllprojects } from "../../services/api";
-import { AXIOS } from "../../utils/functions/AXIOS";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { getAllWorkSpaces, getAllprojects } from "../../services/api";
 
-const initialState: IProject[] = [];
+const initialState: { workspaceId: number; projectsList: IProject[] }[] = [];
 
-export const setProjectItems = createAsyncThunk(
+const projectsGenerator = function (wsIds: number[]) {
+	const projects = wsIds.map(async (id) => {
+		const res = await getAllprojects(id);
+		const data = { workspaceId: id, projectsList: res.data };
+		return data;
+	});
+	return projects;
+};
+
+export const setProjectItems = createAsyncThunk<any>(
 	"projects/setProjectItems",
-	async (workspaceId, thunkAPI) => {
-		const res = await AXIOS.get(`/workspaces/${workspaceId}/projects/`);
-		return res.data;
+	async () => {
+		try {
+			const res = await getAllWorkSpaces();
+			const ids = res.data.map(({ id }: { id: number }) => id);
+			const projects = await Promise.all(projectsGenerator(ids));
+			return projects;
+		} catch (err) {
+			console.error(err);
+		}
 	}
 );
 
@@ -17,12 +31,10 @@ const projectSlice = createSlice({
 	initialState,
 	reducers: {},
 	extraReducers: (builder) => {
-		builder.addCase(
-			setProjectItems.fulfilled,
-			(_, action: PayloadAction<IWorkspace[]>) => {
-				return action.payload;
-			}
-		);
+		builder.addCase(setProjectItems.fulfilled, (_, action) => {
+			console.log(action.payload);
+			return action.payload;
+		});
 	},
 });
 
