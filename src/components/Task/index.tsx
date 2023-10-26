@@ -52,7 +52,6 @@ const Task = ({
 	}
 	const handleMouseMove = () => {
 		setDisplay(!display);
-		console.log(deadline);
 	};
 	return (
 		<Card

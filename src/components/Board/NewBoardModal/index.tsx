@@ -76,7 +76,13 @@ const NewBoardModal = (): JSX.Element => {
 		<>
 			<Box display="Flex" flexDir="row" gap="20px">
 				{array?.map((x: any) => (
-					<Column color={x.color} text={x.name} key={x.id} boardId={x.id} onDelete={setArray} />
+					<Column
+						color={x.color}
+						text={x.name}
+						key={x.id}
+						boardId={x.id}
+						onDelete={setArray}
+					/>
 				))}
 				<Text
 					as="button"

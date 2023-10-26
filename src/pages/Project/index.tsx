@@ -1,15 +1,15 @@
 import {
-  Flex,
-  Heading,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-  chakra,
+	Flex,
+	Heading,
+	Input,
+	InputGroup,
+	InputLeftElement,
+	Tab,
+	TabList,
+	TabPanel,
+	TabPanels,
+	Tabs,
+	chakra,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -18,18 +18,19 @@ import NewTaskModal from "../../components/NewTaskModal";
 import { clearFilters } from "../../features/filterSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import {
-  ArtBoardIcon,
-  CalendarIcon,
-  FlagIcon,
-  JustifyRightIcon,
-  ListIcon,
-  SearchIcon,
+	ArtBoardIcon,
+	CalendarIcon,
+	FlagIcon,
+	JustifyRightIcon,
+	ListIcon,
+	SearchIcon,
 } from "../../icons";
 import { getProject } from "../../services/api";
 import {
-  searchFilterWrapperStyle,
-  searchInputStyle, tabListStyle,
-  tabStyle
+	searchFilterWrapperStyle,
+	searchInputStyle,
+	tabListStyle,
+	tabStyle,
 } from "./style";
 
 const Divider = () => {

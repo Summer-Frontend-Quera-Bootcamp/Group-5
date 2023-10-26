@@ -24,10 +24,10 @@ interface IWorkSpaceDetailsProps {
 	setModalPage: Dispatch<SetStateAction<TPage>>;
 	type?: TType;
 	workSpaseKey?: any;
-  onClose: () => void;
+	onClose: () => void;
 }
 interface INewWorkSpaceProp {
 	type?: TType;
 	workSpaseKey?: any;
-  onClose: () => void;
+	onClose: () => void;
 }
