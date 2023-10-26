@@ -19,10 +19,10 @@ const Column = ({ text, color, boardId }: IColumnProps): JSX.Element => {
 	const [array, setArray] = useState<any[]>([]);
 	const { workspaceId, projectId } = useParams();
 	useEffect(() => {
-		getProject(workspaceId, projectId).then((res: any) => {
+		getProject(+workspaceId!, +projectId!).then((res: any) => {
 			setActiveProject(res.data);
 		});
-		getAllTasks(workspaceId, projectId, boardId).then((res: any) => {
+		getAllTasks(+workspaceId!, +projectId!, boardId).then((res: any) => {
 			setArray(res.data);
 		});
 		console.log(array);

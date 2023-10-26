@@ -35,7 +35,7 @@ const NewSpaceModal: FC = () => {
 				<ModalContent borderRadius="8px" p="24px">
 					<ModalCloseButton left="unset" right="sm" top="sm" zIndex="2" />
 					<ModalBody overflow="hidden">
-						<NewWorkSpaceContent />
+						<NewWorkSpaceContent onClose={onClose} />
 					</ModalBody>
 				</ModalContent>
 			</Modal>

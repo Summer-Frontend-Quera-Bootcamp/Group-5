@@ -36,4 +36,3 @@ const DarkModeSwitch: FC = () => {
 };
 
 export default DarkModeSwitch;
-
