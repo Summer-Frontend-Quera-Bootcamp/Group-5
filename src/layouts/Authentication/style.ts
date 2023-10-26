@@ -22,5 +22,9 @@ export const headingStyle = {
 	bgClip: "text",
 	fill: "transparent",
 	display: "inline-block",
+	fontSize: "32px",
+	fontWeight: "800",
 	py: "2",
+	mb: "xl",
+	textAlign: "center",
 };

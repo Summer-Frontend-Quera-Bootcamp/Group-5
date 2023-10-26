@@ -7,6 +7,7 @@ export const headingStyle = {
 	fontWeight: "800",
 	py: "2",
 	mb: "xl",
+	textAlign: "center",
 };
 
 export const buttonStyle = {
